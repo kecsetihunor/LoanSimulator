@@ -192,7 +192,7 @@ This is a learning project, but suggestions are welcome! Feel free to:
 
 ## 👨‍💻 Author
 
-**Hunor Kecskéti**
+**Hunor Kecseti**
 
 - GitHub: [@kecsetihunor](https://github.com/kecsetihunor)
 
