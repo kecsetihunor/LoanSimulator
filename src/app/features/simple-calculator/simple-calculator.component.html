@@ -1,0 +1,26 @@
+<div class="container my-4">
+  <h2 class="mb-3 text-white" i18n>Simple Loan Calculator</h2>
+  <p class="text-white-50 mb-4" i18n>Calculate your monthly payments with a single fixed interest rate.</p>
+
+  <!-- Loan Input Form -->
+  <app-loan-input 
+    (schedulesGenerated)="onSchedulesGenerated($event)"
+  ></app-loan-input>
+  
+  <!-- Amortization Tables Side by Side -->
+  <div class="row mt-4" *ngIf="annuitySchedule.length > 0">
+    <div class="col-lg-6 mb-4">
+      <h4 class="mb-3 text-white" i18n>Annuity (Equal Payments)</h4>
+      <app-amortization-schedule 
+        [schedule]="annuitySchedule"
+      ></app-amortization-schedule>
+    </div>
+    
+    <div class="col-lg-6 mb-4">
+      <h4 class="mb-3 text-white" i18n>Linear (Decreasing Payments)</h4>
+      <app-amortization-schedule 
+        [schedule]="linearSchedule"
+      ></app-amortization-schedule>
+    </div>
+  </div>
+</div>

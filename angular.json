@@ -9,6 +9,15 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+        "ro": {
+          "translation": "src/locale/messages.ro.xlf",
+          "baseHref": "/ro/"
+          }
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
@@ -17,7 +26,8 @@
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
-              "zone.js"
+              "zone.js",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
@@ -27,11 +37,21 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css"
             ],
-            "scripts": []
+            "scripts": [
+                "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"  
+              ]
           },
           "configurations": {
+             "ro": {
+                "localize": ["ro"],
+                "optimization": false,
+                "extractLicenses": false,
+                "sourceMap": true
+            },
             "production": {
               "budgets": [
                 {
@@ -58,6 +78,9 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
+            "ro": {
+              "buildTarget": "frontend:build:ro"
+            },
             "production": {
               "buildTarget": "frontend:build:production"
             },
@@ -75,7 +98,8 @@
           "options": {
             "polyfills": [
               "zone.js",
-              "zone.js/testing"
+              "zone.js/testing",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
@@ -85,7 +109,8 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           }

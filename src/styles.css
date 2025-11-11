@@ -1,1 +1,355 @@
-/* You can add global styles to this file, and also import other style files */
+/* ===== Refined Purple Dark Mode - Bootstrap-style ===== */
+
+:root {
+  /* Primary Purple Colors */
+  --primary: #9370db;
+  --primary-dark: #7952b3;
+  --primary-light: #b794f6;
+  
+  /* Dark Backgrounds - softer than pure black */
+  --bg-dark-primary: #212529;      /* Very dark gray (not black) */
+  --bg-dark-secondary: #1a1a1a;    /* Dark gray */
+  --bg-dark-tertiary: #212529;     /* Bootstrap's dark */
+  --bg-dark-card: #1e1e1e;         /* Card background */
+  --bg-dark-input: #2b2b2b;        /* Input background */
+  
+  /* Text Colors - softer whites and grays */
+  --text-primary: #e9ecef;         /* Soft white */
+  --text-secondary: #ced4da;       /* Light gray */
+  --text-muted: #adb5bd;           /* Muted gray */
+  --text-on-input: #f8f9fa;        /* Input text */
+  
+  /* Border Colors */
+  --border-color: #343a40;
+  --border-light: #495057;
+}
+
+/* Global Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-dark-primary);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+p {
+  color: var(--text-secondary);
+}
+
+small {
+  color: var(--text-muted);
+}
+
+/* Main Content */
+.main-content {
+  background-color: var(--bg-dark-primary);
+  min-height: 100vh;
+}
+
+/* Form Controls - Soft gray backgrounds with light text */
+.form-control,
+.form-select {
+  background-color: var(--bg-dark-input);
+  border: 1px solid var(--border-color);
+  color: var(--text-on-input);
+  padding: 0.625rem 0.75rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+  background-color: #343a40;
+  border-color: var(--primary);
+  color: var(--text-on-input);
+  box-shadow: 0 0 0 0.25rem rgba(147, 112, 219, 0.25);
+}
+
+.form-control::placeholder {
+  color: #6c757d;
+  opacity: 1;
+}
+
+.form-label {
+  color: var(--text-primary);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.form-text {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+/* Input Group */
+.input-group-text {
+  background-color: var(--bg-dark-tertiary);
+  border-color: var(--border-color);
+  color: var(--text-secondary);
+}
+
+/* Range Slider - Solid purple instead of gradient */
+.form-range {
+  background-color: transparent;
+  height: 0.5rem;
+}
+
+.form-range::-webkit-slider-thumb {
+  background-color: #9370db;  /* Solid purple */
+  border: 2px solid #e9ecef;
+  width: 1.25rem;
+  height: 1.25rem;
+  box-shadow: 0 2px 8px rgba(147, 112, 219, 0.5);
+}
+
+.form-range::-webkit-slider-runnable-track {
+  background: #7952b3;  /* Solid dark purple - no gradient */
+  height: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.form-range::-moz-range-thumb {
+  background-color: #9370db;
+  border: 2px solid #e9ecef;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.form-range::-moz-range-track {
+  background: #7952b3;  /* Solid dark purple - no gradient */
+  height: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+
+/* Buttons */
+/* Button Primary - Purple theme with stronger specificity */
+.btn-primary,
+.btn-outline-primary {
+  --bs-btn-color: #9370db;
+  --bs-btn-border-color: #9370db;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #9370db;
+  --bs-btn-hover-border-color: #9370db;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #7952b3;
+  --bs-btn-active-border-color: #7952b3;
+  --bs-btn-disabled-color: #9370db;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: #9370db;
+}
+
+.btn-outline-primary {
+  color: #9370db !important;
+  border-color: #9370db !important;
+  background-color: transparent !important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:active {
+  background-color: #9370db !important;
+  border-color: #9370db !important;
+  color: white !important;
+}
+
+.btn-primary {
+  background-color: #9370db !important;
+  border-color: #9370db !important;
+  color: white !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: #7952b3 !important;
+  border-color: #7952b3 !important;
+  color: white !important;
+}
+
+/* Card footer */
+.card-footer {
+  background-color: #1a1a1a !important;
+  border-top: 1px solid var(--border-color);
+  padding: 1rem;
+}
+
+
+/* Custom Alert Cards */
+.alert-success-dark {
+  background: #2d5a2e;  /* Solid dark green */
+  border: 1px solid #4a7c4e;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+}
+
+.alert-info-dark {
+  background: #2a4a6f;  /* Solid dark blue */
+  border: 1px solid #4a6fa5;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+}
+
+.alert-success-dark .alert-heading,
+.alert-info-dark .alert-heading {
+  color: #f8f9fa !important;
+  font-weight: 600;
+}
+
+.alert-success-dark p,
+.alert-info-dark p {
+  color: #f8f9fa !important;
+}
+
+.alert-success-dark small,
+.alert-info-dark small {
+  color: rgba(248, 249, 250, 0.75) !important;
+}
+
+.alert-success-dark .d-flex,
+.alert-info-dark .d-flex {
+  color: #f8f9fa !important;
+}
+
+/* Text utilities */
+.text-white {
+  color: #f8f9fa !important;
+}
+
+.text-white-50 {
+  color: rgba(248, 249, 250, 0.75) !important;
+}
+
+/* Badge */
+.bg-purple-light {
+  background-color: var(--primary) !important;
+  color: white !important;
+}
+
+/* Tables - Dark but not pure black */
+.table {
+  color: var(--text-primary);
+  --bs-table-bg: #1a1a1a;
+  --bs-table-striped-bg: #212529;
+  --bs-table-hover-bg: #2b2b2b;
+  --bs-table-border-color: var(--border-color);
+}
+
+.table > :not(caption) > * > * {
+  background-color: #1a1a1a;
+  border-bottom-color: var(--border-color);
+  color: var(--text-primary);
+  padding: 0.75rem;
+}
+
+.table thead th {
+  background-color: #1a1a1a !important;
+  color: var(--text-primary) !important;
+  font-weight: 600;
+  border-bottom: 2px solid var(--border-light);
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 0.5px;
+  padding: 1rem 0.75rem;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+  background-color: #212529;
+  color: var(--text-primary);
+}
+
+.table-striped > tbody > tr:nth-of-type(even) > * {
+  background-color: #1a1a1a;
+  color: var(--text-primary);
+}
+
+.table-hover > tbody > tr:hover > * {
+  background-color: #2b2b2b;
+  color: var(--text-primary);
+}
+
+/* Card */
+.card {
+  background-color: #1a1a1a;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+}
+
+.card-header {
+  background-color: #1a1a1a !important;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary) !important;
+  font-weight: 600;
+  padding: 1rem 1.25rem;
+}
+
+.card-body {
+  background-color: #1a1a1a;
+  padding: 0;
+}
+
+/* Dropdown */
+.dropdown-menu {
+  background-color: var(--bg-dark-card);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-item {
+  color: var(--text-primary);
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: var(--bg-dark-tertiary);
+  color: var(--text-primary);
+}
+
+.dropdown-item.active {
+  background-color: var(--primary);
+  color: white;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-dark-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 6px;
+  border: 2px solid var(--bg-dark-secondary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-light);
+}
+
+/* Override Bootstrap defaults */
+.bg-light {
+  background-color: var(--bg-dark-tertiary) !important;
+}
+
+.text-muted {
+  color: var(--text-muted) !important;
+}
+
+/* Table responsive wrapper */
+.table-responsive {
+  background-color: #1a1a1a;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}

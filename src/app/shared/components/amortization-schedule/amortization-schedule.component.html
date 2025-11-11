@@ -1,0 +1,40 @@
+<div class="card" *ngIf="schedule.length > 0">
+  <div class="card-header">
+    <h5 class="mb-0" i18n>Amortization Schedule</h5>
+  </div>
+  <div class="card-body p-0">
+    <div class="table-responsive">
+      <table class="table table-striped table-hover mb-0">
+        <thead class="table-light">
+          <tr>
+            <th i18n>Month</th>
+            <th class="text-end" i18n>Payment</th>
+            <th class="text-end" i18n>Principal</th>
+            <th class="text-end" i18n>Interest</th>
+            <th class="text-end" i18n>Remaining Balance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of displayedSchedule">
+            <td>{{ row.month }}</td>
+            <td class="text-end">{{ row.payment | number:'1.2-2' }}</td>
+            <td class="text-end">{{ row.principal | number:'1.2-2' }}</td>
+            <td class="text-end">{{ row.interest | number:'1.2-2' }}</td>
+            <td class="text-end">{{ row.remainingBalance | number:'1.2-2' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <!-- Show more/less button -->
+    <div class="card-footer text-center" *ngIf="schedule.length > 12">
+      <button i18n
+        type="button" 
+        class="btn btn-outline-primary"
+        (click)="toggleShowAll()"
+      >
+        {{ showAll ? 'Show Less' : 'Show All ' + schedule.length + ' Payments' }}
+      </button>
+    </div>
+  </div>
+</div>

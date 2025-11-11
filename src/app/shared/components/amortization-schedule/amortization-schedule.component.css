@@ -1,0 +1,16 @@
+/* Show All Payments button - Purple theme */
+.btn-outline-primary {
+  color: #9370db !important;
+  border-color: #9370db !important;
+  background-color: transparent;
+}
+
+.btn-outline-primary:hover {
+  background-color: #9370db !important;
+  border-color: #9370db !important;
+  color: white !important;
+}
+
+.btn-outline-primary:focus {
+  box-shadow: 0 0 0 0.25rem rgba(147, 112, 219, 0.25) !important;
+}

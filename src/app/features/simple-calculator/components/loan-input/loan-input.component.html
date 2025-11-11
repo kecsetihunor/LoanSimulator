@@ -1,0 +1,125 @@
+<div class="container my-4">
+  <div class="row">
+    <!-- Amount (decimal) -->
+    <div class="col-md-4">
+      <label for="amount" class="form-label" i18n>Amount</label>
+      <input
+        id="amount"
+        type="number"
+        class="form-control"
+        [value]="amount"
+        (input)="onAmountChange($any($event.target)?.value)"
+        inputmode="decimal"
+        step="0.01"
+        min="0"
+        placeholder="e.g. 10000.00"
+        i18n-placeholder
+      />
+      <div class="form-text text-white-50" i18n>Enter a positive decimal amount.</div>
+    </div>
+
+    <!-- Interest period (integer) with slider -->
+    <div class="col-md-4">
+      <label for="period" class="form-label" i18n>Interest period: {{ period || 0 }} months</label>
+      <input
+        id="period"
+        type="number"
+        class="form-control mb-2"
+        [value]="period"
+        (input)="onPeriodChange($any($event.target)?.value)"
+        inputmode="numeric"
+        step="1"
+        min="1"
+        max="360"
+        placeholder="e.g. 12"
+        i18n-placeholder
+      />
+      
+      <input
+        type="range"
+        class="form-range"
+        [value]="period || 1"
+        (input)="onPeriodChange($any($event.target)?.value)"
+        min="1"
+        max="360"
+        step="1"
+        aria-label="Interest period slider"
+        i18n-placeholder
+      />
+      
+      <div class="form-text text-white-50" i18n>Enter or slide to select months (1-360).</div>
+    </div>
+
+    <!-- Interest rate (%) decimal with suffix -->
+    <div class="col-md-4">
+      <label for="rate" class="form-label" i18n>Interest rate</label>
+      <div class="input-group">
+        <input
+          id="rate"
+          type="number"
+          class="form-control"
+          [value]="rate"
+          (input)="onRateChange($any($event.target)?.value)"
+          inputmode="decimal"
+          step="0.01"
+          min="0"
+          placeholder="e.g. 5.5"
+          aria-describedby="rateSuffix"
+          i18n-placeholder
+        />
+        <span class="input-group-text" id="rateSuffix">%</span>
+      </div>
+      <div class="form-text text-white-50" i18n>Annual rate as a percentage (e.g., 5.5).</div>
+    </div>
+  </div>
+
+<!-- Display both results side by side with totals -->
+<div class="row mt-4" *ngIf="annuityPayment !== null && linearPayment !== null">
+  <!-- Annuity -->
+  <div class="col-md-6">
+    <div class="alert alert-success-dark" role="alert">
+      <h5 class="alert-heading text-white mb-3" i18n>Annuity Payment</h5>
+      <p class="mb-2 fs-4 text-white fw-bold">{{ annuityPayment | number:'1.2-2' }}</p>
+      <small class="text-white-50 d-block mb-3" i18n>Equal monthly payments</small>
+      
+      <hr class="border-light opacity-25">
+      
+      <div class="d-flex justify-content-between text-white mb-2">
+        <span i18n><strong>Total payback:</strong></span>
+        <span class="fw-bold">{{ annuityTotal | number:'1.2-2' }}</span>
+      </div>
+      <div class="d-flex justify-content-between text-white">
+        <span i18n><strong>Total interest:</strong></span>
+        <span class="fw-bold">{{ (annuityTotal! - amount!) | number:'1.2-2' }}</span>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Linear -->
+  <div class="col-md-6">
+    <div class="alert alert-info-dark" role="alert">
+      <h5 class="alert-heading text-white mb-3" i18n>Linear - First Payment</h5>
+      <p class="mb-2 fs-4 text-white fw-bold">{{ linearPayment | number:'1.2-2' }}</p>
+      <small class="text-white-50 d-block mb-3" i18n>Decreasing payments (equal principal)</small>
+      
+      <hr class="border-light opacity-25">
+      
+      <div class="d-flex justify-content-between text-white mb-2">
+        <span i18n><strong>Total payback:</strong></span>
+        <span class="fw-bold">{{ linearTotal | number:'1.2-2' }}</span>
+      </div>
+      <div class="d-flex justify-content-between text-white">
+        <span i18n><strong>Total interest:</strong></span>
+        <span class="fw-bold">{{ (linearTotal! - amount!) | number:'1.2-2' }}</span>
+      </div>
+      
+      <div class="mt-3" *ngIf="linearTotal! < annuityTotal!">
+        <span class="badge bg-purple-light fs-6">
+          <span i18n>Save</span> {{ (annuityTotal! - linearTotal!) | number:'1.2-2' }} <span i18n>vs. Annuity</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</div>

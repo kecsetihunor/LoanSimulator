@@ -1,0 +1,98 @@
+<nav class="sidebar" [class.collapsed]="isCollapsed">
+  <!-- Header -->
+  <div class="sidebar-header">
+    <div class="brand" *ngIf="!isCollapsed">
+      <h3 class="mb-0">
+        <span class="menu-icon me-3"><i class="bi bi-bank"></i></span>
+        <span class="menu-label" *ngIf="!isCollapsed" i18n>Loan Simulator</span>
+      </h3>
+    </div>
+    <div class="brand-collapsed" *ngIf="isCollapsed">
+      <h3 class="mb-0"><i class="bi bi-bank"></i></h3>
+    </div>
+  </div>
+
+  <!-- Menu Items -->
+  <ul class="sidebar-menu">
+    <li>
+      <a routerLink="/simple" routerLinkActive="active" class="menu-item">
+        <span class="menu-icon"><i class="bi bi-calculator"></i></span>
+        <span class="menu-label" *ngIf="!isCollapsed" i18n>Simple Calculator</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/advanced" routerLinkActive="active" class="menu-item">
+        <span class="menu-icon"><i class="bi bi-lightning"></i></span>
+        <span class="menu-label" *ngIf="!isCollapsed" i18n>Advanced Calculator</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/compare" routerLinkActive="active" class="menu-item">
+        <span class="menu-icon"><i class="bi bi-bar-chart-steps"></i></span>
+        <span class="menu-label" *ngIf="!isCollapsed" i18n>Compare Loans</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/settings" routerLinkActive="active" class="menu-item">
+        <span class="menu-icon"><i class="bi bi-gear-fill"></i></span>
+        <span class="menu-label" *ngIf="!isCollapsed" i18n>Settings</span>
+      </a>
+    </li>
+  </ul>
+
+  <!-- Language Selector at Bottom -->
+  <div class="sidebar-footer">
+
+    <button class="toggle-btn" (click)="toggleSidebar()" type="button">
+      <i class="bi" [class.bi-chevron-left]="!isCollapsed" [class.bi-chevron-right]="isCollapsed"></i>
+    </button>
+
+    <div class="language-selector" *ngIf="!isCollapsed">
+      <div class="dropdown dropup">
+        <button 
+          class="btn btn-sm btn-outline-light dropdown-toggle w-100" 
+          type="button" 
+          data-bs-toggle="dropdown"
+        >
+          <span *ngFor="let loc of locales">
+            <span *ngIf="loc.code === currentLocale">
+              {{ loc.flag }} {{ loc.label }}
+            </span>
+          </span>
+        </button>
+        <ul class="dropdown-menu w-100">
+          <li *ngFor="let loc of locales">
+            <a 
+              class="dropdown-item" 
+              [class.active]="loc.code === currentLocale"
+              (click)="switchLanguage(loc.code)"
+              style="cursor: pointer;"
+            >
+              {{ loc.flag }} {{ loc.label }}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="language-selector-collapsed text-center" *ngIf="isCollapsed">
+      <div class="dropdown dropup">
+        <button class="btn btn-sm btn-link text-white" data-bs-toggle="dropdown">
+          <span *ngFor="let loc of locales">
+            <span *ngIf="loc.code === currentLocale">{{ loc.flag }}</span>
+          </span>
+        </button>
+        <ul class="dropdown-menu">
+          <li *ngFor="let loc of locales">
+            <a 
+              class="dropdown-item" 
+              (click)="switchLanguage(loc.code)"
+              style="cursor: pointer;"
+            >
+              {{ loc.flag }} {{ loc.label }}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
