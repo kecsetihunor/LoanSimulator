@@ -1,59 +1,201 @@
-# Frontend
+# 💰 Loan Simulator
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.13.
+**A modern Angular application for calculating and comparing loan payments with beautiful dark theme UI.**
 
-## Development server
+> Built for learning Angular development, internationalization, and professional UI/UX design.
 
-To start a local development server, run:
+---
 
-```bash
+## 📋 Table of Contents
+
+- [Purpose](#-purpose)
+- [Features](#-features)
+- [Screenshots](#-screenshots)
+- [Tech Stack](#-tech-stack)
+- [Getting Started](#-getting-started)
+- [Project Structure](#-project-structure)
+- [Learning Outcomes](#-learning-outcomes)
+- [Roadmap](#-roadmap)
+- [License](#-license)
+
+---
+
+## 🎯 Purpose
+
+This project was created to learn and demonstrate:
+
+- **Angular 17+** standalone components and modern routing
+- **Professional UI/UX** design with custom dark theme
+- **Internationalization (i18n)** with multiple languages
+- **Component architecture** and separation of concerns
+- **Real-time calculations** and data visualization
+
+---
+
+## ✨ Features
+
+### 💳 Loan Calculation
+- Calculate monthly payments with **fixed interest rate**
+- Compare **annuity** (equal payments) vs. **linear** (decreasing payments) methods
+- View total payback and total interest instantly
+
+### 📊 Amortization Schedules
+- Detailed month-by-month breakdown
+- Payment, principal, interest, and remaining balance
+- Side-by-side comparison of both methods
+- Expandable tables showing all payments
+
+### 🎨 Modern UI
+- **Dark purple theme** (#9370db, #1a1a1a)
+- Collapsible sidebar navigation with Bootstrap icons
+- Responsive design for all devices
+- Smooth transitions and professional styling
+
+### 🌐 Multi-language Support
+- English and Romanian (Română)
+- Built-in language switcher
+- Angular i18n implementation
+
+---
+
+## 📸 Screenshots
+
+*Add screenshots of your app here*
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
+|:-----------|:--------|
+| **Angular 17+** | Frontend framework |
+| **TypeScript** | Programming language |
+| **Bootstrap 5** | UI components & grid |
+| **Bootstrap Icons** | Icon library |
+| **@angular/localize** | Internationalization |
+| **SCSS/CSS** | Custom styling |
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+node >= 18.x
+npm >= 9.x
+
+### Installation
+
+1. **Clone the repository**
+
+git clone https://github.com/kecsetihunor/LoanSimulator.git
+cd LoanSimulator/frontend
+
+
+2. **Install dependencies**
+
+npm install
+
+
+3. **Run development server**
+
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
+4. **Open in browser**
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+http://localhost:4200
 
-```bash
-ng generate component component-name
-```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Build for Production
 
-```bash
-ng generate --help
-```
+Build with all locales
+ng build --localize
 
-## Building
+Serve built files
+cd dist/frontend/browser
+npx http-server -p 8080
 
-To build the project run:
 
-```bash
-ng build
-```
+**English:** `http://localhost:8080/en-US/`  
+**Romanian:** `http://localhost:8080/ro/`
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+## 📁 Project Structure
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+src/
+├── app/
+│ ├── components/
+│ │ ├── layout/
+│ │ │ └── sidebar/ # Navigation sidebar
+│ │ ├── loan-input/ # Input form component
+│ │ └── amortization-schedule/ # Table component
+│ ├── pages/
+│ │ └── simple-calculator/ # Main calculator page
+│ ├── services/
+│ │ └── loan-calculator.service.ts # Calculation logic
+│ ├── app.component.ts # Root component
+│ ├── app.config.ts # App configuration
+│ └── app.routes.ts # Routing configuration
+├── locale/
+│ └── messages.ro.xlf # Romanian translations
+├── styles.css # Global styles & theme
+└── index.html
 
-```bash
-ng test
-```
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+## 📚 Learning Outcomes
 
-```bash
-ng e2e
-```
+This project demonstrates:
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+- ✅ **Standalone components** (no NgModule)
+- ✅ **Reactive forms** and two-way data binding
+- ✅ **Service-based architecture** for business logic
+- ✅ **Component communication** with @Input/@Output
+- ✅ **Angular routing** and lazy loading
+- ✅ **i18n workflow** with extraction and compilation
+- ✅ **Custom theming** with CSS variables
+- ✅ **Responsive design** principles
 
-## Additional Resources
+---
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 🗺️ Roadmap
+
+Future features planned:
+
+- [ ] **Advanced Calculator** - Fixed + variable interest rates
+- [ ] **Loan Comparison** - Compare multiple loan scenarios
+- [ ] **Charts & Graphs** - Visual payment breakdowns
+- [ ] **PDF Export** - Download amortization schedules
+- [ ] **Currency Support** - Multiple currencies (EUR, RON, USD)
+- [ ] **Save Calculations** - Local storage persistence
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🤝 Contributing
+
+This is a learning project, but suggestions are welcome! Feel free to:
+
+- Open an issue for bugs or feature requests
+- Submit a pull request with improvements
+- Share feedback on code structure
+
+---
+
+## 👨‍💻 Author
+
+**Hunor Kecskéti**
+
+- GitHub: [@kecsetihunor](https://github.com/kecsetihunor)
+
+---
+
+**⭐ If you found this helpful, please give it a star!**
