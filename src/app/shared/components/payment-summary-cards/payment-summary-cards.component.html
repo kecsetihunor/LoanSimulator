@@ -1,0 +1,48 @@
+ <!-- Display both results side by side with totals -->
+  <div class="row mt-4" *ngIf="annuityPayment !== null && linearPayment !== null">
+    <!-- Annuity -->
+    <div class="col-md-6 mb-3">
+      <div class="alert alert-success-dark h-100" role="alert">
+        <h5 class="alert-heading text-white mb-3" i18n>Annuity Payment</h5>
+        <p class="mb-2 fs-4 text-white fw-bold">{{ annuityPayment | number:'1.2-2' }}</p>
+        <small class="text-white-50 d-block mb-3" i18n>Equal monthly payments</small>
+        
+        <hr class="border-light opacity-25">
+        
+        <div class="d-flex justify-content-between text-white mb-2">
+          <span i18n><strong>Total payback:</strong></span>
+          <span class="fw-bold">{{ annuityTotal | number:'1.2-2' }}</span>
+        </div>
+        <div class="d-flex justify-content-between text-white">
+          <span i18n><strong>Total interest:</strong></span>
+          <span class="fw-bold">{{ (annuityTotal! - amount!) | number:'1.2-2' }}</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Linear -->
+    <div class="col-md-6 mb-3">
+      <div class="alert alert-info-dark h-100" role="alert">
+        <h5 class="alert-heading text-white mb-3" i18n>Linear - First Payment</h5>
+        <p class="mb-2 fs-4 text-white fw-bold">{{ linearPayment | number:'1.2-2' }}</p>
+        <small class="text-white-50 d-block mb-3" i18n>Decreasing payments (equal principal)</small>
+        
+        <hr class="border-light opacity-25">
+        
+        <div class="d-flex justify-content-between text-white mb-2">
+          <span i18n><strong>Total payback:</strong></span>
+          <span class="fw-bold">{{ linearTotal | number:'1.2-2' }}</span>
+        </div>
+        <div class="d-flex justify-content-between text-white mb-2">
+          <span i18n><strong>Total interest:</strong></span>
+          <span class="fw-bold">{{ (linearTotal! - amount!) | number:'1.2-2' }}</span>
+        </div>
+        
+        <div class="mt-3" *ngIf="linearTotal! < annuityTotal!">
+          <span class="badge bg-purple-light fs-6">
+            <span i18n>Save</span> {{ (annuityTotal! - linearTotal!) | number:'1.2-2' }} vs. Annuity <span i18n>vs. Annuity</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>

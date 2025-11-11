@@ -1,6 +1,9 @@
 <div class="card" *ngIf="schedule.length > 0">
-  <div class="card-header">
+  <div class="card-header d-flex justify-content-between align-items-center">
     <h5 class="mb-0" i18n>Amortization Schedule</h5>
+     <button type="button" class="btn btn-outline-primary" (click)="downloadPdf()">
+      PDF <i class="bi bi-download"></i>
+    </button>
   </div>
   <div class="card-body p-0">
     <div class="table-responsive">
