@@ -50,12 +50,6 @@ small {
   color: var(--text-muted);
 }
 
-/* Main Content */
-.main-content {
-  background-color: var(--bg-dark-primary);
-  min-height: 100vh;
-}
-
 /* Form Controls - Soft gray backgrounds with light text */
 .form-control,
 .form-select {

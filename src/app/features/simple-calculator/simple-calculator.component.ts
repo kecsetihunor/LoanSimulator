@@ -23,6 +23,14 @@ export class SimpleCalculatorComponent {
   linearPayment: number | null = null;
   linearTotal: number | null = null;
   amount: number | null = null;
+  period: number | null = null;
+  rate: number | null = null;
+
+  onInputChanged(data: { amount: number; period: number; rate: number }) {
+    this.amount = data.amount;
+    this.period = data.period;
+    this.rate = data.rate;
+  }
 
   onSchedulesGenerated(schedules: { annuity: PaymentScheduleRow[]; linear: PaymentScheduleRow[] }) {
     this.annuitySchedule = schedules.annuity;

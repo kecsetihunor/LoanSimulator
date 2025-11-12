@@ -20,7 +20,20 @@ export class AdvancedCalculatorComponent {
   annuityTotal: number | null = null;
   linearPayment: number | null = null;
   linearTotal: number | null = null;
+  
   amount: number | null = null;
+  totalPeriod: number | null = null;
+  fixedRate: number | null = null;
+  variableRate: number | null = null;
+  fixedMonths: number | null = null;
+
+  onInputChanged(data: { amount: number; totalPeriod: number; fixedMonths: number, fixedRate: number, variableRate: number }) {
+    this.amount = data.amount;
+    this.fixedMonths = data.fixedMonths;
+    this.fixedRate = data.fixedRate;
+    this.variableRate = data.variableRate;
+    this.totalPeriod = data.totalPeriod;
+  }
 
   onSchedulesGenerated(schedules: { annuity: PaymentScheduleRow[]; linear: PaymentScheduleRow[] }): void {
     this.annuitySchedule = schedules.annuity;

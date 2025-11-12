@@ -5,6 +5,10 @@
   <!-- Loan Input Form -->
   <app-loan-input 
     (schedulesGenerated)="onSchedulesGenerated($event)"
+    (inputChanged)="onInputChanged($event)"
+    [(amount)]="amount"
+    [(period)]="period"
+    [(rate)]="rate"
   ></app-loan-input>
 
   <app-payment-summary-cards
@@ -22,6 +26,10 @@
       <h4 class="mb-3 text-white" i18n>Annuity (Equal Payments)</h4>
       <app-amortization-schedule 
         [schedule]="annuitySchedule"
+        [loanAmount]="amount"
+        [totalPeriod]="period"
+        [fixedRate]="rate"
+        [scheduleType]="'annuity'"
       ></app-amortization-schedule>
     </div>
     
@@ -29,6 +37,10 @@
       <h4 class="mb-3 text-white" i18n>Linear (Decreasing Payments)</h4>
       <app-amortization-schedule 
         [schedule]="linearSchedule"
+        [loanAmount]="amount"
+        [totalPeriod]="period"
+        [fixedRate]="rate"
+        [scheduleType]="'linear'"
       ></app-amortization-schedule>
     </div>
   </div>

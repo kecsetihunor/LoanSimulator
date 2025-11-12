@@ -4,16 +4,22 @@
 
   <!-- Advanced Loan Input Form -->
   <app-advanced-loan-input 
+    [(amount)]="amount"
+    [(totalPeriod)]="totalPeriod"
+    [(fixedRate)]="fixedRate"
+    [(variableRate)]="variableRate"
+    [(fixedMonths)]="fixedMonths"
     (schedulesGenerated)="onSchedulesGenerated($event)"
+    (inputChanged)="onInputChanged($event)"
   ></app-advanced-loan-input>
 
     <app-payment-summary-cards
-    [annuityPayment]="annuityPayment"
-    [annuityTotal]="annuityTotal"
-    [linearPayment]="linearPayment"
-    [linearTotal]="linearTotal"
-    [amount]="amount"
-  ></app-payment-summary-cards>
+      [annuityPayment]="annuityPayment"
+      [annuityTotal]="annuityTotal"
+      [linearPayment]="linearPayment"
+      [linearTotal]="linearTotal"
+      [amount]="amount"
+    ></app-payment-summary-cards>
   
   <!-- Amortization Tables Side by Side -->
   <div class="row mt-4" *ngIf="annuitySchedule.length > 0">
@@ -21,6 +27,12 @@
       <h4 class="mb-3 text-white" i18n>Annuity (Equal Payments)</h4>
       <app-amortization-schedule 
         [schedule]="annuitySchedule"
+        [loanAmount]="amount"
+        [totalPeriod]="totalPeriod"
+        [fixedRate]="fixedRate"
+        [variableRate]="variableRate"
+        [fixedMonths]="fixedMonths"
+        [scheduleType]="'annuity'"
       ></app-amortization-schedule>
     </div>
     
@@ -28,6 +40,12 @@
       <h4 class="mb-3 text-white" i18n>Linear (Decreasing Payments)</h4>
       <app-amortization-schedule 
         [schedule]="linearSchedule"
+        [loanAmount]="amount"
+        [totalPeriod]="totalPeriod"
+        [fixedRate]="fixedRate"
+        [variableRate]="variableRate"
+        [fixedMonths]="fixedMonths"
+        [scheduleType]="'linear'"
       ></app-amortization-schedule>
     </div>
   </div>

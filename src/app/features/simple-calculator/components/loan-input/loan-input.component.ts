@@ -18,6 +18,9 @@ export class LoanInputComponent {
   @Output() amountChange = new EventEmitter<number | null>();
   @Output() periodChange = new EventEmitter<number | null>();
   @Output() rateChange = new EventEmitter<number | null>();
+
+  @Output() inputChanged = new EventEmitter<{ amount: number; period: number; rate: number }>();
+
   @Output() schedulesGenerated = new EventEmitter<{
     annuity: PaymentScheduleRow[];
     linear: PaymentScheduleRow[];
@@ -29,10 +32,21 @@ export class LoanInputComponent {
   annuityTotal: number | null = null;
   linearTotal: number | null = null;
 
+  onAnyInputChange() {
+    if (this.amount !== null && this.period !== null && this.rate !== null) {
+    this.inputChanged.emit({ 
+      amount: this.amount, 
+      period: this.period, 
+      rate: this.rate 
+    });
+  }
+  }
+
   onAmountChange(val: string) {
     const n = val === '' ? NaN : Number(val);
     this.amount = isNaN(n) ? this.amount : n;
     this.amountChange.emit(this.amount);
+    this.onAnyInputChange();
     this.calculateIfValid();
   }
 
@@ -40,6 +54,7 @@ export class LoanInputComponent {
     const n = val === '' ? null : Math.trunc(Number(val));
     this.period = isNaN(n as number) ? this.period : n;
     this.periodChange.emit(this.period);
+    this.onAnyInputChange();
     this.calculateIfValid();
   }
 
@@ -47,6 +62,7 @@ export class LoanInputComponent {
     const n = val === '' ? NaN : Number(val);
     this.rate = isNaN(n) ? this.rate : n;
     this.rateChange.emit(this.rate);
+    this.onAnyInputChange();
     this.calculateIfValid();
   }
 
