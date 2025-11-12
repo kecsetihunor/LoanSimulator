@@ -47,6 +47,20 @@
       <i class="bi" [ngClass]="isCollapsed ? 'bi-chevron-right' : 'bi-chevron-left'"></i>
     </button>
 
+    <div class="currency-selector" *ngIf="!isCollapsed">
+      <div class="dropdown dropup">
+      <app-currency-picker></app-currency-picker>
+      </div>
+    </div>
+
+    <!-- Collapsed: show currency code only -->
+    <div class="currency-code-collapsed" *ngIf="isCollapsed">
+        <span>
+      {{ selectedCurrency?.code }}
+      </span>
+    </div>
+    
+
     <div class="language-selector" *ngIf="!isCollapsed">
       <div class="dropdown dropup">
         <button 

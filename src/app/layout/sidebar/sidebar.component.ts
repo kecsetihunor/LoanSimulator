@@ -1,6 +1,8 @@
-import { Component, LOCALE_ID, Inject, EventEmitter, Output } from '@angular/core';
+import { Component, LOCALE_ID, Inject, EventEmitter, Output, inject } from '@angular/core';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { CurrencyPickerComponent } from '@layout/currency/currency-picker/currency-picker.component';
+import { CurrencyService, Currency } from '@core/services/currency.service';
 
 interface MenuItem {
   icon: string;
@@ -12,7 +14,7 @@ interface MenuItem {
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, CurrencyPickerComponent],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
@@ -21,6 +23,8 @@ export class SidebarComponent {
 
   isCollapsed = false;
   currentLocale: string;
+  selectedCurrency: Currency | null = null;
+  private currencyService = inject(CurrencyService);
 
   menuItems: MenuItem[] = [
     { icon: '🧮', label: 'Simple Calculator', route: '/simple' },
@@ -55,5 +59,11 @@ export class SidebarComponent {
     }
     
     this.document.location.href = newUrl;
+  }
+
+  ngOnInit(): void {
+    this.currencyService.selectedCurrency$.subscribe(cur => {
+      this.selectedCurrency = cur;
+    });
   }
 }

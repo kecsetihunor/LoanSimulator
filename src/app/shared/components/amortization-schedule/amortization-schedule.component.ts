@@ -1,6 +1,7 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PaymentScheduleRow } from '@app/shared/models/loan.models';
+import { CurrencyService } from '@core/services/currency.service';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 
@@ -20,47 +21,81 @@ export class AmortizationScheduleComponent {
   @Input() scheduleType: 'annuity' | 'linear' = 'annuity'; // To customize the filename
 
   displayedSchedule: PaymentScheduleRow[] = [];
+  currencyService = inject(CurrencyService);
 
-   downloadPdf() {
-    const doc = new jsPDF();
-    let yPosition = 20;
+  downloadPdf() {
+   const doc = new jsPDF();
+    let yPosition = 8; // Slightly larger top margin
+    let xLabel = 16;
+    let xValue = 64;
+    let currency = this.currencyService.getSelectedCurrency();
 
-    // Title
-    doc.setFontSize(18);
-    doc.setTextColor(147, 112, 219); // Purple
-    doc.text('Loan Amortization Schedule', 14, yPosition);
-    yPosition += 10;
+  // Section Header for Details (optional)
+  doc.setFontSize(16);
+  doc.setTextColor(110, 100, 150); // Subtle accent
+  doc.text('Loan Details', xLabel, yPosition, { baseline: 'top' });
+  yPosition += 8;
+  doc.setDrawColor(147, 112, 219);
+  doc.line(xLabel, yPosition, xLabel + 60, yPosition); // Underline for section
 
-    // Loan Details Section
+  yPosition += 6;
+  doc.setFontSize(12);
+  doc.setTextColor(0, 0, 0); // Black
+
+  // Helper: Bold label, normal value
+  function detail(label: string, value: string) {
+    doc.setFont('helvetica', 'bold');
+    doc.text(label, xLabel, yPosition, { baseline: 'top' });
+    doc.setFont('helvetica', 'normal');
+    doc.text(value, xValue, yPosition, { baseline: 'top' });
+    yPosition += 8;
+  }
+
+  if (this.loanAmount !== null) {
+    detail(
+      'Loan Amount:',
+      `${this.loanAmount!.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${currency.symbol}`
+    );
+  }
+
+  if (this.totalPeriod !== null) {
+    detail('Total Period:', `${this.totalPeriod} months`);
+  }
+
+  if (this.fixedRate !== null) {
+    if (this.fixedMonths !== null && this.variableRate !== null) {
+      detail('Fixed Rate:', `${this.fixedRate}% (first ${this.fixedMonths} months)`);
+      detail('Variable Rate:', `${this.variableRate}% (remaining ${this.totalPeriod! - this.fixedMonths!} months)`);
+    } else {
+      detail('Interest Rate:', `${this.fixedRate}%`);
+    }
+  }
+
+    // Payment Type - call out with different color if you wish
+    doc.setFont('helvetica', 'bold');
+    doc.text('Payment Type:', xLabel, yPosition, { baseline: 'top' });
+    doc.setFont('helvetica', 'normal');
+    doc.text(
+      this.scheduleType === 'annuity'
+        ? 'Annuity (Equal Payments)'
+        : 'Linear (Decreasing Payments)',
+      xValue,
+      yPosition,
+      { baseline: 'top' }
+    );
+    doc.setTextColor(0, 0, 0);
+    yPosition += 12;
+
+
+    // Section Header for Details (optional)
+    doc.setFontSize(16);
+    doc.setTextColor(110, 100, 150); // Subtle accent
+    doc.text('Amortization Schedule', xLabel, yPosition, { baseline: 'top' });
+    yPosition += 8;
+    doc.setDrawColor(147, 112, 219);
+    doc.line(xLabel, yPosition, xLabel + 60, yPosition); // Underline for section
+    yPosition += 6;
     doc.setFontSize(12);
-    doc.setTextColor(0, 0, 0); // Black
-
-    if (this.loanAmount !== null) {
-      doc.text(`Loan Amount: ${this.loanAmount!.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`, 14, yPosition);
-      yPosition += 7;
-    }
-
-    if (this.totalPeriod !== null) {
-      doc.text(`Total Period: ${this.totalPeriod} months`, 14, yPosition);
-      yPosition += 7;
-    }
-
-    if (this.fixedRate !== null) {
-      if (this.fixedMonths !== null && this.variableRate !== null) {
-        // Advanced calculator with both rates
-        doc.text(`Fixed Rate: ${this.fixedRate}% (first ${this.fixedMonths} months)`, 14, yPosition);
-        yPosition += 7;
-        doc.text(`Variable Rate: ${this.variableRate}% (remaining ${this.totalPeriod! - this.fixedMonths!} months)`, 14, yPosition);
-        yPosition += 7;
-      } else {
-        // Simple calculator with single rate
-        doc.text(`Interest Rate: ${this.fixedRate}%`, 14, yPosition);
-        yPosition += 7;
-      }
-    }
-
-    doc.text(`Payment Type: ${this.scheduleType === 'annuity' ? 'Annuity (Equal Payments)' : 'Linear (Decreasing Payments)'}`, 14, yPosition);
-    yPosition += 10;
 
     // Prepare table data
     const columns = [

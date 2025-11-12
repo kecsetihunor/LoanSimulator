@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoanInputComponent } from '@features/simple-calculator/components/loan-input/loan-input.component';
 import { AmortizationScheduleComponent } from '@shared/components/amortization-schedule/amortization-schedule.component';

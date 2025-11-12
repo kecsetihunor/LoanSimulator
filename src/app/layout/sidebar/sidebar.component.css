@@ -112,12 +112,29 @@
   background: rgba(147, 112, 219, 0.3);
 }
 
+.currency-selector {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1rem;
+}
+
+.currency-code-collapsed {
+  display: flex;
+  align-items: center;     /* Vertical center */
+  justify-content: center; /* Horizontal center */
+  height: 40px;            /* Or adjust to fit your sidebar cell height */
+  font-size: 1em;        /* Or desired size */
+  font-weight: bolder;
+  color: #fff;
+  width: 100%;
+}
+
 .language-selector {
   padding: 1rem;
 }
 
 .language-selector-collapsed {
-  padding: 1rem 0;
+  padding-bottom: 1rem;
   text-align: center;
 }
 

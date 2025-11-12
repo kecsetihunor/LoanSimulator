@@ -176,43 +176,6 @@ small {
   padding: 1rem;
 }
 
-
-/* Custom Alert Cards */
-.alert-success-dark {
-  background: #2d5a2e;  /* Solid dark green */
-  border: 1px solid #4a7c4e;
-  border-radius: 0.5rem;
-  padding: 1.5rem;
-}
-
-.alert-info-dark {
-  background: #2a4a6f;  /* Solid dark blue */
-  border: 1px solid #4a6fa5;
-  border-radius: 0.5rem;
-  padding: 1.5rem;
-}
-
-.alert-success-dark .alert-heading,
-.alert-info-dark .alert-heading {
-  color: #f8f9fa !important;
-  font-weight: 600;
-}
-
-.alert-success-dark p,
-.alert-info-dark p {
-  color: #f8f9fa !important;
-}
-
-.alert-success-dark small,
-.alert-info-dark small {
-  color: rgba(248, 249, 250, 0.75) !important;
-}
-
-.alert-success-dark .d-flex,
-.alert-info-dark .d-flex {
-  color: #f8f9fa !important;
-}
-
 /* Text utilities */
 .text-white {
   color: #f8f9fa !important;

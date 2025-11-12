@@ -1,0 +1,23 @@
+<div class="dropdown dropup">
+  <button 
+    class="btn btn-sm btn-outline-light dropdown-toggle w-100" 
+    type="button" 
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+  >
+    <!-- Show selected currency symbol and code -->
+    {{ selectedCurrency?.code }}
+  </button>
+  <ul class="dropdown-menu w-100">
+    <li *ngFor="let currency of currencies">
+      <a 
+        class="dropdown-item" 
+        [class.active]="currency.code === selectedCurrency?.code"
+        (click)="onCurrencyChange(currency)"
+        style="cursor: pointer;"
+      >
+        {{ currency.name }} - {{ currency.symbol }}
+      </a>
+    </li>
+  </ul>
+</div>
