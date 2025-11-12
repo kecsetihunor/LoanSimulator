@@ -5,6 +5,16 @@
   background-color: #212529; /* Dark background */
 }
 
+.sidebar {
+  width: 240px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  z-index: 1000;
+  transition: width 0.3s;
+}
+
 /* Main content area - takes up remaining space */
 .content {
   flex: 1;
@@ -23,17 +33,20 @@
 /* Centered content wrapper */
 .content-wrapper {
   width: 100%;
-  max-width: 1400px; /* Maximum width before centering kicks in */
+  max-width: 1200px; /* Maximum width before centering kicks in */
   padding: 2rem;
 }
 
-/* Mobile responsive */
 @media (max-width: 768px) {
-  .content {
-    margin-left: 0;
+  .sidebar {
+    width: 240px;
+    position: absolute; /* or fixed */
+    left: 0;
+    top: 0;
+    z-index: 1100;
+    /* Optionally: hide sidebar when collapsed, show with a flap button */
   }
-  
-  .content.sidebar-collapsed {
-    margin-left: 0;
+  .content {
+    margin-left: 0 !important;
   }
 }
