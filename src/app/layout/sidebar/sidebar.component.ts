@@ -1,4 +1,4 @@
-import { Component, LOCALE_ID, Inject } from '@angular/core';
+import { Component, LOCALE_ID, Inject, EventEmitter, Output } from '@angular/core';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -17,6 +17,8 @@ interface MenuItem {
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
+  @Output() sidebarToggled = new EventEmitter<boolean>();
+
   isCollapsed = false;
   currentLocale: string;
 
@@ -41,6 +43,7 @@ export class SidebarComponent {
 
   toggleSidebar() {
     this.isCollapsed = !this.isCollapsed;
+    this.sidebarToggled.emit(this.isCollapsed);
   }
 
   switchLanguage(locale: string) {

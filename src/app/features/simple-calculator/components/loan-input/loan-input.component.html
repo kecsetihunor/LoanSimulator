@@ -30,7 +30,7 @@
         inputmode="numeric"
         step="1"
         min="1"
-        max="360"
+        max="480"
         placeholder="e.g. 12"
         i18n-placeholder
       />
@@ -41,13 +41,13 @@
         [value]="period || 1"
         (input)="onPeriodChange($any($event.target)?.value)"
         min="1"
-        max="360"
+        max="480"
         step="1"
         aria-label="Interest period slider"
         i18n-placeholder
       />
       
-      <div class="form-text text-white-50" i18n>Enter or slide to select months (1-360).</div>
+      <div class="form-text text-white-50" i18n>Enter or slide to select months (1-480).</div>
     </div>
 
     <!-- Interest rate (%) decimal with suffix -->

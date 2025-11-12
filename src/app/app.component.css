@@ -1,23 +1,39 @@
-.app-container {
+/* Main app layout */
+.app-root {
+  min-height: 100vh;
   display: flex;
-  min-height: 100vh;
-  background-color: var(--bg-dark-primary);
+  background-color: #212529; /* Dark background */
 }
 
-.main-content {
-  margin-left: 280px;
+/* Main content area - takes up remaining space */
+.content {
   flex: 1;
-  transition: margin-left 0.3s ease;
-  background: var(--bg-dark-primary);
+  margin-left: 240px; /* Sidebar width when expanded */
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: #212529; /* Dark background */
   min-height: 100vh;
+  display: flex;
+  justify-content: center; /* Center the wrapper */
 }
 
-.main-content.sidebar-collapsed {
-  margin-left: 70px;
+.content.sidebar-collapsed {
+  margin-left: 56px; /* Sidebar width when collapsed */
 }
 
+/* Centered content wrapper */
+.content-wrapper {
+  width: 100%;
+  max-width: 1400px; /* Maximum width before centering kicks in */
+  padding: 2rem;
+}
+
+/* Mobile responsive */
 @media (max-width: 768px) {
-  .main-content {
+  .content {
+    margin-left: 0;
+  }
+  
+  .content.sidebar-collapsed {
     margin-left: 0;
   }
 }

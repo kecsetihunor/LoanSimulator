@@ -1,9 +1,8 @@
-<div class="app-container">
-  <app-sidebar></app-sidebar>
-  
-  <main class="main-content">
-    <div class="container-fluid py-4">
+<div class="app-root">
+  <app-sidebar (sidebarToggled)="onSidebarToggle($event)"></app-sidebar>
+  <div class="content" [ngClass]="{ 'sidebar-collapsed': sidebarCollapsed }">
+    <div class="content-wrapper">
       <router-outlet></router-outlet>
     </div>
-  </main>
+  </div>
 </div>
