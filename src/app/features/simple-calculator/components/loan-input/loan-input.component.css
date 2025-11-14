@@ -1,7 +1,18 @@
 /* Range Slider - Solid purple instead of gradient */
+.form-label,
+.form-control,
+.input-group-text {
+  vertical-align: middle;
+}
+
 .form-range {
   background-color: transparent;
   height: 0.5rem;
+}
+
+.form-check-label
+{
+  color: white;
 }
 
 .form-range::-webkit-slider-thumb {

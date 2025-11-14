@@ -1,7 +1,8 @@
 import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { LoanCalculatorService, PaymentScheduleRow } from '@core/services/loan-calculator.service';
+import { LoanCalculatorService } from '@core/services/loan-calculator.service';
+import { PaymentScheduleRow } from '@app/shared/models/loan.models'; 
 
 @Component({
   selector: 'app-advanced-loan-input',
@@ -30,11 +31,14 @@ export class AdvancedLoanInputComponent {
  
   @Input() fixedRate: number | null = null;  // Fixed rate for first period
   @Output() fixedRateChange = new EventEmitter<number | null>();
+
+  @Input() insuranceRate: number | null = null;  // Insurance rate
+  @Output() insuranceRateChange = new EventEmitter<number | null>();
  
   @Input() variableRate: number | null = null;  // Variable rate after fixed period
   @Output() variableRateChange = new EventEmitter<number | null>();
 
-  @Output() inputChanged = new EventEmitter<{ amount: number; totalPeriod: number; fixedMonths: number; fixedRate: number; variableRate: number }>();
+  @Output() inputChanged = new EventEmitter<{ amount: number; totalPeriod: number; fixedMonths: number; fixedRate: number; variableRate: number, insuranceRate: number | null }>();
 
   // Results
   annuityPayment: number | null = null;
@@ -55,7 +59,8 @@ export class AdvancedLoanInputComponent {
       totalPeriod: this.totalPeriod, 
       fixedMonths: this.fixedMonths,
       fixedRate: this.fixedRate,
-      variableRate: this.variableRate
+      variableRate: this.variableRate,
+      insuranceRate: this.insuranceRate
     });
     }
   }
@@ -88,6 +93,13 @@ export class AdvancedLoanInputComponent {
     this.onAnyInputChange();
   }
 
+    onInsuranceRateChange(val: string) {
+    const n = val === '' ? NaN : Number(val);
+    this.insuranceRate = isNaN(n) ? this.insuranceRate : n;
+    this.insuranceRateChange.emit(this.insuranceRate);
+    this.onAnyInputChange();
+  }
+
   onVariableRateChange(val: string) {
     const n = val === '' ? NaN : Number(val);
     this.variableRate = isNaN(n) ? this.variableRate : n;
@@ -103,7 +115,8 @@ export class AdvancedLoanInputComponent {
         this.totalPeriod!,
         this.fixedRate!,
         this.fixedMonths!,
-        this.variableRate!
+        this.variableRate!,
+        this.insuranceRate
       );
       
       this.annuityPayment = annuitySchedule[0]?.payment || null;
@@ -115,7 +128,8 @@ export class AdvancedLoanInputComponent {
         this.totalPeriod!,
         this.fixedRate!,
         this.fixedMonths!,
-        this.variableRate!
+        this.variableRate!,
+        this.insuranceRate
       );
       
       this.linearPayment = linearSchedule[0]?.payment || null;

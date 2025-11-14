@@ -5,10 +5,8 @@ import { CurrencyPickerComponent } from '@layout/currency/currency-picker/curren
 import { CurrencyService, Currency } from '@core/services/currency.service';
 
 interface MenuItem {
-  icon: string;
   label: string;
   route: string;
-  badge?: string;
 }
 
 @Component({
@@ -27,14 +25,14 @@ export class SidebarComponent {
   private currencyService = inject(CurrencyService);
 
   menuItems: MenuItem[] = [
-    { icon: '🧮', label: 'Simple Calculator', route: '/simple' },
-    { icon: '⚡', label: 'Advanced Calculator', route: '/advanced', badge: 'New' },
-    { icon: '📊', label: 'Compare Loans', route: '/compare' },
-    { icon: '⚙️', label: 'Settings', route: '/settings' }
+    { label: 'Simple Calculator', route: '/simple' },
+    { label: 'Advanced Calculator', route: '/advanced' },
+    { label: 'Compare Loans', route: '/compare' },
+    { label: 'Settings', route: '/settings' }
   ];
 
   locales = [
-    { code: 'en-US', label: 'English', flag: '🇬🇧' },
+    { code: 'en-US', label: 'English', flag: '🇺🇸' },
     { code: 'ro', label: 'Română', flag: '🇷🇴' }
   ];
 

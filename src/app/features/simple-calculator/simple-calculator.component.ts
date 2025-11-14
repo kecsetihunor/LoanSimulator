@@ -25,11 +25,20 @@ export class SimpleCalculatorComponent {
   amount: number | null = null;
   period: number | null = null;
   rate: number | null = null;
+  insuranceRate: number | null = null;
+  showAnnuity: boolean = true;
+  showLinear: boolean = true;
 
-  onInputChanged(data: { amount: number; period: number; rate: number }) {
+  onInputChanged(data: { amount: number; period: number; rate: number, insuranceRate: number | null }) {
     this.amount = data.amount;
     this.period = data.period;
     this.rate = data.rate;
+    this.insuranceRate = data.insuranceRate;
+  }
+
+  onVisibilityChanged(data: { showAnnuity: boolean; showLinear: boolean }) {
+    this.showAnnuity = data.showAnnuity;
+    this.showLinear = data.showLinear;
   }
 
   onSchedulesGenerated(schedules: { annuity: PaymentScheduleRow[]; linear: PaymentScheduleRow[] }) {

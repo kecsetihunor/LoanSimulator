@@ -72,4 +72,90 @@
       <div class="form-text text-white-50" i18n>Annual rate as a percentage (e.g., 5.5).</div>
     </div>
   </div>
+
+  <div class="row">
+    
+<div class="col-md-4">
+  <label for="rate" class="form-label mb-0 me-2" i18n>Interest rate:</label>
+  <mat-slide-toggle
+    class="mb-3"
+    id="enableLifeInsurance"
+    [(ngModel)]="enableLifeInsurance"
+    (change)="onLifeInsuranceToggle()"
+    color="primary"
+  ></mat-slide-toggle>
+  <div class="input-group" *ngIf="enableLifeInsurance">
+    <input
+        id="lifeInsurance"
+        type="number"
+        class="form-control"
+        [value]="insuranceRate"
+        (input)="onInsuranceChange($any($event.target)?.value)"
+        min="0"
+        step="0.01"
+        placeholder="e.g. 0.03"
+        i18n-placeholder
+    />
+    <span class="input-group-text">%</span>
+  </div>
+      <div class="form-text text-white-50" *ngIf="enableLifeInsurance" i18n>Insurance rate as a percentage (e.g., 5.5).</div>
+</div>
+
+
+    <!-- <div class="col-md-4">
+      <label class="form-label mb-0 me-2" i18n>Life Insurance:</label>
+      <mat-slide-toggle
+          id="enableLifeInsurance"
+          [(ngModel)]="enableLifeInsurance"
+          (change)="onLifeInsuranceToggle()"
+          color="primary"
+      ></mat-slide-toggle>
+      <div class="col-4" *ngIf="enableLifeInsurance">
+        <div class="input-group">
+          <input
+            id="lifeInsurance"
+            type="number"
+            class="form-control"
+            [value]="lifeInsurance"
+            (input)="onLifeInsuranceChange($any($event.target)?.value)"
+            min="0"
+            step="0.01"
+            placeholder="0.5"
+          />
+          <span class="input-group-text">%</span>
+        </div>
+      </div>
+    </div> -->
+
+     <div class="col-md-4">
+    <!-- Show Schedules -->
+      <div class="row mb-3 align-items-center">
+        <div class="col-4 d-flex align-items-center" style="gap:8px;">
+          <label class="form-label mb-0 me-2" i18n>Schedules:</label>
+          <div class="d-flex align-items-center" style="gap:16px;">
+            <span class="d-flex align-items-center">
+              <label class="form-check-label me-1" for="showAnnuity" i18n>Annuity</label>
+              <mat-slide-toggle
+                id="showAnnuity"
+                [(ngModel)]="showAnnuity"
+                (change)="onScheduleSelectionChange()"
+                color="primary"
+                style="margin-bottom: 3px;"
+              ></mat-slide-toggle>
+            </span>
+            <span class="d-flex align-items-center">
+              <label class="form-check-label me-1" for="showLinear" i18n>Linear</label>
+              <mat-slide-toggle
+                id="showLinear"
+                [(ngModel)]="showLinear"
+                (change)="onScheduleSelectionChange()"
+                color="primary"
+                style="margin-bottom: 3px;"
+              ></mat-slide-toggle>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
