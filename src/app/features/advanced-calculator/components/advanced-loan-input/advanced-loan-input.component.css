@@ -5,15 +5,20 @@
 }
 
 .form-range::-webkit-slider-thumb {
-  background-color: #9370db;  /* Solid purple */
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #9370db;
   border: 2px solid #e9ecef;
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
   box-shadow: 0 2px 8px rgba(147, 112, 219, 0.5);
+  margin-top: -0.5rem; /* Centers thumb: (1.5rem - 0.5rem) / 2 = 0.5rem */
+  cursor: pointer;
 }
 
 .form-range::-webkit-slider-runnable-track {
-  background: #7952b3;  /* Solid dark purple - no gradient */
+  background: #7952b3;
   height: 0.5rem;
   border-radius: 0.25rem;
 }
@@ -21,15 +26,20 @@
 .form-range::-moz-range-thumb {
   background-color: #9370db;
   border: 2px solid #e9ecef;
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(147, 112, 219, 0.5);
+  border: none; /* Firefox includes border in dimensions */
+  cursor: pointer;
 }
 
 .form-range::-moz-range-track {
-  background: #7952b3;  /* Solid dark purple - no gradient */
+  background: #7952b3;
   height: 0.5rem;
   border-radius: 0.25rem;
 }
+
 
 /* Schedules toggles alignment */
 .schedule-list {

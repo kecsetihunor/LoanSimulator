@@ -90,40 +90,6 @@ small {
   color: var(--text-secondary);
 }
 
-/* Range Slider - Solid purple instead of gradient */
-.form-range {
-  background-color: transparent;
-  height: 0.5rem;
-}
-
-.form-range::-webkit-slider-thumb {
-  background-color: #9370db;  /* Solid purple */
-  border: 2px solid #e9ecef;
-  width: 1.25rem;
-  height: 1.25rem;
-  box-shadow: 0 2px 8px rgba(147, 112, 219, 0.5);
-}
-
-.form-range::-webkit-slider-runnable-track {
-  background: #7952b3;  /* Solid dark purple - no gradient */
-  height: 0.5rem;
-  border-radius: 0.25rem;
-}
-
-.form-range::-moz-range-thumb {
-  background-color: #9370db;
-  border: 2px solid #e9ecef;
-  width: 1.25rem;
-  height: 1.25rem;
-}
-
-.form-range::-moz-range-track {
-  background: #7952b3;  /* Solid dark purple - no gradient */
-  height: 0.5rem;
-  border-radius: 0.25rem;
-}
-
-
 /* Buttons */
 /* Button Primary - Purple theme with stronger specificity */
 .btn-primary,
@@ -324,3 +290,47 @@ small {
   border-radius: 0.5rem;
   overflow: hidden;
 }
+
+.mat-mdc-slide-toggle {
+  /* Your existing color variables */
+  --mdc-switch-selected-track-color: #7952b3;
+  --mdc-switch-selected-hover-track-color: #7952b3;
+  --mdc-switch-selected-pressed-track-color: #7952b3;
+  --mdc-switch-selected-focus-track-color: #7952b3;
+  
+  --mdc-switch-selected-handle-color: #9370db;
+  --mdc-switch-selected-hover-handle-color: #9370db;
+  --mdc-switch-selected-pressed-handle-color: #9370db;
+  --mdc-switch-selected-focus-handle-color: #9370db;
+  
+  --mdc-switch-selected-hover-state-layer-color: #9370db;
+  --mdc-switch-selected-pressed-state-layer-color: #9370db;
+  --mdc-switch-selected-focus-state-layer-color: #9370db;
+  
+  --mdc-switch-unselected-track-color: #495057;
+  --mdc-switch-unselected-focus-track-color: #495057;
+  --mdc-switch-unselected-hover-track-color: #495057;
+  --mdc-switch-unselected-pressed-track-color: #495057;
+  
+  --mdc-switch-unselected-handle-color: #ced4da;
+  --mdc-switch-unselected-focus-handle-color: #ced4da;
+  --mdc-switch-unselected-hover-handle-color: #ced4da;
+  --mdc-switch-unselected-pressed-handle-color: #ced4da;
+  
+  --mdc-switch-unselected-focus-state-layer-color: #495057;
+  --mdc-switch-unselected-hover-state-layer-color: #495057;
+  --mdc-switch-unselected-pressed-state-layer-color: #495057;
+  
+  /* Adjust handle size to match slider thumb (1.25rem = 20px) */
+  --mdc-switch-handle-height: 1rem;
+  --mdc-switch-handle-width: 1rem;
+  
+  /* Adjust track dimensions proportionally */
+  --mdc-switch-track-height: 0.75rem;
+  --mdc-switch-track-width: 2.25rem;
+}
+
+.mat-mdc-slide-toggle .mdc-switch__handle {
+  box-shadow: 0 0 0 2px #e9ecef, 0 2px 4px rgba(147, 112, 219, 0.5) !important;
+}
+

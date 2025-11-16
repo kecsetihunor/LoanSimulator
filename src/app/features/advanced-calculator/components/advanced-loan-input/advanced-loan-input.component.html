@@ -24,7 +24,7 @@
       <label for="totalPeriod" class="form-label" i18n>Total Period: {{ totalPeriod }} months</label>
       <input
         type="number"
-        class="form-control"
+        class="form-control mb-1"
         id="totalPeriod"
         [(ngModel)]="totalPeriod"
         (input)="onTotalPeriodChange($any($event.target)?.value)"
@@ -52,7 +52,7 @@
       <label for="fixedMonths" class="form-label" i18n>Fixed Rate Period: {{ fixedMonths }} months</label>
       <input
         type="number"
-        class="form-control"
+        class="form-control mb-1"
         id="fixedMonths"
         [(ngModel)]="fixedMonths"
         (input)="onFixedMonthsChange($any($event.target)?.value)"
@@ -116,7 +116,7 @@
 
     <div class="col-md-3">
       <label for="rate" class="form-label me-3" i18n>Insurance rate:</label>
-      <mat-slide-toggle
+      <mat-slide-toggle hideIcon
         class="mb-2"
         id="enableLifeInsuranceAdvanced"
         [(ngModel)]="enableLifeInsurance"
@@ -146,7 +146,7 @@
       <div class="schedule-list ms-3">
         <div class="schedule-item">
           <label class="form-label mb-0" for="showAnnuity" i18n>Annuity</label>
-          <mat-slide-toggle
+          <mat-slide-toggle hideIcon
             id="showAnnuityAdvanced"
             class="ms-2"
             [(ngModel)]="showAnnuity"
@@ -157,7 +157,7 @@
 
         <div class="schedule-item">
           <label class="form-label mb-0" for="showLinear" i18n>Linear</label>
-          <mat-slide-toggle
+          <mat-slide-toggle hideIcon
             id="showLinearAdvanced"
             class="ms-2"
             [(ngModel)]="showLinear"
