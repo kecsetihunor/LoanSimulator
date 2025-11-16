@@ -30,3 +30,19 @@
   height: 0.5rem;
   border-radius: 0.25rem;
 }
+
+/* Schedules toggles alignment */
+.schedule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.schedule-item {
+  display: flex;
+  align-items: center;
+}
+.schedule-item .form-label {
+  /* keep labels same width so toggles align vertically */
+  min-width: 80px;
+  margin-bottom: 0; /* remove default label bottom margin */
+}

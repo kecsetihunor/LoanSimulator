@@ -1,11 +1,9 @@
-import { Component, EventEmitter, Input, Output, inject, OnInit, OnDestroy } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoanCalculatorService } from '@core/services/loan-calculator.service';
 import { PaymentScheduleRow } from '@app/shared/models/loan.models';
 import { FormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { CurrencyService, Currency } from '@app/core/services/currency.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-loan-input',
@@ -14,7 +12,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./loan-input.component.css']
 })
 
-export class LoanInputComponent implements OnInit, OnDestroy {
+export class LoanInputComponent {
   private loanCalculator = inject(LoanCalculatorService);  // Inject the service
 
   @Input() amount: number | null = null;
@@ -44,23 +42,23 @@ export class LoanInputComponent implements OnInit, OnDestroy {
   annuityTotal: number | null = null;
   linearTotal: number | null = null;
 
-  private currencySub: Subscription | null = null;
-  private currencyService = inject(CurrencyService);
-  selectedCurrency: Currency = this.currencyService.getSelectedCurrency();
+  // private currencySub: Subscription | null = null;
+  // private currencyService = inject(CurrencyService);
+  // selectedCurrency: Currency = this.currencyService.getSelectedCurrency();
 
-  ngOnInit(): void {
-    this.currencySub = this.currencyService.selectedCurrency$.subscribe(
-      currency => {
-        this.selectedCurrency = currency;
-      }
-    );
-  }
+  // ngOnInit(): void {
+  //   this.currencySub = this.currencyService.selectedCurrency$.subscribe(
+  //     currency => {
+  //       this.selectedCurrency = currency;
+  //     }
+  //   );
+  // }
 
-  ngOnDestroy(): void {
-    if (this.currencySub) {
-      this.currencySub.unsubscribe();
-    }
-  }
+  // ngOnDestroy(): void {
+  //   if (this.currencySub) {
+  //     this.currencySub.unsubscribe();
+  //   }
+  // }
 
   onAnyInputChange() {
     if (this.amount !== null && this.period !== null && this.rate !== null) {
@@ -115,16 +113,6 @@ export class LoanInputComponent implements OnInit, OnDestroy {
     }
     this.onAnyInputChange();
     this.calculateIfValid();
-  }
-
-  onAnnuityChange(event: Event) {
-    this.showAnnuity = (event.target as HTMLInputElement).checked;
-    this.onScheduleSelectionChange();
-  }
-
-  onLinearChange(event: Event) {
-    this.showLinear = (event.target as HTMLInputElement).checked;
-    this.onScheduleSelectionChange();
   }
 
   onScheduleSelectionChange() {

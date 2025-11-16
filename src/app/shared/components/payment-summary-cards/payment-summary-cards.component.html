@@ -38,7 +38,7 @@
           <span class="fw-bold">{{ (linearTotal! - amount!) | formatCurrency }}</span>
         </div>
         
-        <div class="mt-3" *ngIf="linearTotal! < annuityTotal!">
+        <div class="mt-3" *ngIf="linearTotal! < annuityTotal! && showAnnuity && showLinear">
           <span class="badge bg-purple-light fs-6">
             <span i18n>Save</span> {{ (annuityTotal! - linearTotal!) | formatCurrency }}<span i18n> vs. Annuity</span>
           </span>

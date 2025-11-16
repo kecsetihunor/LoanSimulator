@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LoanCalculatorService } from '@core/services/loan-calculator.service';
 import { PaymentScheduleRow } from '@app/shared/models/loan.models'; 
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-advanced-loan-input',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MatSlideToggleModule],
   templateUrl: './advanced-loan-input.component.html',
   styleUrls: ['./advanced-loan-input.component.css']
 })
@@ -39,6 +40,11 @@ export class AdvancedLoanInputComponent {
   @Output() variableRateChange = new EventEmitter<number | null>();
 
   @Output() inputChanged = new EventEmitter<{ amount: number; totalPeriod: number; fixedMonths: number; fixedRate: number; variableRate: number, insuranceRate: number | null }>();
+  @Output() scheduleSelectionChange = new EventEmitter<{showAnnuity: boolean, showLinear: boolean}>();
+
+  enableLifeInsurance: boolean = false;
+  showAnnuity: boolean = true;
+  showLinear: boolean = true;
 
   // Results
   annuityPayment: number | null = null;
@@ -100,12 +106,30 @@ export class AdvancedLoanInputComponent {
     this.onAnyInputChange();
   }
 
+    onLifeInsuranceToggle() {
+    if (this.enableLifeInsurance) {
+      this.insuranceRateChange.emit(this.insuranceRate);
+    }
+    else{
+      this.insuranceRate = null;
+      this.insuranceRateChange.emit(this.insuranceRate);
+    }
+    this.onAnyInputChange();
+  }
+
   onVariableRateChange(val: string) {
     const n = val === '' ? NaN : Number(val);
     this.variableRate = isNaN(n) ? this.variableRate : n;
     this.variableRateChange.emit(this.variableRate);
     this.onAnyInputChange();
   } 
+
+    onScheduleSelectionChange() {
+    this.scheduleSelectionChange.emit({
+      showAnnuity: this.showAnnuity,
+      showLinear: this.showLinear
+    });
+  }
   
   calculate(): void {
     if (this.isValid()) {

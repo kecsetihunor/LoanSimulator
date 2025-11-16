@@ -27,12 +27,17 @@ export class AdvancedCalculatorComponent {
   variableRate: number | null = null;
   fixedMonths: number | null = null;
 
-  onInputChanged(data: { amount: number; totalPeriod: number; fixedMonths: number, fixedRate: number, variableRate: number }) {
+  insuranceRate: number | null = null;
+  showAnnuity: boolean = true;
+  showLinear: boolean = true;
+
+  onInputChanged(data: { amount: number; totalPeriod: number; fixedMonths: number, fixedRate: number, variableRate: number, insuranceRate: number | null }) {
     this.amount = data.amount;
     this.fixedMonths = data.fixedMonths;
     this.fixedRate = data.fixedRate;
     this.variableRate = data.variableRate;
     this.totalPeriod = data.totalPeriod;
+    this.insuranceRate = data.insuranceRate;
   }
 
   onSchedulesGenerated(schedules: { annuity: PaymentScheduleRow[]; linear: PaymentScheduleRow[] }): void {
@@ -43,5 +48,10 @@ export class AdvancedCalculatorComponent {
     this.annuityTotal = schedules.annuity.reduce((sum, row) => sum + row.payment, 0);
     this.linearPayment = schedules.linear.length > 0 ? schedules.linear[0].payment : null;
     this.linearTotal = schedules.linear.reduce((sum, row) => sum + row.payment, 0);
+  }
+
+  onVisibilityChanged(data: { showAnnuity: boolean; showLinear: boolean }) {
+    this.showAnnuity = data.showAnnuity;
+    this.showLinear = data.showLinear;
   }
 }

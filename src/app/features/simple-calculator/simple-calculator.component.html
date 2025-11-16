@@ -27,7 +27,7 @@
 <!-- Amortization Tables Side by Side (or full width) -->
 <div class="row mt-4" *ngIf="annuitySchedule.length > 0">
   <div 
-    [ngClass]="showAnnuity && showLinear ? 'col-lg-6 mb-4' : 'col-12 mb-4'" 
+    [ngClass]="showAnnuity && showLinear ? 'col-lg-6 mb-4' : 'col-8 mb-4'" 
     *ngIf="showAnnuity">
     <h4 class="mb-3 text-white" i18n>Annuity (Equal Payments)</h4>
     <app-amortization-schedule
@@ -41,7 +41,7 @@
   </div>
   
   <div 
-    [ngClass]="showAnnuity && showLinear ? 'col-lg-6 mb-4' : 'col-12 mb-4'" 
+    [ngClass]="showAnnuity && showLinear ? 'col-lg-6 mb-4' : 'col-8 mb-4'" 
     *ngIf="showLinear">
     <h4 class="mb-3 text-white" i18n>Linear (Decreasing Payments)</h4>
     <app-amortization-schedule 

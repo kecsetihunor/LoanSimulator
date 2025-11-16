@@ -77,7 +77,7 @@
   <!-- Interest Rates Row -->
   <div class="row">
     <!-- Fixed Rate -->
-    <div class="col-md-6 mb-3">
+    <div class="col-md-3 mb-3">
       <label for="fixedRate" class="form-label" i18n>Fixed Interest Rate</label>
       <div class="input-group">
         <input
@@ -96,7 +96,7 @@
     </div>
 
     <!-- Variable Rate -->
-    <div class="col-md-6 mb-3">
+    <div class="col-md-3 mb-3">
       <label for="variableRate" class="form-label" i18n>Variable Interest Rate</label>
       <div class="input-group">
         <input
@@ -113,5 +113,60 @@
       </div>
       <div class="form-text text-white-50" i18n>Rate for remaining {{ totalPeriod! - fixedMonths! }} months</div>
     </div>
+
+    <div class="col-md-3">
+      <label for="rate" class="form-label me-3" i18n>Interest rate:</label>
+      <mat-slide-toggle
+        class="mb-2"
+        id="enableLifeInsuranceAdvanced"
+        [(ngModel)]="enableLifeInsurance"
+        (change)="onLifeInsuranceToggle()"
+        color="primary"
+      ></mat-slide-toggle>
+      <div class="input-group" *ngIf="enableLifeInsurance">
+        <input
+            id="lifeInsurance"
+            type="number"
+            class="form-control"
+            [value]="insuranceRate"
+            (input)="onInsuranceRateChange($any($event.target)?.value)"
+            min="0"
+            step="0.01"
+            placeholder="e.g. 0.03"
+            i18n-placeholder
+        />
+        <span class="input-group-text">%</span>
+      </div>
+          <div class="form-text text-white-50" *ngIf="enableLifeInsurance" i18n>Insurance rate as a percentage (e.g., 5.5).</div>
+    </div>
+
+    <div class="col-md-3">
+      <!-- Show Schedules -->
+      <label class="form-label me-3" for="showAnnuity" i18n>Schedules:</label>
+      <div class="schedule-list">
+        <div class="schedule-item">
+          <label class="form-label mb-0" for="showAnnuity" i18n>Annuity</label>
+          <mat-slide-toggle
+            id="showAnnuityAdvanced"
+            class="ms-2"
+            [(ngModel)]="showAnnuity"
+            (change)="onScheduleSelectionChange()"
+            color="primary"
+          ></mat-slide-toggle>
+        </div>
+
+        <div class="schedule-item">
+          <label class="form-label mb-0" for="showLinear" i18n>Linear</label>
+          <mat-slide-toggle
+            id="showLinearAdvanced"
+            class="ms-2"
+            [(ngModel)]="showLinear"
+            (change)="onScheduleSelectionChange()"
+            color="primary"
+          ></mat-slide-toggle>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
