@@ -16,6 +16,13 @@ export class AppComponent {
   sidebarCollapsed = false;
   sidebarOpen = false; // mobile overlay state
 
+  onClick() {
+    this.sidebarOpen = !this.sidebarOpen;
+    if (this.sidebarOpen && this.sidebarCollapsed) {
+      this.sidebarCollapsed = false;
+    }
+  }
+
   onSidebarToggle(collapsed: boolean) {
     this.sidebarCollapsed = collapsed;
     // ensure mobile overlay is closed when collapsing from inside sidebar

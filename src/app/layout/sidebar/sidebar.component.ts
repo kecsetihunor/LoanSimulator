@@ -20,7 +20,15 @@ export class SidebarComponent {
   @Output() sidebarToggled = new EventEmitter<boolean>();
   @Input() mobileShow = false;
 
-  isCollapsed = false;
+  private _collapsed = false
+  @Input()
+  set collapsed(value: boolean) {
+    this._collapsed = value;
+  }
+  get collapsed(): boolean {
+    return this._collapsed;
+  }
+
   currentLocale: string;
   selectedCurrency: Currency | null = null;
   private currencyService = inject(CurrencyService);
@@ -46,8 +54,8 @@ export class SidebarComponent {
   }
 
   toggleSidebar() {
-    this.isCollapsed = !this.isCollapsed;
-    this.sidebarToggled.emit(this.isCollapsed);
+    this._collapsed = !this._collapsed;
+    this.sidebarToggled.emit(this._collapsed);
   }
 
   switchLanguage(locale: string) {

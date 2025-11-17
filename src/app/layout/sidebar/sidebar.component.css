@@ -21,6 +21,8 @@
   padding: 1.5rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   background: rgba(0, 0, 0, 0.15); /* Subtle darker shade */
+  /* account for device notch */
+  padding-top: calc(1.5rem + env(safe-area-inset-top, 0px));
 }
 
 .brand h3 {
@@ -95,7 +97,7 @@
 
 .toggle-btn {
   width: 100%;
-  padding: 0.75rem;
+  padding: 0.25rem;
   background: rgba(255, 255, 255, 0.1);
   border: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -151,5 +153,51 @@
   
   .sidebar.show {
     transform: translateX(0);
+  }
+
+  /* Show the top controls container and hide footer selectors on small screens */
+
+  /* Hide top controls by default, show only on small screens */
+
+  .sidebar-top-controls {
+    display: none;
+    background: rgba(0,0,0,0.10);
+    margin-bottom: 1rem;
+    border-radius: 0 0 12px 12px;
+    z-index: 10;
+  }
+
+  .language-selector-top {
+    padding: 1rem;
+  }
+
+  .currency-selector-top {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .sidebar-top-controls {
+      display: block !important;
+      background: rgba(0,0,0,0.10);
+      margin-bottom: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 0 0 12px 12px;
+      z-index: 10;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .sidebar-top-controls {
+      display: block;
+      padding: 0.5rem 1rem;
+    }
+  }
+
+  .sidebar-footer .currency-selector,
+  .sidebar-footer .language-selector,
+  .sidebar-footer .language-selector-collapsed {
+    display: none !important;
   }
 }

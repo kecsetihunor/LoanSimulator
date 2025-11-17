@@ -1,14 +1,48 @@
-<nav class="sidebar" [ngClass]="{ 'collapsed': isCollapsed }" [class.collapsed]="isCollapsed" [class.show]="mobileShow">
+<nav class="sidebar" [ngClass]="{ 'collapsed': collapsed }" [class.collapsed]="collapsed" [class.show]="mobileShow">
   <!-- Header -->
   <div class="sidebar-header">
-    <div class="brand" *ngIf="!isCollapsed">
+    <div class="brand" *ngIf="!collapsed">
       <h3 class="mb-0">
         <span class="menu-icon me-3"><i class="bi bi-bank"></i></span>
-  <span class="menu-label" *ngIf="!isCollapsed" i18n>Simulatoare de credite</span>
+  <span class="menu-label" *ngIf="!collapsed" i18n>Rambursare</span>
       </h3>
     </div>
-    <div class="brand-collapsed" *ngIf="isCollapsed">
+    <div class="brand-collapsed" *ngIf="collapsed">
       <h3 class="mb-0"><i class="bi bi-bank"></i></h3>
+    </div>
+  </div>
+
+  <!-- Top controls for small screens (currency + language) -->
+  <div class="sidebar-top-controls d-block d-md-none" *ngIf="!collapsed">
+    <div class="currency-selector-top">
+      <app-currency-picker></app-currency-picker>
+    </div>
+    <div class="language-selector-top">
+      <div class="dropdown">
+        <button 
+          class="btn btn-sm btn-outline-light dropdown-toggle w-100" 
+          type="button" 
+          data-bs-toggle="dropdown"
+        >
+          <span *ngFor="let loc of locales">
+            <span *ngIf="loc.code === currentLocale">
+              {{ loc.flag }} {{ loc.label }}
+            </span>
+          </span>
+        </button>
+        <ul class="dropdown-menu w-100">
+          <li *ngFor="let loc of locales">
+            <button
+              class="dropdown-item btn btn-link text-start"
+              [class.active]="loc.code === currentLocale"
+              (click)="switchLanguage(loc.code)"
+              type="button"
+            >
+              {{ loc.flag }} {{ loc.label }}
+            </button>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 
@@ -17,39 +51,38 @@
     <li>
       <a routerLink="/simple" routerLinkActive="active" class="menu-item">
         <span class="menu-icon"><i class="bi bi-calculator"></i></span>
-  <span class="menu-label" *ngIf="!isCollapsed" i18n>Calculator simplu</span>
+  <span class="menu-label" *ngIf="!collapsed" i18n>Calculator simplu</span>
       </a>
     </li>
     <li>
       <a routerLink="/advanced" routerLinkActive="active" class="menu-item">
         <span class="menu-icon"><i class="bi bi-lightning"></i></span>
-  <span class="menu-label" *ngIf="!isCollapsed" i18n>Calculator avansat</span>
+  <span class="menu-label" *ngIf="!collapsed" i18n>Calculator avansat</span>
       </a>
     </li>
   </ul>
 
   <!-- Language Selector at Bottom -->
   <div class="sidebar-footer">
-
     <button class="toggle-btn" (click)="toggleSidebar()" type="button">
-      <i class="bi" [ngClass]="isCollapsed ? 'bi-chevron-right' : 'bi-chevron-left'"></i>
+      <i class="bi" [ngClass]="collapsed ? 'bi-chevron-right' : 'bi-chevron-left'"></i>
     </button>
 
-    <div class="currency-selector" *ngIf="!isCollapsed">
+    <div class="currency-selector" *ngIf="!collapsed">
       <div class="dropdown dropup">
       <app-currency-picker></app-currency-picker>
       </div>
     </div>
 
     <!-- Collapsed: show currency code only -->
-    <div class="currency-code-collapsed" *ngIf="isCollapsed">
+    <div class="currency-code-collapsed" *ngIf="collapsed">
         <span>
       {{ selectedCurrency?.code }}
       </span>
     </div>
     
 
-    <div class="language-selector" *ngIf="!isCollapsed">
+    <div class="language-selector" *ngIf="!collapsed">
       <div class="dropdown dropup">
         <button 
           class="btn btn-sm btn-outline-light dropdown-toggle w-100" 
@@ -76,7 +109,7 @@
         </ul>
       </div>
     </div>
-    <div class="language-selector-collapsed text-center" *ngIf="isCollapsed">
+    <div class="language-selector-collapsed text-center" *ngIf="collapsed">
       <div class="dropdown dropup">
         <button class="btn btn-sm btn-link text-white" data-bs-toggle="dropdown">
           <span *ngFor="let loc of locales">

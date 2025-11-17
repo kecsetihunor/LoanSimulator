@@ -1,12 +1,15 @@
 <div class="app-root">
   <!-- Top bar: show hamburger on small screens -->
   <header class="app-header">
-    <button class="hamburger d-md-none" (click)="sidebarOpen = !sidebarOpen" aria-label="Toggle menu">
+    <button class="hamburger d-md-none" (click)="onClick()" aria-label="Toggle menu">
       <i class="bi" [ngClass]="sidebarOpen ? 'bi-x' : 'bi-list'"></i>
     </button>
   </header>
 
-  <app-sidebar [mobileShow]="sidebarOpen" (sidebarToggled)="onSidebarToggle($event)"></app-sidebar>
+  <app-sidebar [mobileShow]="sidebarOpen"
+               (sidebarToggled)="onSidebarToggle($event)"
+               [collapsed]="sidebarCollapsed" 
+  ></app-sidebar>
 
   <div class="content" [ngClass]="{ 'sidebar-collapsed': sidebarCollapsed, 'overlay-open': sidebarOpen }">
     <div class="content-wrapper">
