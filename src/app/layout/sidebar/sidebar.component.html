@@ -1,4 +1,4 @@
-<nav class="sidebar" [ngClass]="{ 'collapsed': isCollapsed }" [class.collapsed]="isCollapsed">
+<nav class="sidebar" [ngClass]="{ 'collapsed': isCollapsed }" [class.collapsed]="isCollapsed" [class.show]="mobileShow">
   <!-- Header -->
   <div class="sidebar-header">
     <div class="brand" *ngIf="!isCollapsed">

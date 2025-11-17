@@ -1,6 +1,14 @@
 <div class="app-root">
-  <app-sidebar (sidebarToggled)="onSidebarToggle($event)"></app-sidebar>
-  <div class="content" [ngClass]="{ 'sidebar-collapsed': sidebarCollapsed }">
+  <!-- Top bar: show hamburger on small screens -->
+  <header class="app-header">
+    <button class="hamburger d-md-none" (click)="sidebarOpen = !sidebarOpen" aria-label="Toggle menu">
+      <i class="bi" [ngClass]="sidebarOpen ? 'bi-x' : 'bi-list'"></i>
+    </button>
+  </header>
+
+  <app-sidebar [mobileShow]="sidebarOpen" (sidebarToggled)="onSidebarToggle($event)"></app-sidebar>
+
+  <div class="content" [ngClass]="{ 'sidebar-collapsed': sidebarCollapsed, 'overlay-open': sidebarOpen }">
     <div class="content-wrapper">
       <router-outlet></router-outlet>
     </div>

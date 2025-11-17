@@ -1,4 +1,4 @@
-import { Component, LOCALE_ID, Inject, EventEmitter, Output, inject } from '@angular/core';
+import { Component, LOCALE_ID, Inject, EventEmitter, Output, Input, inject } from '@angular/core';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CurrencyPickerComponent } from '@layout/currency/currency-picker/currency-picker.component';
@@ -18,6 +18,7 @@ interface MenuItem {
 })
 export class SidebarComponent {
   @Output() sidebarToggled = new EventEmitter<boolean>();
+  @Input() mobileShow = false;
 
   isCollapsed = false;
   currentLocale: string;

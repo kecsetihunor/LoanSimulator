@@ -14,8 +14,13 @@ export class AppComponent {
   title = 'Loan Simulator';
 
   sidebarCollapsed = false;
+  sidebarOpen = false; // mobile overlay state
 
   onSidebarToggle(collapsed: boolean) {
     this.sidebarCollapsed = collapsed;
+    // ensure mobile overlay is closed when collapsing from inside sidebar
+    if (this.sidebarOpen && collapsed) {
+      this.sidebarOpen = false;
+    }
   }
 }

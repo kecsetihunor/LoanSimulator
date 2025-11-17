@@ -5,16 +5,6 @@
   background-color: #212529; /* Dark background */
 }
 
-.sidebar {
-  width: 240px;
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: 100vh;
-  z-index: 1000;
-  transition: width 0.3s;
-}
-
 /* Main content area - takes up remaining space */
 .content {
   flex: 1;
@@ -26,8 +16,38 @@
   justify-content: center; /* Center the wrapper */
 }
 
-.content.sidebar-collapsed {
-  margin-left: 56px; /* Sidebar width when collapsed */
+/* Mobile: remove left margin and provide overlay behavior */
+@media (max-width: 768px) {
+  .content {
+    margin-left: 0;
+  }
+
+  /* When the sidebar overlay is open, prevent interactions behind it */
+  .content.overlay-open {
+    pointer-events: none;
+  }
+
+  .hamburger {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1.25rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .app-header {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 1100; /* above sidebar */
+    display: flex;
+    align-items: center;
+    padding: 0.25rem 0.5rem;
+  }
+
+  /* push content down slightly to avoid header overlap */
+  .content-wrapper { padding-top: 3.25rem; }
 }
 
 /* Centered content wrapper */
@@ -35,18 +55,4 @@
   width: 100%;
   max-width: 1200px; /* Maximum width before centering kicks in */
   padding: 2rem;
-}
-
-@media (max-width: 768px) {
-  .sidebar {
-    width: 240px;
-    position: absolute; /* or fixed */
-    left: 0;
-    top: 0;
-    z-index: 1100;
-    /* Optionally: hide sidebar when collapsed, show with a flap button */
-  }
-  .content {
-    margin-left: 0 !important;
-  }
 }
