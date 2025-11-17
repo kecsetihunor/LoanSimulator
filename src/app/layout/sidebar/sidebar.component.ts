@@ -49,14 +49,18 @@ export class SidebarComponent {
   }
 
   switchLanguage(locale: string) {
-    const currentUrl = this.document.location.pathname;
-    let newUrl = currentUrl.replace(/^\/(en-US|ro)\//, '/');
-    
-    if (locale !== 'en-US') {
-      newUrl = `/${locale}${newUrl}`;
+    const currentPath = this.document.location.pathname;
+
+    // Remove existing locale prefix from the path
+    let newPath = currentPath.replace(/^\/(en|ro)(\/|$)/, '/');
+
+    // If switching to English, prefix with /en/, else Romanian root is just /
+    if (locale === 'en') {
+      newPath = `/en${newPath}`;
     }
-    
-    this.document.location.href = newUrl;
+
+    // Redirect to new URL
+    this.document.location.href = newPath;
   }
 
   ngOnInit(): void {
