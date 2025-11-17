@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-  <file source-language="en-US" target-language="ro" datatype="plaintext" original="ng2.template">
+  <file source-language="ro" datatype="plaintext" original="ng2.template">
     <body>
-      <trans-unit id="6926767274089239657" datatype="html">
-        <source>Advanced Loan Calculator</source>
-        <target>Calculator avansat de credite</target>
+      <trans-unit id="2691648197539180620" datatype="html">
+        <source>Calculator avansat de credite</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/advanced-calculator/advanced-calculator/advanced-calculator.component.html</context>
           <context context-type="linenumber">2,3</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2070692080741317070" datatype="html">
-        <source>Calculate payments with fixed and variable interest rates.</source>
-        <target>Calculează plățile cu rate ale dobânzii fixe și variabile.</target>
+      <trans-unit id="1418333298894131402" datatype="html">
+        <source>Calculează plățile cu rate ale dobânzii fixe și variabile.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/advanced-calculator/advanced-calculator/advanced-calculator.component.html</context>
           <context context-type="linenumber">3,5</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4409246149648634720" datatype="html">
-        <source>Annuity (Equal Payments)</source>
-        <target>Vezi scadențar (rate egale)</target>
+      <trans-unit id="7457939542825301962" datatype="html">
+        <source>Vezi scadențar (rate egale)</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/advanced-calculator/advanced-calculator/advanced-calculator.component.html</context>
           <context context-type="linenumber">31,32</context>
@@ -29,14 +26,9 @@
           <context context-type="sourcefile">src/app/features/simple-calculator/simple-calculator.component.html</context>
           <context context-type="linenumber">32,33</context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.ts</context>
-          <context context-type="linenumber">88</context>
-        </context-group>
       </trans-unit>
-      <trans-unit id="8118216476776042218" datatype="html">
-        <source>Linear (Decreasing Payments)</source>
-        <target>Vezi scadențar (rate descrescătoare)</target>
+      <trans-unit id="1396585841284857046" datatype="html">
+        <source>Vezi scadențar (rate descrescătoare)</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/advanced-calculator/advanced-calculator/advanced-calculator.component.html</context>
           <context context-type="linenumber">46,47</context>
@@ -45,22 +37,20 @@
           <context context-type="sourcefile">src/app/features/simple-calculator/simple-calculator.component.html</context>
           <context context-type="linenumber">46,47</context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.ts</context>
-          <context context-type="linenumber">89</context>
-        </context-group>
       </trans-unit>
-      <trans-unit id="6288565923172271657" datatype="html">
-        <source>Loan Amount</source>
-        <target>Sumă</target>
+      <trans-unit id="7452862223408201252" datatype="html">
+        <source>Sumă</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/advanced-calculator/components/advanced-loan-input/advanced-loan-input.component.html</context>
           <context context-type="linenumber">6,7</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/simple-calculator/components/loan-input/loan-input.component.html</context>
+          <context context-type="linenumber">5,6</context>
+        </context-group>
       </trans-unit>
-      <trans-unit id="5136895568978739930" datatype="html">
-        <source>e.g. 10000.00</source>
-        <target>de ex. 10000.00</target>
+      <trans-unit id="2962252082838092969" datatype="html">
+        <source>de ex. 10000.00</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/advanced-calculator/components/advanced-loan-input/advanced-loan-input.component.html</context>
           <context context-type="linenumber">15,16</context>
@@ -70,25 +60,30 @@
           <context context-type="linenumber">15,16</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5958853594036338236" datatype="html">
-        <source>Enter the total loan amount</source>
-        <target>Introduceți suma totală a creditului</target>
+      <trans-unit id="1803613934711235088" datatype="html">
+        <source>Introduceți suma totală a creditului</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/advanced-calculator/components/advanced-loan-input/advanced-loan-input.component.html</context>
           <context context-type="linenumber">19,20</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/simple-calculator/components/loan-input/loan-input.component.html</context>
+          <context context-type="linenumber">18,19</context>
+        </context-group>
       </trans-unit>
-      <trans-unit id="4896360855917156411" datatype="html">
-        <source>Total Period: <x id="INTERPOLATION" equiv-text="{{ totalPeriod }}"/> months</source>
-        <target>Perioada totală: <x id="INTERPOLATION" equiv-text="{{ totalPeriod }}"/> luni</target>
+      <trans-unit id="2617987045583253856" datatype="html">
+        <source>Perioada totală: <x id="INTERPOLATION" equiv-text="{{ totalPeriod || 0 }}"/> luni</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/advanced-calculator/components/advanced-loan-input/advanced-loan-input.component.html</context>
           <context context-type="linenumber">24,25</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/simple-calculator/components/loan-input/loan-input.component.html</context>
+          <context context-type="linenumber">23,24</context>
+        </context-group>
       </trans-unit>
-      <trans-unit id="5616907402275895341" datatype="html">
-        <source>e.g. 12</source>
-        <target>de ex. 12</target>
+      <trans-unit id="703344878798737022" datatype="html">
+        <source>de ex. 12</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/advanced-calculator/components/advanced-loan-input/advanced-loan-input.component.html</context>
           <context context-type="linenumber">35,36</context>
@@ -98,65 +93,61 @@
           <context context-type="linenumber">34,35</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="9007377732719245018" datatype="html">
-        <source>Total loan duration (1-480 months)</source>
-        <target>Durata totală a creditului (1-480 luni)</target>
+      <trans-unit id="1011563243874399401" datatype="html">
+        <source>Durata totală a creditului (1-480 luni)</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/advanced-calculator/components/advanced-loan-input/advanced-loan-input.component.html</context>
           <context context-type="linenumber">47,48</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/simple-calculator/components/loan-input/loan-input.component.html</context>
+          <context context-type="linenumber">50,51</context>
+        </context-group>
       </trans-unit>
-      <trans-unit id="7409976953376632014" datatype="html">
-        <source>Fixed Rate Period: <x id="INTERPOLATION" equiv-text="{{ fixedMonths }}"/> months</source>
-        <target>Perioada cu dobândă fixă: <x id="INTERPOLATION" equiv-text="{{ fixedMonths }}"/> luni</target>
+      <trans-unit id="7222012420436213949" datatype="html">
+        <source>Perioada cu dobândă fixă: <x id="INTERPOLATION" equiv-text="{{ fixedMonths || 0 }}"/> luni</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/advanced-calculator/components/advanced-loan-input/advanced-loan-input.component.html</context>
           <context context-type="linenumber">52,53</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6235670259271503517" datatype="html">
-        <source>Months with fixed interest rate</source>
-        <target>Luni cu dobândă fixă</target>
+      <trans-unit id="8260341220346848711" datatype="html">
+        <source>Luni cu dobândă fixă</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/advanced-calculator/components/advanced-loan-input/advanced-loan-input.component.html</context>
           <context context-type="linenumber">73,74</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3169749592566088530" datatype="html">
-        <source>Fixed Interest Rate</source>
-        <target>Dobândă fixă</target>
+      <trans-unit id="3359479033708132151" datatype="html">
+        <source>Dobândă fixă</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/advanced-calculator/components/advanced-loan-input/advanced-loan-input.component.html</context>
           <context context-type="linenumber">81,82</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7594974384317287221" datatype="html">
-        <source>Rate for first <x id="INTERPOLATION" equiv-text="{{ fixedMonths }}"/> months</source>
-        <target>Dobândă pentru primele <x id="INTERPOLATION" equiv-text="{{ fixedMonths }}"/> luni</target>
+      <trans-unit id="4235032999572742493" datatype="html">
+        <source>Dobândă pentru primele <x id="INTERPOLATION" equiv-text="{{ fixedMonths }}"/> luni</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/advanced-calculator/components/advanced-loan-input/advanced-loan-input.component.html</context>
           <context context-type="linenumber">95,96</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5018573333476615566" datatype="html">
-        <source>Variable Interest Rate</source>
-        <target>Dobândă variabilă</target>
+      <trans-unit id="2728815649002931408" datatype="html">
+        <source>Dobândă variabilă</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/advanced-calculator/components/advanced-loan-input/advanced-loan-input.component.html</context>
           <context context-type="linenumber">100,101</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6963253404760640597" datatype="html">
-        <source>Rate for remaining <x id="INTERPOLATION" equiv-text="{{ totalPeriod! - fixedMonths! }}"/> months</source>
-        <target>Dobândă pentru restul de <x id="INTERPOLATION" equiv-text="{{ totalPeriod! - fixedMonths! }}"/> luni</target>
+      <trans-unit id="6243093139906344897" datatype="html">
+        <source>Dobândă pentru restul de <x id="INTERPOLATION" equiv-text="{{ totalPeriod! - fixedMonths! }}"/> luni</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/advanced-calculator/components/advanced-loan-input/advanced-loan-input.component.html</context>
           <context context-type="linenumber">114,115</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2707765233084755484" datatype="html">
-        <source>Insurance rate:</source>
-        <target>Asigurare de viață:</target>
+      <trans-unit id="5844091863866022626" datatype="html">
+        <source>Asigurare de viață:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/advanced-calculator/components/advanced-loan-input/advanced-loan-input.component.html</context>
           <context context-type="linenumber">118,119</context>
@@ -167,12 +158,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.ts</context>
-          <context context-type="linenumber">79</context>
+          <context context-type="linenumber">112</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7028005812316305909" datatype="html">
-        <source>e.g. 0.03</source>
-        <target>de ex. 0.03</target>
+      <trans-unit id="2316106675552838913" datatype="html">
+        <source>de ex. 0.03</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/advanced-calculator/components/advanced-loan-input/advanced-loan-input.component.html</context>
           <context context-type="linenumber">135,136</context>
@@ -182,9 +172,8 @@
           <context context-type="linenumber">95,96</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4259833647990253125" datatype="html">
-        <source>Insurance rate as a percentage (e.g., 5.5).</source>
-        <target>Dobândă asigurare de viață (de ex. 0.03).</target>
+      <trans-unit id="3159027287949398799" datatype="html">
+        <source>Dobândă asigurare de viață (de ex. 0.03).</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/advanced-calculator/components/advanced-loan-input/advanced-loan-input.component.html</context>
           <context context-type="linenumber">140,141</context>
@@ -194,9 +183,8 @@
           <context context-type="linenumber">100,101</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="564024334612280980" datatype="html">
-        <source>Schedules:</source>
-        <target>Scadențar:</target>
+      <trans-unit id="7799137937585197779" datatype="html">
+        <source>Scadențar:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/advanced-calculator/components/advanced-loan-input/advanced-loan-input.component.html</context>
           <context context-type="linenumber">145,146</context>
@@ -206,9 +194,8 @@
           <context context-type="linenumber">105,106</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1418062977158252485" datatype="html">
-        <source>Annuity</source>
-        <target>Rate egale</target>
+      <trans-unit id="8473878230390743315" datatype="html">
+        <source>Rate egale</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/advanced-calculator/components/advanced-loan-input/advanced-loan-input.component.html</context>
           <context context-type="linenumber">148,149</context>
@@ -217,10 +204,13 @@
           <context context-type="sourcefile">src/app/features/simple-calculator/components/loan-input/loan-input.component.html</context>
           <context context-type="linenumber">108,109</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.ts</context>
+          <context context-type="linenumber">124</context>
+        </context-group>
       </trans-unit>
-      <trans-unit id="369990080077029024" datatype="html">
-        <source>Linear</source>
-        <target>Rate descrescătoare</target>
+      <trans-unit id="4465466786619650592" datatype="html">
+        <source>Rate descrescătoare</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/advanced-calculator/components/advanced-loan-input/advanced-loan-input.component.html</context>
           <context context-type="linenumber">159,160</context>
@@ -229,350 +219,246 @@
           <context context-type="sourcefile">src/app/features/simple-calculator/components/loan-input/loan-input.component.html</context>
           <context context-type="linenumber">119,120</context>
         </context-group>
-      </trans-unit>
-      <trans-unit id="6533918067030990396" datatype="html">
-        <source>Amount</source>
-        <target>Sumă</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/simple-calculator/components/loan-input/loan-input.component.html</context>
-          <context context-type="linenumber">5,6</context>
+          <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.ts</context>
+          <context context-type="linenumber">125</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6534678165974767400" datatype="html">
-        <source>Enter a positive decimal amount.</source>
-        <target>Introduceți suma totală a creditului</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/simple-calculator/components/loan-input/loan-input.component.html</context>
-          <context context-type="linenumber">18,19</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3142747035365151203" datatype="html">
-        <source>Interest period: <x id="INTERPOLATION" equiv-text="{{ period || 0 }}"/> months</source>
-        <target>Perioada totală: <x id="INTERPOLATION" equiv-text="{{ period || 0 }}"/> luni</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/simple-calculator/components/loan-input/loan-input.component.html</context>
-          <context context-type="linenumber">23,24</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4295075281650111696" datatype="html">
-        <source>Enter or slide to ` months (1-480).</source>
-        <target>Durata totală a creditului (1-480 luni)</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/simple-calculator/components/loan-input/loan-input.component.html</context>
-          <context context-type="linenumber">50,51</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4802371047472845954" datatype="html">
-        <source>Interest rate</source>
-        <target>Dobânda creditului</target>
+      <trans-unit id="2991902376333845341" datatype="html">
+        <source>Dobândă creditului</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/simple-calculator/components/loan-input/loan-input.component.html</context>
           <context context-type="linenumber">55,56</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4965044116415505683" datatype="html">
-        <source>e.g. 5.5</source>
-        <target>de ex. 5.5</target>
+      <trans-unit id="5290155479122604051" datatype="html">
+        <source>de ex. 5.5</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/simple-calculator/components/loan-input/loan-input.component.html</context>
           <context context-type="linenumber">66,67</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4759035165290036778" datatype="html">
-        <source>Annual rate as a percentage (e.g., 5.5).</source>
-        <target>Dobandă anuală ca procent (de ex., 5.5).</target>
+      <trans-unit id="8635592675407110776" datatype="html">
+        <source>Dobândă anuală ca procent (de ex., 5.5).</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/simple-calculator/components/loan-input/loan-input.component.html</context>
           <context context-type="linenumber">72,73</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8650996489268761749" datatype="html">
-        <source>Simple Loan Calculator</source>
-        <target>Calculator de credite</target>
+      <trans-unit id="4097221005549041331" datatype="html">
+        <source>Calculator de credite</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/simple-calculator/simple-calculator.component.html</context>
           <context context-type="linenumber">2,3</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1201703824745317701" datatype="html">
-        <source>Calculate your monthly payments with a single fixed interest rate.</source>
-        <target>Calculează plățile lunare cu o singură rată fixă a dobânzii.</target>
+      <trans-unit id="857165553728306828" datatype="html">
+        <source>Calculează plățile lunare cu o singură rată fixă a dobânzii.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/simple-calculator/simple-calculator.component.html</context>
           <context context-type="linenumber">3,5</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="504058013376636797" datatype="html">
-        <source>Loan Simulator</source>
-        <target>Simulator de Credite</target>
+      <trans-unit id="6914140643634933925" datatype="html">
+        <source>Simulatoare de credite</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/layout/sidebar/sidebar.component.html</context>
           <context context-type="linenumber">7,8</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3684234279393285882" datatype="html">
-        <source>Simple Calculator</source>
-        <target>Calculator Simplu</target>
+      <trans-unit id="3399025409308126752" datatype="html">
+        <source>Calculator simplu</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/layout/sidebar/sidebar.component.html</context>
           <context context-type="linenumber">20,21</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5316338907118089021" datatype="html">
-        <source>Advanced Calculator</source>
-        <target>Calculator Avansat</target>
+      <trans-unit id="4705514502893907635" datatype="html">
+        <source>Calculator avansat</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/layout/sidebar/sidebar.component.html</context>
           <context context-type="linenumber">26,27</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5596059819994013446" datatype="html">
-        <source>Compare Loans</source>
-        <target>Compară Credite</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/layout/sidebar/sidebar.component.html</context>
-          <context context-type="linenumber">32,33</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4930506384627295710" datatype="html">
-        <source>Settings</source>
-        <target>Setări</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/layout/sidebar/sidebar.component.html</context>
-          <context context-type="linenumber">38,39</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6929925376324008400" datatype="html">
-        <source>Amortization Schedule</source>
-        <target>Scadențar credit</target>
+      <trans-unit id="7678484546707541678" datatype="html">
+        <source>Scadențar credit</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.html</context>
           <context context-type="linenumber">3,4</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.ts</context>
-          <context context-type="linenumber">100</context>
+          <context context-type="linenumber">177</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4197236438302165051" datatype="html">
-        <source>Mo</source>
-        <target>Lună</target>
+      <trans-unit id="4010148248073809313" datatype="html">
+        <source>Lună</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.html</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">13,14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.ts</context>
+          <context context-type="linenumber">135</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.ts</context>
+          <context context-type="linenumber">143</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4892553839051604445" datatype="html">
-        <source>Payment</source>
-        <target>Plată</target>
+      <trans-unit id="4849742699094965730" datatype="html">
+        <source>Plată</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.html</context>
           <context context-type="linenumber">14,15</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.ts</context>
-          <context context-type="linenumber">113</context>
+          <context context-type="linenumber">136</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.ts</context>
-          <context context-type="linenumber">131</context>
+          <context context-type="linenumber">144</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6333053818705726495" datatype="html">
         <source>Principal</source>
-        <target>Principal</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.html</context>
           <context context-type="linenumber">15,16</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.ts</context>
-          <context context-type="linenumber">114</context>
+          <context context-type="linenumber">137</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.ts</context>
-          <context context-type="linenumber">132</context>
+          <context context-type="linenumber">145</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3441715041566940420" datatype="html">
-        <source>Interest</source>
-        <target>Dobândă</target>
+      <trans-unit id="5965264261585528207" datatype="html">
+        <source>Dobândă</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.html</context>
           <context context-type="linenumber">16,17</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.ts</context>
-          <context context-type="linenumber">115</context>
+          <context context-type="linenumber">138</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.ts</context>
-          <context context-type="linenumber">133</context>
+          <context context-type="linenumber">146</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8338343184913101349" datatype="html">
-        <source>Insur</source>
-        <target>Asigurare</target>
+      <trans-unit id="6525114980449272203" datatype="html">
+        <source>Asigurare</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.html</context>
           <context context-type="linenumber">17,18</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.ts</context>
+          <context context-type="linenumber">139</context>
+        </context-group>
       </trans-unit>
-      <trans-unit id="6888797559367695264" datatype="html">
-        <source>Balance</source>
-        <target>Sold</target>
+      <trans-unit id="4338022632676445411" datatype="html">
+        <source>Sold</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.html</context>
           <context context-type="linenumber">18,19</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7224064517561854142" datatype="html">
-        <source>Show Less</source>
-        <target>Arată mai puțin</target>
+      <trans-unit id="944069891241198023" datatype="html">
+        <source>Arată mai puțin</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.html</context>
           <context context-type="linenumber">40</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="962606915162704201" datatype="html">
-        <source>Show All <x id="INTERPOLATION" equiv-text="{{schedule.length}}"/></source>
-        <target>Arată Tot <x id="INTERPOLATION" equiv-text="{{schedule.length}}"/></target>
+      <trans-unit id="8580942993536224477" datatype="html">
+        <source>Arată tot</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.html</context>
-          <context context-type="linenumber">43,44</context>
+          <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2715815345613731675" datatype="html">
-        <source>Loan Details</source>
-        <target>Detalii credit</target>
+      <trans-unit id="5875214134927582853" datatype="html">
+        <source>Suma creditului:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.ts</context>
-          <context context-type="linenumber">40</context>
+          <context context-type="linenumber">58</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="823597212284181787" datatype="html">
-        <source>Loan Amount:</source>
-        <target>Suma creditului:</target>
+      <trans-unit id="5809459747683992538" datatype="html">
+        <source>Perioada totală:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.ts</context>
-          <context context-type="linenumber">60</context>
+          <context context-type="linenumber">75</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3069093125185742554" datatype="html">
-        <source>Total Period:</source>
-        <target>Perioada totală:</target>
+      <trans-unit id="8154323512925004769" datatype="html">
+        <source>Dobândă fixă:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.ts</context>
-          <context context-type="linenumber">66</context>
+          <context context-type="linenumber">86</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2888623698412132582" datatype="html">
-        <source><x id="PH" equiv-text="this.totalPeriod"/> months</source>
-        <target><x id="PH" equiv-text="this.totalPeriod"/> luni</target>
+      <trans-unit id="5729964298292097259" datatype="html">
+        <source>Dobândă variabilă:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.ts</context>
-          <context context-type="linenumber">66</context>
+          <context context-type="linenumber">93</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8842944135415739583" datatype="html">
-        <source>Fixed Rate:</source>
-        <target>Dobândă fixă:</target>
+      <trans-unit id="6235043665910191464" datatype="html">
+        <source>Dobândă:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.ts</context>
-          <context context-type="linenumber">71</context>
+          <context context-type="linenumber">101</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3562142704775643516" datatype="html">
-        <source><x id="PH" equiv-text="this.fixedRate"/>% (first <x id="PH_1" equiv-text="this.fixedMonths"/> months)</source>
-        <target><x id="PH" equiv-text="this.fixedRate"/>% (primele <x id="PH_1" equiv-text="this.fixedMonths"/> luni)</target>
+      <trans-unit id="8656886950022127012" datatype="html">
+        <source>Tip rată:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.ts</context>
-          <context context-type="linenumber">71</context>
+          <context context-type="linenumber">121</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="528559563599790922" datatype="html">
-        <source>Variable Rate:</source>
-        <target>Dobândă variabilă:</target>
+      <trans-unit id="1343161183908985904" datatype="html">
+        <source>Sold rămas</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.ts</context>
-          <context context-type="linenumber">72</context>
+          <context context-type="linenumber">140</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.ts</context>
+          <context context-type="linenumber">147</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7843723645927891481" datatype="html">
-        <source><x id="PH" equiv-text="this.variableRate"/>% (remaining <x id="PH_1" equiv-text="this.totalPeriod! - this.fixedMonths!"/> months)</source>
-        <target><x id="PH" equiv-text="this.variableRate"/>% (restul de <x id="PH_1" equiv-text="this.totalPeriod! - this.fixedMonths!"/> luni)</target>
+      <trans-unit id="1179063985669151659" datatype="html">
+        <source>Detalii credit</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.ts</context>
-          <context context-type="linenumber">72</context>
+          <context context-type="linenumber">169</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3324530707741802030" datatype="html">
-        <source>Interest Rate:</source>
-        <target>Dobândă:</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.ts</context>
-          <context context-type="linenumber">74</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="333972118760368626" datatype="html">
-        <source>Payment Type:</source>
-        <target>Tip rată:</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.ts</context>
-          <context context-type="linenumber">84</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5403684285319082289" datatype="html">
-        <source>Month</source>
-        <target>Lună</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.ts</context>
-          <context context-type="linenumber">112</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.ts</context>
-          <context context-type="linenumber">130</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5944488753746113803" datatype="html">
-        <source>Insurance</source>
-        <target>Asigurare</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.ts</context>
-          <context context-type="linenumber">116</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5370321876782541301" datatype="html">
-        <source>Remaining Balance</source>
-        <target>Sold rămas</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.ts</context>
-          <context context-type="linenumber">117</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/shared/components/amortization-schedule/amortization-schedule.component.ts</context>
-          <context context-type="linenumber">134</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4258372899468796481" datatype="html">
-        <source>Annuity Payment</source>
-        <target>Prima plată  - Rate egale</target>
+      <trans-unit id="2272233402420565963" datatype="html">
+        <source>Prima plată - Rate egale</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/payment-summary-cards/payment-summary-cards.component.html</context>
           <context context-type="linenumber">6,7</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8270480092198420712" datatype="html">
-        <source>Equal monthly payments</source>
-        <target>Plăți lunare egale</target>
+      <trans-unit id="567123628251290528" datatype="html">
+        <source>Plăți lunare egale</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/payment-summary-cards/payment-summary-cards.component.html</context>
           <context context-type="linenumber">8,9</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1510471623715244007" datatype="html">
-        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Total payback:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
-        <target><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Valoarea totală de rambursat:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
+      <trans-unit id="6577139673648346288" datatype="html">
+        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Valoarea totală de rambursat:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/payment-summary-cards/payment-summary-cards.component.html</context>
           <context context-type="linenumber">13,14</context>
@@ -582,9 +468,8 @@
           <context context-type="linenumber">33,34</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6702435574996662556" datatype="html">
-        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Total interest:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
-        <target><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Dobândă totală:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
+      <trans-unit id="4624782795409254308" datatype="html">
+        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Dobândă totală:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/payment-summary-cards/payment-summary-cards.component.html</context>
           <context context-type="linenumber">17,18</context>
@@ -594,33 +479,29 @@
           <context context-type="linenumber">37,38</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4046740509082342282" datatype="html">
-        <source>Linear - First Payment</source>
-        <target>Prima plată - Rate descrescătoare</target>
+      <trans-unit id="2803964185828125526" datatype="html">
+        <source>Prima plată - Rate descrescătoare</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/payment-summary-cards/payment-summary-cards.component.html</context>
           <context context-type="linenumber">26,27</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4251394128399916551" datatype="html">
-        <source>Decreasing payments (equal principal)</source>
-        <target>Plăți descrescătoare (principal egal)</target>
+      <trans-unit id="6574046286092325059" datatype="html">
+        <source>Plăți descrescătoare (principal egal)</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/payment-summary-cards/payment-summary-cards.component.html</context>
           <context context-type="linenumber">28,29</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3768927257183755959" datatype="html">
-        <source>Save</source>
-        <target>Economisești</target>
+      <trans-unit id="6549942225515892301" datatype="html">
+        <source>Economisești</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/payment-summary-cards/payment-summary-cards.component.html</context>
           <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3074832406501639947" datatype="html">
-        <source> vs. Annuity</source>
-        <target> față de rate egale</target>
+      <trans-unit id="8489716849545080182" datatype="html">
+        <source> față de rate egale</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/payment-summary-cards/payment-summary-cards.component.html</context>
           <context context-type="linenumber">43,44</context>

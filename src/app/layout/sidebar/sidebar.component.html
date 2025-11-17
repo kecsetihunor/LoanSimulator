@@ -64,14 +64,14 @@
         </button>
         <ul class="dropdown-menu w-100">
           <li *ngFor="let loc of locales">
-            <a 
-              class="dropdown-item" 
+            <button
+              class="dropdown-item btn btn-link text-start"
               [class.active]="loc.code === currentLocale"
               (click)="switchLanguage(loc.code)"
-              style="cursor: pointer;"
+              type="button"
             >
               {{ loc.flag }} {{ loc.label }}
-            </a>
+            </button>
           </li>
         </ul>
       </div>
@@ -85,13 +85,13 @@
         </button>
         <ul class="dropdown-menu">
           <li *ngFor="let loc of locales">
-            <a 
-              class="dropdown-item" 
+            <button
+              class="dropdown-item btn btn-link text-start"
               (click)="switchLanguage(loc.code)"
-              style="cursor: pointer;"
+              type="button"
             >
               {{ loc.flag }} {{ loc.label }}
-            </a>
+            </button>
           </li>
         </ul>
       </div>

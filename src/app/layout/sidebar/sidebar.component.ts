@@ -34,14 +34,15 @@ export class SidebarComponent {
 
   locales = [
     { code: 'ro', label: 'Română', flag: '🇷🇴' },
-    { code: 'en-US', label: 'English', flag: '🇺🇸' }
+    { code: 'en', label: 'English', flag: '🇺🇸' }
   ];
 
   constructor(
     @Inject(LOCALE_ID) locale: string,
     @Inject(DOCUMENT) private document: Document
   ) {
-    this.currentLocale = locale;
+    // Normalize locale: 'en-US' or 'en' both map to 'en', 'ro' stays 'ro'
+    this.currentLocale = locale.startsWith('en') ? 'en' : 'ro';
   }
 
   toggleSidebar() {
@@ -51,14 +52,23 @@ export class SidebarComponent {
 
   switchLanguage(locale: string) {
     const currentPath = this.document.location.pathname;
+    console.log('[switchLanguage] clicked locale=', locale, 'currentPath=', currentPath);
 
-    // Remove existing locale prefix from the path
-    let newPath = currentPath.replace(/^\/(en|ro)(\/|$)/, '/');
-
-    // If switching to English, prefix with /en/, else Romanian root is just /
-    if (locale === 'en') {
-      newPath = `/en${newPath}`;
+    // Remove existing locale prefix from the path (handles both /en/ and / prefixes)
+    // This regex removes /en or /ro prefix if present at the start
+    let newPath = currentPath.replace(/^\/(en|ro)\/?/, '');
+    
+    // Ensure path starts with /
+    if (!newPath.startsWith('/')) {
+      newPath = '/' + newPath;
     }
+
+    // If switching to English, prefix with /en/
+    // Note: locale codes can be 'en' or 'en-US' etc., so check if it starts with 'en'
+    if (locale.startsWith('en')) {
+      newPath = '/en' + newPath;
+    }
+    // For Romanian (locale code 'ro'), just use the path as-is (already has leading /)
 
     // Redirect to new URL
     this.document.location.href = newPath;
