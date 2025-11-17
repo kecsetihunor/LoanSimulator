@@ -4,7 +4,6 @@ import { PaymentScheduleRow } from '@app/shared/models/loan.models';
 import { CurrencyService } from '@core/services/currency.service';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
-import { $localize } from '@angular/localize/init';
 
 @Component({
   selector: 'app-amortization-schedule',

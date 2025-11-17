@@ -10,12 +10,12 @@
       "sourceRoot": "src",
       "prefix": "app",
       "i18n": {
-        "sourceLocale": "en-US",
+        "sourceLocale": "en",
         "locales": {
-        "ro": {
-          "translation": "src/locale/messages.ro.xlf",
-          "baseHref": "/ro/"
-          }
+          "ro": {
+            "translation": "src/locale/messages.ro.xlf",
+            "baseHref": "/"
+            }
         }
       },
       "architect": {
@@ -47,13 +47,20 @@
               ]
           },
           "configurations": {
-             "ro": {
-                "localize": ["ro"],
-                "optimization": false,
-                "extractLicenses": false,
-                "sourceMap": true
+            "ro": {
+              "localize": ["ro"],
+              "baseHref": "/",
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            },
+            "en": {
+              "baseHref": "/en/",
+              "localize": false
             },
             "production": {
+              "localize": ["ro"],
+              "baseHref": "/",
               "budgets": [
                 {
                   "type": "initial",
@@ -82,6 +89,9 @@
             "ro": {
               "buildTarget": "frontend:build:ro"
             },
+            "en": {
+              "buildTarget": "frontend:build:en"
+            },
             "production": {
               "buildTarget": "frontend:build:production"
             },
@@ -89,7 +99,7 @@
               "buildTarget": "frontend:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "ro"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n"

@@ -26,14 +26,14 @@ export class SidebarComponent {
 
   menuItems: MenuItem[] = [
     { label: 'Simple Calculator', route: '/simple' },
-    { label: 'Advanced Calculator', route: '/advanced' },
-    { label: 'Compare Loans', route: '/compare' },
-    { label: 'Settings', route: '/settings' }
+    { label: 'Advanced Calculator', route: '/advanced' }
+    // { label: 'Compare Loans', route: '/compare' },
+    // { label: 'Settings', route: '/settings' }
   ];
 
   locales = [
-    { code: 'en-US', label: 'English', flag: '🇺🇸' },
-    { code: 'ro', label: 'Română', flag: '🇷🇴' }
+    { code: 'ro', label: 'Română', flag: '🇷🇴' },
+    { code: 'en-US', label: 'English', flag: '🇺🇸' }
   ];
 
   constructor(
