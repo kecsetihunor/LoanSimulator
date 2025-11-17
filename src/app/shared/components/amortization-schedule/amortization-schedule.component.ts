@@ -1,4 +1,5 @@
 import { Component, Input, inject } from '@angular/core';
+import { LOCALE_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PaymentScheduleRow } from '@app/shared/models/loan.models';
 import { CurrencyService } from '@core/services/currency.service';
@@ -24,6 +25,9 @@ export class AmortizationScheduleComponent {
 
   displayedSchedule: PaymentScheduleRow[] = [];
   currencyService = inject(CurrencyService);
+  // Inject the runtime LOCALE_ID provided by Angular so formatting can follow
+  // the application's configured locale.
+  appLocale = inject(LOCALE_ID) as string;
 
 async downloadPdf(): Promise<void> {
   // Lazy load fonts if not already loaded. Use dynamic import() (ES modules) so
@@ -39,6 +43,10 @@ async downloadPdf(): Promise<void> {
   const currency = this.currencyService.getSelectedCurrency();
   const timestamp = new Date().toISOString().split('T')[0];
   const filename = `${this.scheduleType}-schedule-${timestamp}.pdf`;
+  // Prepare number formatter based on the application's LOCALE_ID so PDF
+  // numbers match the app's language. Use non-breaking space for thousands.
+  const numberFormatter = new Intl.NumberFormat(this.appLocale || 'ro-RO', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const formatNumber = (n: number) => numberFormatter.format(n);
 
   // Prepare loan details
   const detailsContent: any[] = [];
@@ -48,14 +56,13 @@ async downloadPdf(): Promise<void> {
       columns: [
         {
           text: $localize`Suma creditului:`,
-          width: '50%',
+          width: '30%',
           bold: true
         },
         {
-          // Format numbers for Romanian locale so decimals and thousands separators
-          // appear correctly for the default app language.
-          text: `${this.loanAmount!.toLocaleString('ro-RO', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${currency.symbol}`,
-          width: '50%'
+          // Format numbers using the app locale
+          text: `${formatNumber(this.loanAmount!)} ${currency.symbol}`,
+          width: '70%'
         }
       ],
       margin: [0, 5]
@@ -65,8 +72,8 @@ async downloadPdf(): Promise<void> {
   if (this.totalPeriod !== null) {
     detailsContent.push({
       columns: [
-        { text: $localize`Perioada totală:`, width: '50%', bold: true },
-        { text: `${this.totalPeriod} luni`, width: '50%' }
+        { text: $localize`Perioada totală:`, width: '30%', bold: true },
+        { text: `${this.totalPeriod} luni`, width: '70%' }
       ],
       margin: [0, 5]
     });
@@ -76,23 +83,23 @@ async downloadPdf(): Promise<void> {
     if (this.fixedMonths !== null && this.variableRate !== null) {
       detailsContent.push({
         columns: [
-          { text: $localize`Dobândă fixă:`, width: '50%', bold: true },
-          { text: `${this.fixedRate}% (primele ${this.fixedMonths} luni)`, width: '50%' }
+          { text: $localize`Dobândă fixă:`, width: '30%', bold: true },
+          { text: `${this.fixedRate}% (primele ${this.fixedMonths} luni)`, width: '70%' }
         ],
         margin: [0, 5]
       });
       detailsContent.push({
         columns: [
-          { text: $localize`Dobândă variabilă:`, width: '50%', bold: true },
-          { text: `${this.variableRate}% (restul de ${this.totalPeriod! - this.fixedMonths!} luni)`, width: '50%' }
+          { text: $localize`Dobândă variabilă:`, width: '30%', bold: true },
+          { text: `${this.variableRate}% (restul de ${this.totalPeriod! - this.fixedMonths!} luni)`, width: '70%' }
         ],
         margin: [0, 5]
       });
     } else {
       detailsContent.push({
         columns: [
-          { text: $localize`Dobândă:`, width: '50%', bold: true },
-          { text: `${this.fixedRate}%`, width: '50%' }
+          { text: $localize`Dobândă:`, width: '30%', bold: true },
+          { text: `${this.fixedRate}%`, width: '70%' }
         ],
         margin: [0, 5]
       });
@@ -102,8 +109,8 @@ async downloadPdf(): Promise<void> {
   if (this.insuranceRate !== null) {
     detailsContent.push({
       columns: [
-        { text: $localize`Asigurare de viață:`, width: '50%', bold: true },
-        { text: `${this.insuranceRate}%`, width: '50%' }
+        { text: $localize`Asigurare de viață:`, width: '30%', bold: true },
+        { text: `${this.insuranceRate}%`, width: '70%' }
       ],
       margin: [0, 5]
     });
@@ -111,12 +118,12 @@ async downloadPdf(): Promise<void> {
 
   detailsContent.push({
     columns: [
-      { text: $localize`Tip rată:`, width: '50%', bold: true },
+      { text: $localize`Tip rată:`, width: '30%', bold: true },
       {
         text: this.scheduleType === 'annuity'
-          ? $localize`Vezi scadențar (rate egale)`
-          : $localize`Vezi scadențar (rate descrescătoare)`,
-        width: '50%'
+          ? $localize`Rate egale`
+          : $localize`Rate descrescătoare`,
+        width: '70%'
       }
     ],
     margin: [0, 5]
@@ -143,17 +150,16 @@ async downloadPdf(): Promise<void> {
   const tableBody = this.schedule.map(row => {
     const rowData = [
       row.month.toString(),
-      // Use locale-aware formatting for currency/amounts
-      row.payment.toLocaleString('ro-RO', { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
-      row.principal.toLocaleString('ro-RO', { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
-      row.interest.toLocaleString('ro-RO', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+      formatNumber(row.payment),
+      formatNumber(row.principal),
+      formatNumber(row.interest)
     ];
     
     if (this.insuranceRate !== null) {
-      rowData.push(row.insurance!.toLocaleString('ro-RO', { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
+      rowData.push(formatNumber(row.insurance!));
     }
     
-    rowData.push(row.remainingBalance.toLocaleString('ro-RO', { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
+    rowData.push(formatNumber(row.remainingBalance));
     return rowData;
   });
 

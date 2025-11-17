@@ -78,7 +78,7 @@
   <div class="row mt-4">
     <!-- Fixed Rate -->
     <div class="col-md-3 mb-3">
-      <label for="fixedRate" class="form-label" i18n>Fixed Interest Rate</label>
+      <label for="fixedRate" class="form-label" i18n>Dobândă fixă</label>
       <div class="input-group">
         <input
           type="number"
@@ -86,18 +86,18 @@
           id="fixedRate"
           [(ngModel)]="fixedRate"
           (input)="onFixedRateChange($any($event.target)?.value)"
-          placeholder="e.g. 4.79"
+          placeholder="de ex. 4.79"
           min="0"
           step="0.01"
         />
         <span class="input-group-text">%</span>
       </div>
-      <div class="form-text text-white-50" i18n>Rate for first {{ fixedMonths }} months</div>
+      <div class="form-text text-white-50" i18n>Dobândă pentru primele {{ fixedMonths }} luni</div>
     </div>
 
     <!-- Variable Rate -->
     <div class="col-md-3 mb-3">
-      <label for="variableRate" class="form-label" i18n>Variable Interest Rate</label>
+      <label for="variableRate" class="form-label" i18n>Dobândă variabilă</label>
       <div class="input-group">
         <input
           type="number"
@@ -105,17 +105,17 @@
           id="variableRate"
           [(ngModel)]="variableRate"
           (input)="onVariableRateChange($any($event.target)?.value)"
-          placeholder="e.g. 6.5"
+          placeholder="de ex. 6.5"
           min="0"
           step="0.01"
         />
         <span class="input-group-text">%</span>
       </div>
-      <div class="form-text text-white-50" i18n>Rate for remaining {{ totalPeriod! - fixedMonths! }} months</div>
+      <div class="form-text text-white-50" i18n>Dobândă pentru restul de {{ totalPeriod! - fixedMonths! }} luni</div>
     </div>
 
     <div class="col-md-3">
-      <label for="rate" class="form-label me-3" i18n>Insurance rate:</label>
+      <label for="rate" class="form-label me-3" i18n>Asigurare de viață:</label>
       <mat-slide-toggle hideIcon
         class="mb-2"
         id="enableLifeInsuranceAdvanced"
@@ -132,20 +132,20 @@
             (input)="onInsuranceRateChange($any($event.target)?.value)"
             min="0"
             step="0.01"
-            placeholder="e.g. 0.03"
+            placeholder="de ex. 0.03"
             i18n-placeholder
         />
         <span class="input-group-text">%</span>
       </div>
-          <div class="form-text text-white-50" *ngIf="enableLifeInsurance" i18n>Insurance rate as a percentage (e.g., 5.5).</div>
+          <div class="form-text text-white-50" *ngIf="enableLifeInsurance" i18n>Dobândă asigurare de viață (de ex. 0.03).</div>
     </div>
 
     <div class="col-md-3">
       <!-- Show Schedules -->
-      <label class="form-label me-3" for="showAnnuity" i18n>Schedules:</label>
+      <label class="form-label me-3" for="showAnnuity" i18n>Scadențar:</label>
       <div class="schedule-list ms-3">
         <div class="schedule-item">
-          <label class="form-label mb-0" for="showAnnuity" i18n>Annuity</label>
+          <label class="form-label mb-0" for="showAnnuity" i18n>Rate egale</label>
           <mat-slide-toggle hideIcon
             id="showAnnuityAdvanced"
             class="ms-2"
@@ -156,7 +156,7 @@
         </div>
 
         <div class="schedule-item">
-          <label class="form-label mb-0" for="showLinear" i18n>Linear</label>
+          <label class="form-label mb-0" for="showLinear" i18n>Rate descrescătoare</label>
           <mat-slide-toggle hideIcon
             id="showLinearAdvanced"
             class="ms-2"
