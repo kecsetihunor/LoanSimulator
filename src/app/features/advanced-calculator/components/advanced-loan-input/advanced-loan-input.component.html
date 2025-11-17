@@ -3,7 +3,7 @@
   <div class="row">
     <!-- Amount -->
     <div class="col-md-4 mb-3">
-      <label for="amount" class="form-label" i18n>Loan Amount</label>
+  <label for="amount" class="form-label" i18n>Sumă</label>
       <input
         id="amount"
         type="number"
@@ -12,16 +12,16 @@
         (input)="onAmountChange($any($event.target)?.value)"
         inputmode="decimal"
         step="0.01"
-        placeholder="e.g. 10000.00"
+  placeholder="de ex. 10000.00"
         min="0"
         i18n-placeholder
       />
-      <div class="form-text text-white-50" i18n>Enter the total loan amount</div>
+  <div class="form-text text-white-50" i18n>Introduceți suma totală a creditului</div>
     </div>
 
     <!-- Total Period -->
     <div class="col-md-4 mb-3">
-      <label for="totalPeriod" class="form-label" i18n>Total Period: {{ totalPeriod || 0 }} months</label>
+  <label for="totalPeriod" class="form-label" i18n>Perioada totală: {{ totalPeriod || 0 }} luni</label>
       <input
         type="number"
         class="form-control mb-1"
@@ -32,7 +32,7 @@
         step="1"
         min="1"
         max="480"
-        placeholder="e.g. 12"
+  placeholder="de ex. 12"
         pattern="\d*"
         i18n-placeholder
       />
@@ -44,19 +44,19 @@
         min="1"
         max="480"
       />
-      <div class="form-text text-white-50" i18n>Total loan duration (1-480 months)</div>
+  <div class="form-text text-white-50" i18n>Durata totală a creditului (1-480 luni)</div>
     </div>
 
     <!-- Fixed Period Months -->
     <div class="col-md-4 mb-3">
-      <label for="fixedMonths" class="form-label" i18n>Fixed Rate Period: {{ fixedMonths || 0 }} months</label>
+  <label for="fixedMonths" class="form-label" i18n>Perioada cu dobândă fixă: {{ fixedMonths || 0 }} luni</label>
       <input
         type="number"
         class="form-control mb-1"
         id="fixedMonths"
         [(ngModel)]="fixedMonths"
         (input)="onFixedMonthsChange($any($event.target)?.value)"
-        placeholder="e.g. 36"
+  placeholder="de ex. 36"
         step="1"
         min="1"
         pattern="\d*"
@@ -70,7 +70,7 @@
         min="1"
         [max]="totalPeriod"
       />
-      <div class="form-text text-white-50" i18n>Months with fixed interest rate</div>
+  <div class="form-text text-white-50" i18n>Luni cu dobândă fixă</div>
     </div>
   </div>
 

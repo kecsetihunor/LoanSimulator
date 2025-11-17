@@ -2,7 +2,7 @@
   <div class="row">
     <!-- Amount (decimal) -->
     <div class="col-md-4">
-      <label for="amount" class="form-label" i18n>Amount</label>
+  <label for="amount" class="form-label" i18n>Sumă</label>
       <input
         id="amount"
         type="number"
@@ -12,15 +12,15 @@
         inputmode="decimal"
         step="0.01"
         min="0"
-        placeholder="e.g. 10000.00"
+  placeholder="de ex. 10000.00"
         i18n-placeholder
       />
-      <div class="form-text text-white-50" i18n>Enter a positive decimal amount.</div>
+  <div class="form-text text-white-50" i18n>Introduceți suma totală a creditului</div>
     </div>
 
     <!-- Interest period (integer) with slider -->
     <div class="col-md-4">
-      <label for="period" class="form-label" i18n>Interest period: {{ period || 0 }} months</label>
+  <label for="period" class="form-label" i18n>Perioada totală: {{ period || 0 }} luni</label>
       <input
         id="period"
         type="number"
@@ -31,7 +31,7 @@
         step="1"
         min="1"
         max="480"
-        placeholder="e.g. 12"
+  placeholder="de ex. 12"
         i18n-placeholder
       />
       
@@ -47,12 +47,12 @@
         i18n-placeholder
       />
       
-      <div class="form-text text-white-50" i18n>Enter or slide to ` months (1-480).</div>
+  <div class="form-text text-white-50" i18n>Durata totală a creditului (1-480 luni)</div>
     </div>
 
     <!-- Interest rate (%) decimal with suffix -->
     <div class="col-md-4">
-      <label for="rate" class="form-label" i18n>Interest rate</label>
+  <label for="rate" class="form-label" i18n>Dobândă creditului</label>
       <div class="input-group">
         <input
           id="rate"
@@ -63,19 +63,19 @@
           inputmode="decimal"
           step="0.01"
           min="0"
-          placeholder="e.g. 5.5"
+          placeholder="de ex. 5.5"
           aria-describedby="rateSuffix"
           i18n-placeholder
         />
         <span class="input-group-text" id="rateSuffix">%</span>
       </div>
-      <div class="form-text text-white-50" i18n>Annual rate as a percentage (e.g., 5.5).</div>
+  <div class="form-text text-white-50" i18n>Dobândă anuală ca procent (de ex., 5.5).</div>
     </div>
   </div>
 
   <div class="row mt-4">
     <div class="col-md-4">
-      <label for="rate" class="form-label mb-0 me-3" i18n>Insurance rate:</label>
+  <label for="rate" class="form-label mb-0 me-3" i18n>Asigurare de viață:</label>
       <mat-slide-toggle hideIcon
         class="mb-3"
         id="enableLifeInsurance"
@@ -92,12 +92,12 @@
             (input)="onInsuranceChange($any($event.target)?.value)"
             min="0"
             step="0.01"
-            placeholder="e.g. 0.03"
+            placeholder="de ex. 0.03"
             i18n-placeholder
         />
         <span class="input-group-text">%</span>
       </div>
-          <div class="form-text text-white-50" *ngIf="enableLifeInsurance" i18n>Insurance rate as a percentage (e.g., 5.5).</div>
+          <div class="form-text text-white-50" *ngIf="enableLifeInsurance" i18n>Dobândă asigurare de viață (de ex. 0.03).</div>
     </div>
 
        <div class="col-md-3">

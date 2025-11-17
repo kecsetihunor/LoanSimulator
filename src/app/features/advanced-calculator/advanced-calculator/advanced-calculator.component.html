@@ -1,6 +1,6 @@
 <div class="container my-4">
-  <h2 class="mb-3 text-white" i18n>Advanced Loan Calculator</h2>
-  <p class="text-white-50 mb-4" i18n>Calculate payments with fixed and variable interest rates.</p>
+  <h2 class="mb-3 text-white" i18n>Calculator avansat de credite</h2>
+  <p class="text-white-50 mb-4" i18n>Calculează plățile cu rate ale dobânzii fixe și variabile.</p>
 
   <!-- Advanced Loan Input Form -->
   <app-advanced-loan-input 
@@ -28,7 +28,7 @@
   <div class="row mt-4" *ngIf="annuitySchedule.length > 0">
     <div [ngClass]="showAnnuity && showLinear ? 'col-lg-6 mb-4' : 'col-8 mb-4'"
          *ngIf="showAnnuity">
-      <h4 class="mb-3 text-white" i18n>Annuity (Equal Payments)</h4>
+  <h4 class="mb-3 text-white" i18n>Vezi scadențar (rate egale)</h4>
       <app-amortization-schedule 
         [schedule]="annuitySchedule"
         [loanAmount]="amount"
@@ -43,7 +43,7 @@
     
     <div [ngClass]="showAnnuity && showLinear ? 'col-lg-6 mb-4' : 'col-8 mb-4'"
          *ngIf="showLinear">
-      <h4 class="mb-3 text-white" i18n>Linear (Decreasing Payments)</h4>
+  <h4 class="mb-3 text-white" i18n>Vezi scadențar (rate descrescătoare)</h4>
       <app-amortization-schedule 
         [schedule]="linearSchedule"
         [loanAmount]="amount"

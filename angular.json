@@ -11,14 +11,14 @@
       "prefix": "app",
       "i18n": {
         "sourceLocale": {
-          "code": "en",
-          "baseHref": "/en"
+          "code": "ro",
+          "baseHref": "/"
         },
         "locales": {
-          "ro": {
-            "translation": "src/locale/messages.ro.xlf",
-            "baseHref": "/"
-            }
+          "en": {
+            "translation": "src/locale/messages.en.xlf",
+            "baseHref": "/en/"
+          }
         }
       },
       "architect": {
