@@ -33,13 +33,16 @@
     
     <!-- Show more/less button -->
     <div class="card-footer text-center" *ngIf="schedule.length > 12">
-      <button i18n
-        type="button" 
-        class="btn btn-outline-primary btn-sm"
-        (click)="toggleShowAll()"
-      >
-        {{ showAll ? 'Show Less' : 'Show All ' + schedule.length }}
-      </button>
+      <button type="button" 
+              class="btn btn-outline-primary btn-sm"
+              (click)="toggleShowAll()">
+      <ng-container *ngIf="showAll; else showAllText">
+        <ng-container i18n>Show Less</ng-container>
+      </ng-container>
+      <ng-template #showAllText>
+        <ng-container i18n>Show All {{schedule.length}}</ng-container>
+      </ng-template>
+    </button>
     </div>
   </div>
 </div>

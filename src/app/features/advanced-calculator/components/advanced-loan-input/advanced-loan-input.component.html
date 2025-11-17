@@ -21,7 +21,7 @@
 
     <!-- Total Period -->
     <div class="col-md-4 mb-3">
-      <label for="totalPeriod" class="form-label" i18n>Total Period: {{ totalPeriod }} months</label>
+      <label for="totalPeriod" class="form-label" i18n>Total Period: {{ totalPeriod || 0 }} months</label>
       <input
         type="number"
         class="form-control mb-1"
@@ -49,7 +49,7 @@
 
     <!-- Fixed Period Months -->
     <div class="col-md-4 mb-3">
-      <label for="fixedMonths" class="form-label" i18n>Fixed Rate Period: {{ fixedMonths }} months</label>
+      <label for="fixedMonths" class="form-label" i18n>Fixed Rate Period: {{ fixedMonths || 0 }} months</label>
       <input
         type="number"
         class="form-control mb-1"
