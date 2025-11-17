@@ -44,6 +44,9 @@
         </ul>
       </div>
     </div>
+      <button class="toggle-btn-top" (click)="toggleSidebar()" type="button">
+        <i class="bi" [ngClass]="collapsed ? 'bi-chevron-right' : 'bi-chevron-left'"></i>
+    </button>
   </div>
 
   <!-- Menu Items -->
