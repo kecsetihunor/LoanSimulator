@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SidebarComponent } from '@layout/sidebar/sidebar.component';
+import { CookieConsentComponent } from '@core/components/cookie-consent.component'
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule, SidebarComponent, CommonModule],
+  imports: [RouterModule, SidebarComponent, CommonModule, CookieConsentComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
