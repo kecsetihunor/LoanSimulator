@@ -14,3 +14,29 @@
 .btn-outline-primary:focus {
   box-shadow: 0 0 0 0.25rem rgba(147, 112, 219, 0.25) !important;
 }
+
+.card {
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+
+
+/* It's best NOT to set border-radius on .table itself — let the card or wrapper control rounding */
+.table {
+  margin-bottom: 0;
+}
+
+/* Round only the top-left and top-right corners of header cells */
+.table thead th:first-child {
+  border-top-left-radius: 0.5rem;
+}
+
+.table thead th:last-child {
+  border-top-right-radius: 0.5rem;
+}
+
+/* Optional: ensure header background fills the rounded corners */
+.table thead th {
+  background-clip: padding-box;
+}

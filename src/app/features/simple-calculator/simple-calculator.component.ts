@@ -6,6 +6,7 @@ import { PaymentScheduleRow } from '@shared/models/loan.models';
 import { PaymentSummaryCardsComponent } from '@shared/components/payment-summary-cards/payment-summary-cards.component';
 import { LoanDataService } from '@core/services/loan-data.service';
 import { take } from 'rxjs';
+import { DownloadPdfService } from '@app/core/services/download-pdf.service'; 
 
 // Add to your component's "imports" array if using standalone component pattern
 
@@ -18,6 +19,7 @@ import { take } from 'rxjs';
 })
 export class SimpleCalculatorComponent implements OnInit {
   private loanDataService = inject(LoanDataService);
+  downloadPdfService = inject(DownloadPdfService);
 
   annuitySchedule: PaymentScheduleRow[] = [];
   linearSchedule: PaymentScheduleRow[] = [];
@@ -67,5 +69,14 @@ export class SimpleCalculatorComponent implements OnInit {
     this.annuityTotal = schedules.annuity.reduce((sum, row) => sum + row.payment, 0);
     this.linearPayment = schedules.linear.length > 0 ? schedules.linear[0].payment : null;
     this.linearTotal = schedules.linear.reduce((sum, row) => sum + row.payment, 0);
+  }
+
+  downloadPdf(schedule: PaymentScheduleRow[], type: string) {
+    this.downloadPdfService.schedule = schedule;
+    this.downloadPdfService.amount = this.amount;
+    this.downloadPdfService.totalPeriod = this.period;
+    this.downloadPdfService.insuranceRate = this.insuranceRate;
+    this.downloadPdfService.scheduleType = type;
+    this.downloadPdfService.downloadPdf();
   }
 }

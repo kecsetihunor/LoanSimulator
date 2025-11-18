@@ -1,41 +1,34 @@
 <div class="card" *ngIf="schedule.length > 0">
-  <div class="card-header d-flex justify-content-between align-items-center">
-    <h5 class="mb-0" i18n>Scadențar credit</h5>
-     <button type="button" class="btn btn-outline-primary btn-sm" (click)="downloadPdf()">
-      PDF <i class="bi bi-download"></i>
-    </button>
+  <div class="table-responsive">
+    <table class="table table-sm table-compact table-striped table-hover mb-0">
+      <thead class="table-light">
+        <tr>
+          <th class="text-center" i18n>Lună</th>
+          <th class="text-end" i18n>Plată</th>
+          <th class="text-end" i18n>Principal</th>
+          <th class="text-end" i18n>Dobândă</th>
+          <th *ngIf="insuranceRate != null" class="text-end" i18n>Asigurare</th>
+          <th class="text-end" i18n>Sold</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of displayedSchedule">
+          <td class="text-center fs-7">{{ row.month }}</td>
+          <td class="text-end fs-7">{{ row.payment | number:'1.2-2' }}</td>
+          <td class="text-end fs-7">{{ row.principal | number:'1.2-2' }}</td>
+          <td class="text-end fs-7">{{ row.interest | number:'1.2-2' }}</td>
+          <td *ngIf="insuranceRate != null" class="text-end fs-7">{{ row.insurance | number:'1.2-2' }}</td>
+          <td class="text-end fs-7">{{ row.remainingBalance | number:'1.2-2' }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  <div class="card-body p-0">
-    <div class="table-responsive">
-      <table class="table table-sm table-compact table-striped table-hover mb-0">
-        <thead class="table-light">
-          <tr>
-            <th class="text-center" i18n>Lună</th>
-            <th class="text-end" i18n>Plată</th>
-            <th class="text-end" i18n>Principal</th>
-            <th class="text-end" i18n>Dobândă</th>
-            <th *ngIf="insuranceRate != null" class="text-end" i18n>Asigurare</th>
-            <th class="text-end" i18n>Sold</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let row of displayedSchedule">
-            <td class="text-center fs-7">{{ row.month }}</td>
-            <td class="text-end fs-7">{{ row.payment | number:'1.2-2' }}</td>
-            <td class="text-end fs-7">{{ row.principal | number:'1.2-2' }}</td>
-            <td class="text-end fs-7">{{ row.interest | number:'1.2-2' }}</td>
-            <td *ngIf="insuranceRate != null" class="text-end fs-7">{{ row.insurance | number:'1.2-2' }}</td>
-            <td class="text-end fs-7">{{ row.remainingBalance | number:'1.2-2' }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    
-    <!-- Show more/less button -->
-    <div class="card-footer text-center" *ngIf="schedule.length > 12">
-      <button type="button" 
-              class="btn btn-outline-primary btn-sm"
-              (click)="toggleShowAll()">
+
+  <!-- Card footer stays inside the card -->
+  <div class="card-footer text-center" *ngIf="schedule.length > 12">
+    <button type="button" 
+            class="btn btn-outline-primary btn-sm"
+            (click)="toggleShowAll()">
       <ng-container *ngIf="showAll; else showAllText">
         <ng-container i18n>Arată mai puțin</ng-container>
       </ng-container>
@@ -43,6 +36,5 @@
         <ng-container i18n>Arată tot</ng-container>
       </ng-template>
     </button>
-    </div>
   </div>
 </div>

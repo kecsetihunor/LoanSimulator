@@ -6,6 +6,7 @@ import { PaymentScheduleRow } from '@shared/models/loan.models';
 import { PaymentSummaryCardsComponent } from '@shared/components/payment-summary-cards/payment-summary-cards.component';
 import { LoanDataService } from '@core/services/loan-data.service';
 import { take } from 'rxjs';
+import { DownloadPdfService } from '@app/core/services/download-pdf.service';
 
 @Component({
   selector: 'app-advanced-calculator',
@@ -14,8 +15,10 @@ import { take } from 'rxjs';
   templateUrl: './advanced-calculator.component.html',
   styleUrls: ['./advanced-calculator.component.css']
 })
+
 export class AdvancedCalculatorComponent implements OnInit {
   private loanDataService = inject(LoanDataService);
+  downloadPdfService = inject(DownloadPdfService);
 
   annuitySchedule: PaymentScheduleRow[] = [];
   linearSchedule: PaymentScheduleRow[] = [];
@@ -83,5 +86,17 @@ export class AdvancedCalculatorComponent implements OnInit {
   onVisibilityChanged(data: { showAnnuity: boolean; showLinear: boolean }) {
     this.showAnnuity = data.showAnnuity;
     this.showLinear = data.showLinear;
+  }
+
+  downloadPdf(schedule: PaymentScheduleRow[], type: string) {
+    this.downloadPdfService.schedule = schedule;
+    this.downloadPdfService.amount = this.amount;
+    this.downloadPdfService.totalPeriod = this.totalPeriod;
+    this.downloadPdfService.fixedMonths = this.fixedMonths;
+    this.downloadPdfService.fixedRate = this.fixedRate;
+    this.downloadPdfService.variableRate = this.variableRate;
+    this.downloadPdfService.insuranceRate = this.insuranceRate;
+    this.downloadPdfService.scheduleType = type;
+    this.downloadPdfService.downloadPdf();
   }
 }

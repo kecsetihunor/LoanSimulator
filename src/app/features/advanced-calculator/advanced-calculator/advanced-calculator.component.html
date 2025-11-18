@@ -15,46 +15,60 @@
     (scheduleSelectionChange)="onVisibilityChanged($event)"
   ></app-advanced-loan-input>
 
-    <app-payment-summary-cards
-      [annuityPayment]="annuityPayment"
-      [annuityTotal]="annuityTotal"
-      [linearPayment]="linearPayment"
-      [linearTotal]="linearTotal"
-      [amount]="amount"
-      [showAnnuity]="showAnnuity"
-      [showLinear]="showLinear"
-    ></app-payment-summary-cards>
-  
-  <!-- Amortization Tables Side by Side -->
   <div class="row mt-4" *ngIf="annuitySchedule.length > 0">
-    <div [ngClass]="showAnnuity && showLinear ? 'col-lg-6 mb-4' : 'col-8 mb-4'"
-         *ngIf="showAnnuity">
-  <h4 class="mb-3 text-white" i18n>Vezi scadențar (rate egale)</h4>
-      <app-amortization-schedule 
-        [schedule]="annuitySchedule"
-        [loanAmount]="amount"
-        [totalPeriod]="totalPeriod"
-        [fixedRate]="fixedRate"
-        [variableRate]="variableRate"
-        [fixedMonths]="fixedMonths"
-        [insuranceRate]="insuranceRate"
-        [scheduleType]="'annuity'"
-      ></app-amortization-schedule>
+    <div class="col-md-6 mb-3" *ngIf="showAnnuity">
+      <app-payment-summary-cards
+        [firstPayment]="annuityPayment"
+        [isAnnuityPayment] = "true"
+        [total]="annuityTotal"
+        [amount]="amount"
+        [isSavingBadgeVisible]="false"
+        [alertClass]="'alert-green'"
+      ></app-payment-summary-cards>
+    </div>
+    <div class="col-md-6 mb-3" *ngIf="showLinear">
+      <app-payment-summary-cards
+        [firstPayment]="linearPayment"
+        [isAnnuityPayment] = "false"
+        [total]="linearTotal"
+        [amount]="amount"
+        [isSavingBadgeVisible]="true"
+        [savingAmount]="annuityTotal! - linearTotal!"
+        [alertClass]="'alert-purple'"
+      ></app-payment-summary-cards>
+    </div>
+  </div>
+
+   <!-- Amortization Tables Side by Side (or full width) -->
+  <div class="row mt-4" *ngIf="annuitySchedule.length > 0">
+    <div 
+      [ngClass]="showAnnuity && showLinear ? 'col-lg-6 mb-4' : 'col-8 mb-4'" 
+      *ngIf="showAnnuity">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="mb-0 text-white" i18n>Vezi scadențar (rate egale)</h4>
+        <button type="button" class="btn btn-outline-primary btn-sm" (click)="downloadPdf(annuitySchedule, 'annuity')">
+          PDF <i class="bi bi-download"></i>
+        </button>
+      </div>
+        <app-amortization-schedule 
+          [schedule]="annuitySchedule"
+          [insuranceRate]="insuranceRate"
+        ></app-amortization-schedule>
     </div>
     
-    <div [ngClass]="showAnnuity && showLinear ? 'col-lg-6 mb-4' : 'col-8 mb-4'"
-         *ngIf="showLinear">
-  <h4 class="mb-3 text-white" i18n>Vezi scadențar (rate descrescătoare)</h4>
-      <app-amortization-schedule 
-        [schedule]="linearSchedule"
-        [loanAmount]="amount"
-        [totalPeriod]="totalPeriod"
-        [fixedRate]="fixedRate"
-        [variableRate]="variableRate"
-        [fixedMonths]="fixedMonths"
-        [insuranceRate]="insuranceRate"
-        [scheduleType]="'linear'"
-      ></app-amortization-schedule>
+    <div 
+      [ngClass]="showAnnuity && showLinear ? 'col-lg-6 mb-4' : 'col-8 mb-4'" 
+      *ngIf="showLinear">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="mb-0 text-white" i18n>Vezi scadențar (rate egale)</h4>
+        <button type="button" class="btn btn-outline-primary btn-sm" (click)="downloadPdf(annuitySchedule, 'linear')">
+          PDF <i class="bi bi-download"></i>
+        </button>
+      </div>
+        <app-amortization-schedule 
+          [schedule]="linearSchedule"
+          [insuranceRate]="insuranceRate"
+        ></app-amortization-schedule>
     </div>
   </div>
 </div>

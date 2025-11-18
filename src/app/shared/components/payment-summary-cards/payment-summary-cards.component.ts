@@ -11,11 +11,11 @@ import { FormatCurrencyPipe } from '@pipes/format-currency.pipe';
 })
 
 export class PaymentSummaryCardsComponent {
-  @Input() annuityPayment: number | null = null;
-  @Input() annuityTotal: number | null = null;
-  @Input() linearPayment: number | null = null;
-  @Input() linearTotal: number | null = null;
+  @Input() firstPayment: number | null = null;
+  @Input() total: number | null = null;
   @Input() amount: number | null = null;
-  @Input() showAnnuity: boolean = true;
-  @Input() showLinear: boolean = true;
+  @Input() savingAmount: number | null = null;
+  @Input() isSavingBadgeVisible: boolean = true;
+  @Input() isAnnuityPayment: boolean = true;
+  @Input() alertClass: string = 'alert-green';
 }

@@ -334,3 +334,16 @@ small {
   box-shadow: 0 0 0 2px #e9ecef, 0 2px 4px rgba(147, 112, 219, 0.5) !important;
 }
 
+.card {
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+/* The responsive wrapper must have radius and overflow hidden for perfect clipping */
+.table-responsive {
+  border-top-left-radius: 0.4rem;
+  border-top-right-radius: 0.4rem;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  overflow: hidden;
+}
