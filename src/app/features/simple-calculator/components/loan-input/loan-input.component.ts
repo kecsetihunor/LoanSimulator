@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoanCalculatorService } from '@core/services/loan-calculator.service';
 import { PaymentScheduleRow } from '@app/shared/models/loan.models';
@@ -12,7 +12,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
   styleUrls: ['./loan-input.component.css']
 })
 
-export class LoanInputComponent {
+export class LoanInputComponent implements OnChanges {
   private loanCalculator = inject(LoanCalculatorService);  // Inject the service
 
   @Input() amount: number | null = null;
@@ -23,7 +23,7 @@ export class LoanInputComponent {
   @Output() amountChange = new EventEmitter<number | null>();
   @Output() periodChange = new EventEmitter<number | null>();
   @Output() rateChange = new EventEmitter<number | null>();
-  @Output() inputChanged = new EventEmitter<{ amount: number; period: number; rate: number, insuranceRate: number | null }>();
+  @Output() inputChanged = new EventEmitter<{ amount: number | null; period: number | null; rate: number | null, insuranceRate: number | null }>();
   @Output() scheduleSelectionChange = new EventEmitter<{showAnnuity: boolean, showLinear: boolean}>();
   @Output() insuranceRateChange = new EventEmitter<number | null>();
 
@@ -32,7 +32,7 @@ export class LoanInputComponent {
     linear: PaymentScheduleRow[];
   }>();
 
-  enableLifeInsurance: boolean = false;
+  isInsuranceRateEnabled: boolean = false;
   showAnnuity: boolean = true;
   showLinear: boolean = true;
   
@@ -42,33 +42,27 @@ export class LoanInputComponent {
   annuityTotal: number | null = null;
   linearTotal: number | null = null;
 
-  // private currencySub: Subscription | null = null;
-  // private currencyService = inject(CurrencyService);
-  // selectedCurrency: Currency = this.currencyService.getSelectedCurrency();
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['insuranceRate']) {
+      if (this.insuranceRate !== null && !this.isInsuranceRateEnabled) {
+        this.isInsuranceRateEnabled = true;
+      }
+    }
 
-  // ngOnInit(): void {
-  //   this.currencySub = this.currencyService.selectedCurrency$.subscribe(
-  //     currency => {
-  //       this.selectedCurrency = currency;
-  //     }
-  //   );
-  // }
-
-  // ngOnDestroy(): void {
-  //   if (this.currencySub) {
-  //     this.currencySub.unsubscribe();
-  //   }
-  // }
+    this.calculate();
+  }
 
   onAnyInputChange() {
     if (this.amount !== null && this.period !== null && this.rate !== null) {
-      this.inputChanged.emit({ 
-        amount: this.amount, 
-        period: this.period, 
-        rate: this.rate,
-        insuranceRate: this.insuranceRate 
-      });
+      this.calculate();
     }
+
+    this.inputChanged.emit({ 
+      amount: this.amount, 
+      period: this.period, 
+      rate: this.rate,
+      insuranceRate: this.insuranceRate 
+    });
   }
 
   onAmountChange(val: string) {
@@ -76,7 +70,6 @@ export class LoanInputComponent {
     this.amount = isNaN(n) ? this.amount : n;
     this.amountChange.emit(this.amount);
     this.onAnyInputChange();
-    this.calculateIfValid();
   }
 
   onPeriodChange(val: string) {
@@ -84,7 +77,6 @@ export class LoanInputComponent {
     this.period = isNaN(n as number) ? this.period : n;
     this.periodChange.emit(this.period);
     this.onAnyInputChange();
-    this.calculateIfValid();
   }
 
   onRateChange(val: string) {
@@ -92,19 +84,22 @@ export class LoanInputComponent {
     this.rate = isNaN(n) ? this.rate : n;
     this.rateChange.emit(this.rate);
     this.onAnyInputChange();
-    this.calculateIfValid();
   }
 
   onInsuranceChange(val: string) {
     const n = val === '' ? NaN : Number(val);
     this.insuranceRate = isNaN(n) ? this.insuranceRate : n;
+    
+    if (this.insuranceRate !== null) {
+      this.isInsuranceRateEnabled = true;
+    }
+
     this.insuranceRateChange.emit(this.insuranceRate);
     this.onAnyInputChange();
-    this.calculateIfValid();
   }
 
   onLifeInsuranceToggle() {
-    if (this.enableLifeInsurance) {
+    if (this.isInsuranceRateEnabled) {
       this.insuranceRateChange.emit(this.insuranceRate);
     }
     else{
@@ -112,7 +107,6 @@ export class LoanInputComponent {
       this.insuranceRateChange.emit(this.insuranceRate);
     }
     this.onAnyInputChange();
-    this.calculateIfValid();
   }
 
   onScheduleSelectionChange() {
@@ -131,12 +125,13 @@ export class LoanInputComponent {
            this.rate >= 0;
   }
 
- private calculateIfValid() {
+ private calculate() {
     if (!this.isValid()) {
       this.annuityPayment = null;
       this.linearPayment = null;
       this.annuityTotal = null;
       this.linearTotal = null;
+
       this.schedulesGenerated.emit({ annuity: [], linear: [] });
       return;
     }

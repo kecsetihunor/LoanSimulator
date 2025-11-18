@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdvancedLoanInputComponent } from '@features/advanced-calculator/components/advanced-loan-input/advanced-loan-input.component';
 import { AmortizationScheduleComponent } from '@shared/components/amortization-schedule/amortization-schedule.component';
 import { PaymentScheduleRow } from '@shared/models/loan.models';
 import { PaymentSummaryCardsComponent } from '@shared/components/payment-summary-cards/payment-summary-cards.component';
+import { LoanDataService } from '@core/services/loan-data.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-advanced-calculator',
@@ -12,7 +14,9 @@ import { PaymentSummaryCardsComponent } from '@shared/components/payment-summary
   templateUrl: './advanced-calculator.component.html',
   styleUrls: ['./advanced-calculator.component.css']
 })
-export class AdvancedCalculatorComponent {
+export class AdvancedCalculatorComponent implements OnInit {
+  private loanDataService = inject(LoanDataService);
+
   annuitySchedule: PaymentScheduleRow[] = [];
   linearSchedule: PaymentScheduleRow[] = [];
 
@@ -31,13 +35,39 @@ export class AdvancedCalculatorComponent {
   showAnnuity: boolean = true;
   showLinear: boolean = true;
 
-  onInputChanged(data: { amount: number; totalPeriod: number; fixedMonths: number, fixedRate: number, variableRate: number, insuranceRate: number | null }) {
+  ngOnInit(): void {
+    this.loanDataService.currentLoanData.pipe(take(1)).subscribe(data => {
+      if (data) {
+        // Pre-fill the component's state from the service
+        this.amount = data.amount;
+        this.totalPeriod = data.period;
+        this.fixedRate = data.rate;
+        this.variableRate = data.variableRate;
+        this.fixedMonths = data.fixedPeriod;
+        if (data.insuranceRate !== null) {
+          this.insuranceRate = data.insuranceRate;
+        }
+      }
+    });
+  }
+
+  onInputChanged(data: { amount: number | null; totalPeriod: number | null; fixedMonths: number | null, fixedRate: number | null, variableRate: number | null, insuranceRate: number | null }) {
     this.amount = data.amount;
     this.fixedMonths = data.fixedMonths;
     this.fixedRate = data.fixedRate;
     this.variableRate = data.variableRate;
     this.totalPeriod = data.totalPeriod;
     this.insuranceRate = data.insuranceRate;
+    
+    // Map the advanced calculator data to the shared LoanData interface
+    this.loanDataService.updateLoanData({
+      amount: data.amount,
+      period: data.totalPeriod, // Map totalPeriod to period
+      rate: data.fixedRate,      // Map fixedRate to rate
+      fixedPeriod: data.fixedMonths,
+      variableRate: data.variableRate,
+      insuranceRate: data.insuranceRate
+    });
   }
 
   onSchedulesGenerated(schedules: { annuity: PaymentScheduleRow[]; linear: PaymentScheduleRow[] }): void {

@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
+import { Component, Input, Output, EventEmitter, inject, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LoanCalculatorService } from '@core/services/loan-calculator.service';
@@ -12,7 +12,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
   templateUrl: './advanced-loan-input.component.html',
   styleUrls: ['./advanced-loan-input.component.css']
 })
-export class AdvancedLoanInputComponent {
+export class AdvancedLoanInputComponent implements OnChanges {
   private loanCalculator = inject(LoanCalculatorService);
 
   @Output() schedulesGenerated = new EventEmitter<{
@@ -39,10 +39,10 @@ export class AdvancedLoanInputComponent {
   @Input() variableRate: number | null = null;  // Variable rate after fixed period
   @Output() variableRateChange = new EventEmitter<number | null>();
 
-  @Output() inputChanged = new EventEmitter<{ amount: number; totalPeriod: number; fixedMonths: number; fixedRate: number; variableRate: number, insuranceRate: number | null }>();
+  @Output() inputChanged = new EventEmitter<{ amount: number | null; totalPeriod: number | null; fixedMonths: number | null; fixedRate: number | null; variableRate: number | null, insuranceRate: number | null }>();
   @Output() scheduleSelectionChange = new EventEmitter<{showAnnuity: boolean, showLinear: boolean}>();
 
-  enableLifeInsurance: boolean = false;
+  isInsuranceRateEnabled: boolean = false;
   showAnnuity: boolean = true;
   showLinear: boolean = true;
 
@@ -52,14 +52,21 @@ export class AdvancedLoanInputComponent {
   annuityTotal: number | null = null;
   linearTotal: number | null = null;
 
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['insuranceRate']) {
+      if (this.insuranceRate !== null && !this.isInsuranceRateEnabled) {
+        this.isInsuranceRateEnabled = true;
+      }
+    }
+
     this.calculate();
   }
 
    onAnyInputChange() {
     if (this.amount !== null && this.totalPeriod !== null && this.fixedMonths !== null && this.fixedRate !== null && this.variableRate !== null) {
-    this.calculate();
-    
+      this.calculate();
+    }
+
     this.inputChanged.emit({ 
       amount: this.amount, 
       totalPeriod: this.totalPeriod, 
@@ -68,7 +75,6 @@ export class AdvancedLoanInputComponent {
       variableRate: this.variableRate,
       insuranceRate: this.insuranceRate
     });
-    }
   }
 
   onAmountChange(val: string) {
@@ -102,12 +108,17 @@ export class AdvancedLoanInputComponent {
     onInsuranceRateChange(val: string) {
     const n = val === '' ? NaN : Number(val);
     this.insuranceRate = isNaN(n) ? this.insuranceRate : n;
+
+    if (this.insuranceRate !== null) {
+      this.isInsuranceRateEnabled = true;
+    }
+
     this.insuranceRateChange.emit(this.insuranceRate);
     this.onAnyInputChange();
   }
 
     onLifeInsuranceToggle() {
-    if (this.enableLifeInsurance) {
+    if (this.isInsuranceRateEnabled) {
       this.insuranceRateChange.emit(this.insuranceRate);
     }
     else{
@@ -176,6 +187,7 @@ export class AdvancedLoanInputComponent {
            this.fixedMonths !== null &&
            this.fixedMonths! > 0 &&
            this.fixedMonths! <= this.totalPeriod! &&
+           this.fixedRate !== null &&
            this.fixedRate! >= 0 &&
            this.variableRate !== null &&
            this.variableRate! >= 0;

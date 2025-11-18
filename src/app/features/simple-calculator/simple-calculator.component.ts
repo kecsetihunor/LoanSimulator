@@ -1,9 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoanInputComponent } from '@features/simple-calculator/components/loan-input/loan-input.component';
 import { AmortizationScheduleComponent } from '@shared/components/amortization-schedule/amortization-schedule.component';
 import { PaymentScheduleRow } from '@shared/models/loan.models';
 import { PaymentSummaryCardsComponent } from '@shared/components/payment-summary-cards/payment-summary-cards.component';
+import { LoanDataService } from '@core/services/loan-data.service';
+import { take } from 'rxjs';
 
 // Add to your component's "imports" array if using standalone component pattern
 
@@ -14,7 +16,9 @@ import { PaymentSummaryCardsComponent } from '@shared/components/payment-summary
   imports: [CommonModule, LoanInputComponent, AmortizationScheduleComponent, PaymentSummaryCardsComponent],
   templateUrl: './simple-calculator.component.html'
 })
-export class SimpleCalculatorComponent {
+export class SimpleCalculatorComponent implements OnInit {
+  private loanDataService = inject(LoanDataService);
+
   annuitySchedule: PaymentScheduleRow[] = [];
   linearSchedule: PaymentScheduleRow[] = [];
 
@@ -29,11 +33,25 @@ export class SimpleCalculatorComponent {
   showAnnuity: boolean = true;
   showLinear: boolean = true;
 
-  onInputChanged(data: { amount: number; period: number; rate: number, insuranceRate: number | null }) {
+  ngOnInit(): void {
+    this.loanDataService.currentLoanData.pipe(take(1)).subscribe(data => {
+      if (data) {
+        // Pre-fill the component's state from the service
+        this.amount = data.amount;
+        this.period = data.period;
+        this.rate = data.rate;
+        this.insuranceRate = data.insuranceRate;
+      }
+    });
+  }
+
+  onInputChanged(data: { amount: number | null; period: number | null; rate: number | null, insuranceRate: number | null }) {
     this.amount = data.amount;
     this.period = data.period;
     this.rate = data.rate;
     this.insuranceRate = data.insuranceRate;
+
+    this.loanDataService.updateLoanData(data)
   }
 
   onVisibilityChanged(data: { showAnnuity: boolean; showLinear: boolean }) {

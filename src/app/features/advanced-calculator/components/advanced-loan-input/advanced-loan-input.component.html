@@ -119,11 +119,11 @@
       <mat-slide-toggle hideIcon
         class="mb-2"
         id="enableLifeInsuranceAdvanced"
-        [(ngModel)]="enableLifeInsurance"
+        [(ngModel)]="isInsuranceRateEnabled"
         (change)="onLifeInsuranceToggle()"
         color="primary"
       ></mat-slide-toggle>
-      <div class="input-group" *ngIf="enableLifeInsurance">
+      <div class="input-group" *ngIf="isInsuranceRateEnabled">
         <input
             id="lifeInsurance"
             type="number"
@@ -137,7 +137,7 @@
         />
         <span class="input-group-text">%</span>
       </div>
-          <div class="form-text text-white-50" *ngIf="enableLifeInsurance" i18n>Dobândă asigurare de viață (de ex. 0.03).</div>
+          <div class="form-text text-white-50" *ngIf="isInsuranceRateEnabled" i18n>Dobândă asigurare de viață (de ex. 0.03).</div>
     </div>
 
     <div class="col-md-3">

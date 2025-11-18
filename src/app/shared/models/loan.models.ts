@@ -32,3 +32,12 @@ export interface ScheduleResult {
   annuity: PaymentScheduleRow[];
   linear: PaymentScheduleRow[];
 }
+
+export interface LoanData {
+  amount: number | null;
+  period: number | null;
+  rate: number | null;
+  fixedPeriod: number | null;
+  variableRate: number | null;
+  insuranceRate: number | null;
+}
