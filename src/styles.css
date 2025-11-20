@@ -347,3 +347,106 @@ small {
   border-bottom-right-radius: 0;
   overflow: hidden;
 }
+
+/* Group height matches .form-control */
+.schedule-toggle-group {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  height: calc(1.3em + 0.75rem + 2px);
+}
+
+/* Button fills height, centers content */
+.schedule-toggle-group .mat-button-toggle-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 0.75rem;
+}
+
+/* Critical: override Material label line-height */
+.schedule-toggle-group
+  .mat-button-toggle-appearance-standard
+  .mat-button-toggle-label-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.5 !important; /* override 40px from Material */
+}
+
+/* Optional: span inside */
+.schedule-toggle-group .schedule-toggle-text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Panel shell */
+/* Angular Material expansion panel – dark theme */
+
+/* Panel shell */
+.mdc-evolution-panel,
+.mat-expansion-panel,
+.mat-expansion-panel-body {
+  background-color: var(--bg-dark-card) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Header strip */
+.mat-expansion-panel-header {
+  background-color: var(--bg-dark-tertiary) !important;
+  color: var(--text-primary) !important;
+  border-bottom: 1px solid var(--border-color);
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  display: flex;                 /* ensure flex layout */
+}
+
+/* Title: fill space and ellipsize */
+.mat-expansion-panel-header-title {
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  color: var(--text-primary) !important;
+
+  flex: 1 1 auto;                /* take all available width */
+  min-width: 0;                  /* critical for flex + ellipsis */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* Hide description so it doesn't compete for width */
+.mat-expansion-panel-header-description {
+  display: none;
+}
+
+/* Chevron stays at the right edge */
+.mat-expansion-panel-header .mat-expansion-indicator {
+  margin-left: 0.75rem;
+}
+
+.mat-expansion-indicator::after {
+  color: var(--text-secondary) !important;
+}
+
+/* Panel border + body */
+.mat-expansion-panel {
+  border: 1px solid var(--border-color) !important;
+  box-shadow: none !important;
+  border-radius: 0.5rem !important;
+}
+
+.mat-expansion-panel-body {
+  background-color: var(--bg-dark-primary) !important;
+}
+
+/* Typography inside panel */
+.mat-expansion-panel,
+.mat-expansion-panel * {
+  font-family: inherit !important;
+  font-size: 1rem !important;
+}
+
+.mat-expansion-panel .form-text {
+  font-family: inherit !important;
+  font-size: 0.875rem !important;
+}

@@ -11,7 +11,10 @@
                [collapsed]="sidebarCollapsed" 
   ></app-sidebar>
 
-  <div class="content" [ngClass]="{ 'sidebar-collapsed': sidebarCollapsed, 'overlay-open': sidebarOpen }">
+  <div 
+    class="content" 
+    [ngClass]="{ 'sidebar-collapsed': sidebarCollapsed, 'overlay-open': sidebarOpen }"
+  >
     <div class="content-wrapper">
       <router-outlet></router-outlet>
       <app-cookie-consent></app-cookie-consent>

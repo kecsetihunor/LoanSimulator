@@ -1,90 +1,109 @@
-<div class="container my-4">
-  <div class="row">
-    <!-- Amount (decimal) -->
-    <div class="col-md-4">
-  <label for="amount" class="form-label" i18n>Sumă</label>
-      <input
-        id="amount"
-        type="number"
-        class="form-control"
-        [value]="amount"
-        (input)="onAmountChange($any($event.target)?.value)"
-        inputmode="decimal"
-        step="0.01"
-        min="0"
-  placeholder="de ex. 10000.00"
-        i18n-placeholder
-      />
-  <div class="form-text text-white-50" i18n>Introduceți suma totală a creditului</div>
-    </div>
+<mat-accordion class="mt-3">
+  <mat-expansion-panel expanded="true">
+    <!-- Header of the collapsible section -->
+    <mat-expansion-panel-header>
+      <mat-panel-title i18n>
+        Sumă totală: {{ amount ? (amount | formatCurrency) : '–' }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
 
-    <!-- Interest period (integer) with slider -->
-    <div class="col-md-4">
-  <label for="period" class="form-label" i18n>Perioada totală: {{ period || 0 }} luni</label>
-      <input
-        id="period"
-        type="number"
-        class="form-control mb-1"
-        [value]="period"
-        (input)="onPeriodChange($any($event.target)?.value)"
-        inputmode="numeric"
-        step="1"
-        min="1"
-        max="480"
-  placeholder="de ex. 12"
-        i18n-placeholder
-      />
-      
-      <input
-        type="range"
-        class="form-range"
-        [value]="period || 1"
-        (input)="onPeriodChange($any($event.target)?.value)"
-        min="1"
-        max="480"
-        step="1"
-        aria-label="Interest period slider"
-        i18n-placeholder
-      />
-      
-  <div class="form-text text-white-50" i18n>Durata totală a creditului (1-480 luni)</div>
-    </div>
-
-    <!-- Interest rate (%) decimal with suffix -->
-    <div class="col-md-4">
-  <label for="rate" class="form-label" i18n>Dobândă creditului</label>
-      <div class="input-group">
+    <!-- First row: 4 columns -->
+    <div class="row mt-4">
+      <!-- Amount (decimal) -->
+      <div class="col-md-3">
+        <label for="amount" class="form-label" i18n>Sumă</label>
         <input
-          id="rate"
+          id="amount"
           type="number"
           class="form-control"
-          [value]="rate"
-          (input)="onRateChange($any($event.target)?.value)"
+          [value]="amount"
+          (input)="onAmountChange($any($event.target)?.value)"
           inputmode="decimal"
           step="0.01"
           min="0"
-          placeholder="de ex. 5.5"
-          aria-describedby="rateSuffix"
+          placeholder="de ex. 10000.00"
           i18n-placeholder
         />
-        <span class="input-group-text" id="rateSuffix">%</span>
+        <div class="form-text text-white-50" i18n>
+          Introduceți suma totală a creditului
+        </div>
       </div>
-  <div class="form-text text-white-50" i18n>Dobândă anuală ca procent (de ex., 5.5).</div>
-    </div>
-  </div>
 
-  <div class="row mt-4">
-    <div class="col-md-4">
-  <label for="rate" class="form-label mb-0 me-3" i18n>Asigurare de viață:</label>
-      <mat-slide-toggle hideIcon
-        class="mb-3"
-        id="enableLifeInsurance"
-        [(ngModel)]="isInsuranceRateEnabled"
-        (change)="onLifeInsuranceToggle()"
-        color="primary"
-      ></mat-slide-toggle>
-      <div class="input-group" *ngIf="isInsuranceRateEnabled">
+      <!-- Interest period (integer) with slider -->
+      <div class="col-md-3">
+        <label for="period" class="form-label" i18n>
+          Perioada totală: {{ period || 0 }} luni
+        </label>
         <input
+          id="period"
+          type="number"
+          class="form-control mb-1"
+          [value]="period"
+          (input)="onPeriodChange($any($event.target)?.value)"
+          inputmode="numeric"
+          step="1"
+          min="1"
+          max="480"
+          placeholder="de ex. 12"
+          i18n-placeholder
+        />
+        <input
+          type="range"
+          class="form-range"
+          [value]="period || 1"
+          (input)="onPeriodChange($any($event.target)?.value)"
+          min="1"
+          max="480"
+          step="1"
+          aria-label="Interest period slider"
+          i18n-placeholder
+        />
+        <div class="form-text text-white-50" i18n>
+          Durata totală a creditului (1-480 luni)
+        </div>
+      </div>
+
+      <!-- Interest rate (%) decimal with suffix -->
+      <div class="col-md-3">
+        <label for="rate" class="form-label" i18n>Dobândă creditului</label>
+        <div class="input-group">
+          <input
+            id="rate"
+            type="number"
+            class="form-control"
+            [value]="rate"
+            (input)="onRateChange($any($event.target)?.value)"
+            inputmode="decimal"
+            step="0.01"
+            min="0"
+            placeholder="de ex. 5.5"
+            aria-describedby="rateSuffix"
+            i18n-placeholder
+          />
+          <span class="input-group-text" id="rateSuffix">%</span>
+        </div>
+        <div class="form-text text-white-50" i18n>
+          Dobândă anuală ca procent (de ex., 5.5).
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <!-- Label + toggle on first line -->
+        <div class="d-flex align-items-center mb-1">
+          <label class="form-label mb-0 me-2" i18n>Asigurare de viață:</label>
+          <mat-slide-toggle
+            hideIcon
+            id="enableLifeInsurance"
+            [(ngModel)]="isInsuranceRateEnabled"
+            (change)="onLifeInsuranceToggle()"
+            color="primary"
+            class="insurance-toggle"
+          ></mat-slide-toggle>
+        </div>
+
+        <!-- Input aligned with other fields -->
+        <div class="input-group mb-1 mt-2" *ngIf="isInsuranceRateEnabled">
+          <input
             id="lifeInsurance"
             type="number"
             class="form-control"
@@ -94,39 +113,39 @@
             step="0.01"
             placeholder="de ex. 0.03"
             i18n-placeholder
-        />
-        <span class="input-group-text">%</span>
-      </div>
-          <div class="form-text text-white-50" *ngIf="isInsuranceRateEnabled" i18n>Dobândă asigurare de viață (de ex. 0.03).</div>
-    </div>
-
-       <div class="col-md-3">
-      <!-- Show Schedules -->
-      <label class="form-label me-3" for="showAnnuity" i18n>Scadențar:</label>
-      <div class="schedule-list ms-3">
-        <div class="schedule-item">
-          <label class="form-label mb-0" for="showAnnuity" i18n>Rate egale</label>
-          <mat-slide-toggle hideIcon
-            id="showAnnuityAdvanced"
-            class="ms-2"
-            [(ngModel)]="showAnnuity"
-            (change)="onScheduleSelectionChange()"
-            color="primary"
-          ></mat-slide-toggle>
+          />
+          <span class="input-group-text">%</span>
         </div>
 
-        <div class="schedule-item">
-          <label class="form-label mb-0" for="showLinear" i18n>Rate descrescătoare</label>
-          <mat-slide-toggle hideIcon
-            id="showLinearAdvanced"
-            class="ms-2"
-            [(ngModel)]="showLinear"
-            (change)="onScheduleSelectionChange()"
-            color="primary"
-          ></mat-slide-toggle>
+        <div
+          class="form-text text-white-50"
+          *ngIf="isInsuranceRateEnabled"
+          i18n
+        >
+          Dobândă asigurare de viață (de ex. 0.03).
         </div>
+      </div>
+
+    </div>
+
+    <!-- Second row: compact schedule selector -->
+    <div class="row mt-4" *ngIf="isScheduleVisible">
+      <div class="col-md-6 mb-3 d-flex align-items-center ">
+        <label class="form-label mb-0 me-3" i18n>Scadențar:</label>
+
+        <mat-button-toggle-group
+          [(ngModel)]="scheduleMode"
+          (change)="onScheduleModeChange($event.value)"
+          aria-label="Tip scadențar"
+          color="primary"
+          class="schedule-toggle-group"
+        >
+          <mat-button-toggle value="annuity" i18n>Rate egale</mat-button-toggle>
+          <mat-button-toggle value="linear" i18n>Rate descrescătoare</mat-button-toggle>
+          <mat-button-toggle value="both" i18n>Ambele</mat-button-toggle>
+        </mat-button-toggle-group>
       </div>
     </div>
 
-  </div>
-</div>
+  </mat-expansion-panel>
+</mat-accordion>

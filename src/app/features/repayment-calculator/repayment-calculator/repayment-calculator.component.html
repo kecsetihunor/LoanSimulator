@@ -1,0 +1,100 @@
+<div class="container my-4">
+  <h2 class="mb-3 text-white" i18n>Calculator de rambursare anticipată</h2>
+  <p class="text-white-50 mb-4" i18n>Calculează cât economisești la dobândă atunci când rambursezi creditul mai devreme.</p>
+ 
+  <!-- Scenario mode toggles -->
+  <div class="row my-4">
+    <div class="col-md-4">
+      <label class="form-label" i18n>Mod:</label>
+      <mat-button-toggle-group [(ngModel)]="mode" class="schedule-toggle-group ms-3">
+        <mat-button-toggle value="simple">Simplu</mat-button-toggle>
+        <mat-button-toggle value="advanced">Avansat</mat-button-toggle>
+      </mat-button-toggle-group>  
+    </div>
+    <div class="col-md-6">
+      <label class="form-label" i18n>Tip credit:</label>
+      <mat-button-toggle-group [(ngModel)]="loanType" class="schedule-toggle-group ms-3">
+        <mat-button-toggle value="annuity">Rate egale</mat-button-toggle>
+        <mat-button-toggle value="linear">Rate descrescătoare</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+  </div>
+
+  <!-- Input area -->
+  <ng-container [ngSwitch]="mode">
+    <!-- Simple mode reuses existing component -->
+    <app-loan-input
+      *ngSwitchCase="'simple'"
+      [(amount)]="amount"
+      [(period)]="totalPeriod"
+      [(rate)]="fixedRate"
+      [(insuranceRate)]="insuranceRate"
+      [isScheduleVisible]="false"
+      (inputChanged)="onSimpleInputChanged($event)">
+    </app-loan-input>
+
+    <!-- Advanced mode uses new component -->
+    <app-advanced-loan-input
+      *ngSwitchCase="'advanced'"
+      [(amount)]="amount"
+      [(totalPeriod)]="totalPeriod"
+      [(fixedMonths)]="fixedMonths"
+      [(fixedRate)]="fixedRate"
+      [(variableRate)]="variableRate"
+      [(insuranceRate)]="insuranceRate"
+      [isScheduleVisible]="false"
+      (inputChanged)="onAdvancedInputChanged($event)">
+    </app-advanced-loan-input>
+  </ng-container>
+
+  <!-- Scenario results (you can reuse existing summary + schedule components) -->
+  <div class="row mt-4" *ngIf="scenarioSchedule.length">
+    <div class="col-md-6 mb-3">
+      <app-payment-summary-cards
+        [firstPayment]="scenarioFirstPayment"
+        [isAnnuityPayment]="loanType === 'annuity'"
+        [total]="scenarioTotal"
+        [amount]="amount"
+        [isSavingBadgeVisible]="false"
+        [alertClass]="'alert-green'">
+      </app-payment-summary-cards>
+    </div>
+  </div>
+
+  <div class="row mt-4"  *ngIf="scenarioSchedule.length">
+    <div class="col-lg-6 mb-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="mb-0 text-white" i18n>Scadențar înainte de rambursare</h4>
+        <button type="button" class="btn btn-outline-primary btn-sm">
+          <span class="me-2">PDF</span>
+          <i class="bi bi-download"></i>
+        </button>
+      </div>
+        <app-amortization-schedule 
+          [schedule]="scenarioSchedule"
+          [insuranceRate]="insuranceRate"
+        ></app-amortization-schedule>
+    </div>
+  </div>
+
+  <!-- <div class="row mt-4" *ngIf="scenarioSchedule.length">
+    <div class="col-lg-6 mb-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="mb-0 text-white">
+          {{ loanType === 'annuity' ? 'Scenariu rate egale' : 'Scenariu rate descrescătoare' }}
+        </h4>
+        <button type="button"
+                class="btn btn-outline-primary btn-sm"
+                (click)="downloadScenarioPdf()">
+          <span class="me-2">PDF</span>
+          <i class="bi bi-download"></i>
+        </button>
+      </div>
+      <app-amortization-schedule
+        [schedule]="scenarioSchedule"
+        [insuranceRate]="insuranceRate">
+      </app-amortization-schedule>
+    </div>
+  </div> -->
+
+</div>

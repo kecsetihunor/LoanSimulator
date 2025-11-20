@@ -1,130 +1,110 @@
-<div class="container-fluid">
-  <!-- Input Form -->
-  <div class="row">
-    <!-- Amount -->
-    <div class="col-md-4 mb-3">
-  <label for="amount" class="form-label" i18n>Sumă</label>
-      <input
-        id="amount"
-        type="number"
-        class="form-control"
-        [(ngModel)]="amount"
-        (input)="onAmountChange($any($event.target)?.value)"
-        inputmode="decimal"
-        step="0.01"
-  placeholder="de ex. 10000.00"
-        min="0"
-        i18n-placeholder
-      />
-  <div class="form-text text-white-50" i18n>Introduceți suma totală a creditului</div>
-    </div>
+<mat-accordion class="mt-3">
+  <mat-expansion-panel expanded="true">
+    <!-- Header of the collapsible section -->
+    <mat-expansion-panel-header>
+      <mat-panel-title i18n>
+        Sumă totală: {{ amount ? (amount | formatCurrency) : '–' }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
 
-    <!-- Total Period -->
-    <div class="col-md-4 mb-3">
-  <label for="totalPeriod" class="form-label" i18n>Perioada totală: {{ totalPeriod || 0 }} luni</label>
-      <input
-        type="number"
-        class="form-control mb-1"
-        id="totalPeriod"
-        [(ngModel)]="totalPeriod"
-        (input)="onTotalPeriodChange($any($event.target)?.value)"
-        inputmode="numeric"
-        step="1"
-        min="1"
-        max="480"
-  placeholder="de ex. 12"
-        pattern="\d*"
-        i18n-placeholder
-      />
-      <input
-        type="range"
-        class="form-range"
-        [(ngModel)]="totalPeriod"
-        (input)="onTotalPeriodChange($any($event.target)?.value)"
-        min="1"
-        max="480"
-      />
-  <div class="form-text text-white-50" i18n>Durata totală a creditului (1-480 luni)</div>
-    </div>
-
-    <!-- Fixed Period Months -->
-    <div class="col-md-4 mb-3">
-  <label for="fixedMonths" class="form-label" i18n>Perioada cu dobândă fixă: {{ fixedMonths || 0 }} luni</label>
-      <input
-        type="number"
-        class="form-control mb-1"
-        id="fixedMonths"
-        [(ngModel)]="fixedMonths"
-        (input)="onFixedMonthsChange($any($event.target)?.value)"
-  placeholder="de ex. 36"
-        step="1"
-        min="1"
-        pattern="\d*"
-        [max]="totalPeriod"
-      />
-      <input
-        type="range"
-        class="form-range"
-        [(ngModel)]="fixedMonths"
-        (input)="onFixedMonthsChange($any($event.target)?.value)"
-        min="1"
-        [max]="totalPeriod"
-      />
-  <div class="form-text text-white-50" i18n>Luni cu dobândă fixă</div>
-    </div>
-  </div>
-
-  <!-- Interest Rates Row -->
-  <div class="row mt-4">
-    <!-- Fixed Rate -->
-    <div class="col-md-3 mb-3">
-      <label for="fixedRate" class="form-label" i18n>Dobândă fixă</label>
-      <div class="input-group">
+    <div class="row my-4">
+      <!-- Amount -->
+      <div class="col-md-3 mb-3">
+        <label for="amount" class="form-label" i18n>Sumă</label>
         <input
+          id="amount"
           type="number"
           class="form-control"
-          id="fixedRate"
-          [(ngModel)]="fixedRate"
-          (input)="onFixedRateChange($any($event.target)?.value)"
-          placeholder="de ex. 4.79"
-          min="0"
+          [(ngModel)]="amount"
+          (input)="onAmountChange($any($event.target)?.value)"
+          inputmode="decimal"
           step="0.01"
+          min="0"
+          placeholder="de ex. 10000.00"
+          i18n-placeholder
         />
-        <span class="input-group-text">%</span>
+        <div class="form-text text-white-50" i18n>
+          Introduceți suma totală a creditului
+        </div>
       </div>
-      <div class="form-text text-white-50" i18n>Dobândă pentru primele {{ fixedMonths }} luni</div>
-    </div>
 
-    <!-- Variable Rate -->
-    <div class="col-md-3 mb-3">
-      <label for="variableRate" class="form-label" i18n>Dobândă variabilă</label>
-      <div class="input-group">
+      <!-- Total Period -->
+      <div class="col-md-3 mb-3">
+        <label for="totalPeriod" class="form-label" i18n>
+          Perioadă totală: {{ totalPeriod || 0 }} luni
+        </label>
         <input
           type="number"
-          class="form-control"
-          id="variableRate"
-          [(ngModel)]="variableRate"
-          (input)="onVariableRateChange($any($event.target)?.value)"
-          placeholder="de ex. 6.5"
-          min="0"
-          step="0.01"
+          class="form-control mb-1"
+          id="totalPeriod"
+          [(ngModel)]="totalPeriod"
+          (input)="onTotalPeriodChange($any($event.target)?.value)"
+          inputmode="numeric"
+          step="1"
+          min="1"
+          max="480"
+          placeholder="de ex. 12"
+          pattern="\d*"
+          i18n-placeholder
         />
-        <span class="input-group-text">%</span>
-      </div>
-      <div class="form-text text-white-50" i18n>Dobândă pentru restul de {{ totalPeriod! - fixedMonths! }} luni</div>
-    </div>
-
-    <div class="col-md-3">
-      <label for="rate" class="form-label me-3" i18n>Asigurare de viață:</label>
-      <mat-slide-toggle hideIcon
-        class="mb-2"
-        id="enableLifeInsuranceAdvanced"
-        [(ngModel)]="isInsuranceRateEnabled"
-        (change)="onLifeInsuranceToggle()"
-        color="primary"
-      ></mat-slide-toggle>
-      <div class="input-group" *ngIf="isInsuranceRateEnabled">
         <input
+          type="range"
+          class="form-range"
+          [(ngModel)]="totalPeriod"
+          (input)="onTotalPeriodChange($any($event.target)?.value)"
+          min="1"
+          max="480"
+        />
+        <div class="form-text text-white-50" i18n>
+          Durata totală a creditului (1-480 luni)
+        </div>
+      </div>
+
+      <!-- Fixed Period Months -->
+      <div class="col-md-3 mb-3">
+        <label for="fixedMonths" class="form-label" i18n>
+          Perioadă cu dobândă fixă: {{ fixedMonths || 0 }} luni
+        </label>
+        <input
+          type="number"
+          class="form-control mb-1"
+          id="fixedMonths"
+          [(ngModel)]="fixedMonths"
+          (input)="onFixedMonthsChange($any($event.target)?.value)"
+          placeholder="de ex. 36"
+          step="1"
+          min="1"
+          pattern="\d*"
+          [max]="totalPeriod"
+        />
+        <input
+          type="range"
+          class="form-range"
+          [(ngModel)]="fixedMonths"
+          (input)="onFixedMonthsChange($any($event.target)?.value)"
+          min="1"
+          [max]="totalPeriod"
+        />
+        <div class="form-text text-white-50" i18n>
+          Luni cu dobândă fixă
+        </div>
+      </div>
+
+      <!-- Insurance (moved to top row) -->
+      <div class="col-md-3 mb-3">
+        <div class="d-flex align-items-center mb-1">
+          <label class="form-label mb-0 me-2" i18n>Asigurare de viață:</label>
+          <mat-slide-toggle
+            hideIcon
+            id="enableLifeInsuranceAdvanced"
+            [(ngModel)]="isInsuranceRateEnabled"
+            (change)="onLifeInsuranceToggle()"
+            color="primary"
+          ></mat-slide-toggle>
+        </div>
+
+        <div class="input-group mb-1 mt-2" *ngIf="isInsuranceRateEnabled">
+          <input
             id="lifeInsurance"
             type="number"
             class="form-control"
@@ -134,39 +114,81 @@
             step="0.01"
             placeholder="de ex. 0.03"
             i18n-placeholder
-        />
-        <span class="input-group-text">%</span>
-      </div>
-          <div class="form-text text-white-50" *ngIf="isInsuranceRateEnabled" i18n>Dobândă asigurare de viață (de ex. 0.03).</div>
-    </div>
-
-    <div class="col-md-3">
-      <!-- Show Schedules -->
-      <label class="form-label me-3" for="showAnnuity" i18n>Scadențar:</label>
-      <div class="schedule-list ms-3">
-        <div class="schedule-item">
-          <label class="form-label mb-0" for="showAnnuity" i18n>Rate egale</label>
-          <mat-slide-toggle hideIcon
-            id="showAnnuityAdvanced"
-            class="ms-2"
-            [(ngModel)]="showAnnuity"
-            (change)="onScheduleSelectionChange()"
-            color="primary"
-          ></mat-slide-toggle>
+          />
+          <span class="input-group-text">%</span>
         </div>
 
-        <div class="schedule-item">
-          <label class="form-label mb-0" for="showLinear" i18n>Rate descrescătoare</label>
-          <mat-slide-toggle hideIcon
-            id="showLinearAdvanced"
-            class="ms-2"
-            [(ngModel)]="showLinear"
-            (change)="onScheduleSelectionChange()"
-            color="primary"
-          ></mat-slide-toggle>
+        <div
+          class="form-text text-white-50"
+          *ngIf="isInsuranceRateEnabled"
+          i18n
+        >
+          Dobândă asigurare de viață (de ex. 0.03).
         </div>
       </div>
     </div>
 
-  </div>
-</div>
+    <!-- Second row: rates + schedule toggle group -->
+    <div class="row mt-4">
+      <!-- Fixed Rate -->
+      <div class="col-md-3 mb-3">
+        <label for="fixedRate" class="form-label" i18n>Dobândă fixă</label>
+        <div class="input-group">
+          <input
+            type="number"
+            class="form-control"
+            id="fixedRate"
+            [(ngModel)]="fixedRate"
+            (input)="onFixedRateChange($any($event.target)?.value)"
+            placeholder="de ex. 4.79"
+            min="0"
+            step="0.01"
+          />
+          <span class="input-group-text">%</span>
+        </div>
+        <div class="form-text text-white-50" i18n>
+          Dobândă pentru primele {{ fixedMonths }} luni
+        </div>
+      </div>
+
+      <!-- Variable Rate -->
+      <div class="col-md-3 mb-3">
+        <label for="variableRate" class="form-label" i18n>Dobândă variabilă</label>
+        <div class="input-group">
+          <input
+            type="number"
+            class="form-control"
+            id="variableRate"
+            [(ngModel)]="variableRate"
+            (input)="onVariableRateChange($any($event.target)?.value)"
+            placeholder="de ex. 6.5"
+            min="0"
+            step="0.01"
+          />
+          <span class="input-group-text">%</span>
+        </div>
+        <div class="form-text text-white-50" i18n>
+          Dobândă pentru restul de {{ totalPeriod! - fixedMonths! }} luni
+        </div>
+      </div>
+
+      <!-- Schedule as button toggle group -->
+      <div class="col-md-6 mb-3" *ngIf="isScheduleVisible">
+        <label class="form-label" i18n>Scadențar:</label>
+        <div class="d-flex align-items-center">
+          <mat-button-toggle-group
+            [(ngModel)]="scheduleMode"
+            (change)="onScheduleModeChange($event.value)"
+            color="primary"
+            class="schedule-toggle-group"
+          >
+            <mat-button-toggle value="annuity" i18n>Rate egale</mat-button-toggle>
+            <mat-button-toggle value="linear" i18n>Rate descrescătoare</mat-button-toggle>
+            <mat-button-toggle value="both" i18n>Ambele</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+      </div>
+    </div>
+
+  </mat-expansion-panel>
+</mat-accordion>

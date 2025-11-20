@@ -4,16 +4,20 @@ import { FormsModule } from '@angular/forms';
 import { LoanCalculatorService } from '@core/services/loan-calculator.service';
 import { PaymentScheduleRow } from '@app/shared/models/loan.models'; 
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { FormatCurrencyPipe } from '@app/pipes/format-currency.pipe';
 
 @Component({
   selector: 'app-advanced-loan-input',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatSlideToggleModule],
+  imports: [CommonModule, FormsModule, MatSlideToggleModule, MatButtonToggleModule, MatExpansionModule, FormatCurrencyPipe],
   templateUrl: './advanced-loan-input.component.html',
   styleUrls: ['./advanced-loan-input.component.css']
 })
 export class AdvancedLoanInputComponent implements OnChanges {
   private loanCalculator = inject(LoanCalculatorService);
+  scheduleMode: 'annuity' | 'linear' | 'both' = 'both';
 
   @Output() schedulesGenerated = new EventEmitter<{
     annuity: PaymentScheduleRow[];
@@ -36,6 +40,8 @@ export class AdvancedLoanInputComponent implements OnChanges {
   @Input() insuranceRate: number | null = null;  // Insurance rate
   @Output() insuranceRateChange = new EventEmitter<number | null>();
  
+  @Input() isScheduleVisible: boolean = true;
+
   @Input() variableRate: number | null = null;  // Variable rate after fixed period
   @Output() variableRateChange = new EventEmitter<number | null>();
 
@@ -78,62 +84,92 @@ export class AdvancedLoanInputComponent implements OnChanges {
   }
 
   onAmountChange(val: string) {
-    const n = val === '' ? NaN : Number(val);
-    this.amount = isNaN(n) ? this.amount : n;
+    if (val === '') {
+        this.amount = null;               // or NaN if you prefer
+    } else {
+        const n = Number(val);
+        this.amount = isNaN(n) ? null : n;
+    }
+
     this.amountChange.emit(this.amount);
     this.onAnyInputChange();
   }
 
   onTotalPeriodChange(val: string) {
-    const n = val === '' ? NaN : Number(val);
-    this.totalPeriod = isNaN(n) ? this.totalPeriod : n;
+    if (val === '') {
+        this.totalPeriod = null;               // or NaN if you prefer
+    } else {
+        const n = Number(val);
+        this.totalPeriod = isNaN(n) ? null : n;
+    }
+
     this.totalPeriodChange.emit(this.totalPeriod);
     this.onAnyInputChange();
   }
 
   onFixedMonthsChange(val: string) {
-    const n = val === '' ? NaN : Number(val);
-    this.fixedMonths = isNaN(n) ? this.fixedMonths : n;
+    if (val === '') {
+        this.fixedMonths = null;               // or NaN if you prefer
+    } else {
+        const n = Number(val);
+        this.fixedMonths = isNaN(n) ? null : n;
+    }
+    
     this.fixedMonthsChange.emit(this.fixedMonths);
     this.onAnyInputChange();
   }
 
   onFixedRateChange(val: string) {
-    const n = val === '' ? NaN : Number(val);
-    this.fixedRate = isNaN(n) ? this.fixedRate : n;
+    if (val === '') {
+        this.fixedRate = null;               // or NaN if you prefer
+    } else {
+        const n = Number(val);
+        this.fixedRate = isNaN(n) ? null : n;
+    }
+
     this.fixedRateChange.emit(this.fixedRate);
     this.onAnyInputChange();
   }
 
     onInsuranceRateChange(val: string) {
-    const n = val === '' ? NaN : Number(val);
-    this.insuranceRate = isNaN(n) ? this.insuranceRate : n;
+      if (val === '') {
+        this.insuranceRate = null;               // or NaN if you prefer
+      } else {
+        const n = Number(val);
+        this.insuranceRate = isNaN(n) ? null : n;
+      }
 
-    if (this.insuranceRate !== null) {
-      this.isInsuranceRateEnabled = true;
+      if (this.insuranceRate !== null) {
+        this.isInsuranceRateEnabled = true;
+      }
+
+      this.insuranceRateChange.emit(this.insuranceRate);
+      this.onAnyInputChange();
     }
-
-    this.insuranceRateChange.emit(this.insuranceRate);
-    this.onAnyInputChange();
-  }
 
     onLifeInsuranceToggle() {
-    if (this.isInsuranceRateEnabled) {
-      this.insuranceRateChange.emit(this.insuranceRate);
-    }
-    else{
-      this.insuranceRate = null;
-      this.insuranceRateChange.emit(this.insuranceRate);
-    }
-    this.onAnyInputChange();
-  }
+      if (this.isInsuranceRateEnabled) {
+        this.insuranceRateChange.emit(this.insuranceRate);
+      }
+      else{
+        this.insuranceRate = null;
+        this.insuranceRateChange.emit(this.insuranceRate);
+      }
 
-  onVariableRateChange(val: string) {
-    const n = val === '' ? NaN : Number(val);
-    this.variableRate = isNaN(n) ? this.variableRate : n;
-    this.variableRateChange.emit(this.variableRate);
-    this.onAnyInputChange();
-  } 
+      this.onAnyInputChange();
+    }
+
+    onVariableRateChange(val: string) {
+      if (val === '') {
+          this.variableRate = null;               // or NaN if you prefer
+      } else {
+          const n = Number(val);
+          this.variableRate = isNaN(n) ? null : n;
+      }
+
+      this.variableRateChange.emit(this.variableRate);
+      this.onAnyInputChange();
+    } 
 
     onScheduleSelectionChange() {
     this.scheduleSelectionChange.emit({
@@ -141,6 +177,13 @@ export class AdvancedLoanInputComponent implements OnChanges {
       showLinear: this.showLinear
     });
   }
+
+  onScheduleModeChange(mode: 'annuity' | 'linear' | 'both') {
+    this.scheduleMode = mode;
+    this.showAnnuity = mode === 'annuity' || mode === 'both';
+    this.showLinear  = mode === 'linear'  || mode === 'both';
+    this.onScheduleSelectionChange();
+}
   
   calculate(): void {
     if (this.isValid()) {

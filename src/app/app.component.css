@@ -5,15 +5,27 @@
   background-color: #212529; /* Dark background */
 }
 
-/* Main content area - takes up remaining space */
+/* Main content area - desktop */
 .content {
   flex: 1;
-  margin-left: 240px; /* Sidebar width when expanded */
+  margin-left: 280px;  /* full sidebar width */
   transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background-color: #212529; /* Dark background */
+  background-color: #212529;
   min-height: 100vh;
   display: flex;
-  justify-content: center; /* Center the wrapper */
+  justify-content: center;   /* center .content-wrapper inside the remaining space */
+}
+
+/* When sidebar is collapsed (70px wide) */
+.content.sidebar-collapsed {
+  margin-left: 70px;         /* match .sidebar.collapsed width */
+}
+
+/* Centered content wrapper stays as is */
+.content-wrapper {
+  width: 100%;
+  max-width: 1300px;
+  padding: 2rem;
 }
 
 /* Mobile: remove left margin and provide overlay behavior */
@@ -22,7 +34,6 @@
     margin-left: 0;
   }
 
-  /* When the sidebar overlay is open, prevent interactions behind it */
   .content.overlay-open {
     pointer-events: none;
   }
@@ -48,11 +59,4 @@
 
   /* push content down slightly to avoid header overlap */
   .content-wrapper { padding-top: 3.25rem; }
-}
-
-/* Centered content wrapper */
-.content-wrapper {
-  width: 100%;
-  max-width: 1200px; /* Maximum width before centering kicks in */
-  padding: 2rem;
 }

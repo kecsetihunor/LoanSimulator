@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { SimpleCalculatorComponent } from '@features/simple-calculator/simple-calculator.component';
-import { AdvancedCalculatorComponent} from '@features/advanced-calculator/advanced-calculator/advanced-calculator.component';
+import { AdvancedCalculatorComponent} from '@app/features/advanced-calculator/advanced-calculator.component';
+import { RepaymentCalculatorComponent } from '@features/repayment-calculator/repayment-calculator/repayment-calculator.component';
 
 export const routes: Routes = [
   { 
@@ -15,5 +16,9 @@ export const routes: Routes = [
   {
     path: 'advanced',
     component: AdvancedCalculatorComponent
+  },
+  {
+    path: 'repayment',
+    component: RepaymentCalculatorComponent
   }
 ];
