@@ -109,7 +109,7 @@
             type="number"
             class="form-control"
             [value]="insuranceRate"
-            (input)="onInsuranceRateChange($any($event.target)?.value)"
+            (input)="onInsuranceRateInputChange($any($event.target)?.value)"
             min="0"
             step="0.01"
             placeholder="de ex. 0.03"

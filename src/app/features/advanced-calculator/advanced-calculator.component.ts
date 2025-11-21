@@ -1,23 +1,29 @@
-import { Component, OnInit, inject} from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdvancedLoanInputComponent } from '@features/advanced-calculator/components/advanced-loan-input/advanced-loan-input.component';
 import { AmortizationScheduleComponent } from '@shared/components/amortization-schedule/amortization-schedule.component';
 import { PaymentScheduleRow } from '@shared/models/loan.models';
 import { PaymentSummaryCardsComponent } from '@shared/components/payment-summary-cards/payment-summary-cards.component';
 import { LoanDataService } from '@core/services/loan-data.service';
+import { LoanCalculatorService } from '@core/services/loan-calculator.service';
 import { take } from 'rxjs';
 import { DownloadPdfService } from '@app/core/services/download-pdf.service';
 
 @Component({
   selector: 'app-advanced-calculator',
   standalone: true,
-  imports: [CommonModule, AdvancedLoanInputComponent, AmortizationScheduleComponent, PaymentSummaryCardsComponent],
+  imports: [
+    CommonModule,
+    AdvancedLoanInputComponent,
+    AmortizationScheduleComponent,
+    PaymentSummaryCardsComponent
+  ],
   templateUrl: './advanced-calculator.component.html',
   styleUrls: ['./advanced-calculator.component.css']
 })
-
 export class AdvancedCalculatorComponent implements OnInit {
   private loanDataService = inject(LoanDataService);
+  private loanCalculator = inject(LoanCalculatorService);
   downloadPdfService = inject(DownloadPdfService);
 
   annuitySchedule: PaymentScheduleRow[] = [];
@@ -27,21 +33,22 @@ export class AdvancedCalculatorComponent implements OnInit {
   annuityTotal: number | null = null;
   linearPayment: number | null = null;
   linearTotal: number | null = null;
-  
+
   amount: number | null = null;
   totalPeriod: number | null = null;
   fixedRate: number | null = null;
   variableRate: number | null = null;
   fixedMonths: number | null = null;
-
   insuranceRate: number | null = null;
+
   showAnnuity: boolean = true;
   showLinear: boolean = true;
+
+  scheduleMode: 'annuity' | 'linear' | 'both' = 'both';
 
   ngOnInit(): void {
     this.loanDataService.currentLoanData.pipe(take(1)).subscribe(data => {
       if (data) {
-        // Pre-fill the component's state from the service
         this.amount = data.amount;
         this.totalPeriod = data.period;
         this.fixedRate = data.rate;
@@ -50,42 +57,125 @@ export class AdvancedCalculatorComponent implements OnInit {
         if (data.insuranceRate !== null) {
           this.insuranceRate = data.insuranceRate;
         }
+
+        this.recalculateSchedules();
       }
     });
   }
 
-  onInputChanged(data: { amount: number | null; totalPeriod: number | null; fixedMonths: number | null, fixedRate: number | null, variableRate: number | null, insuranceRate: number | null }) {
+  onInputChanged(data: {
+    amount: number | null;
+    totalPeriod: number | null;
+    fixedMonths: number | null;
+    fixedRate: number | null;
+    variableRate: number | null;
+    insuranceRate: number | null;
+  }) {
     this.amount = data.amount;
     this.fixedMonths = data.fixedMonths;
     this.fixedRate = data.fixedRate;
     this.variableRate = data.variableRate;
     this.totalPeriod = data.totalPeriod;
     this.insuranceRate = data.insuranceRate;
-    
-    // Map the advanced calculator data to the shared LoanData interface
+
     this.loanDataService.updateLoanData({
       amount: data.amount,
-      period: data.totalPeriod, // Map totalPeriod to period
-      rate: data.fixedRate,      // Map fixedRate to rate
+      period: data.totalPeriod,
+      rate: data.fixedRate,
       fixedPeriod: data.fixedMonths,
       variableRate: data.variableRate,
       insuranceRate: data.insuranceRate
     });
-  }
 
-  onSchedulesGenerated(schedules: { annuity: PaymentScheduleRow[]; linear: PaymentScheduleRow[] }): void {
-    this.annuitySchedule = schedules.annuity;
-    this.linearSchedule = schedules.linear;
-    
-    this.annuityPayment = schedules.annuity.length > 0 ? schedules.annuity[0].payment : null;
-    this.annuityTotal = schedules.annuity.reduce((sum, row) => sum + row.payment, 0);
-    this.linearPayment = schedules.linear.length > 0 ? schedules.linear[0].payment : null;
-    this.linearTotal = schedules.linear.reduce((sum, row) => sum + row.payment, 0);
+    this.recalculateSchedules();
   }
 
   onVisibilityChanged(data: { showAnnuity: boolean; showLinear: boolean }) {
     this.showAnnuity = data.showAnnuity;
     this.showLinear = data.showLinear;
+  }
+
+  onScheduleModeChanged(mode: 'annuity' | 'linear' | 'both') {
+    this.scheduleMode = mode;
+
+    this.showAnnuity = mode === 'annuity' || mode === 'both';
+    this.showLinear  = mode === 'linear'  || mode === 'both';
+
+    this.recalculateSchedules();
+  }
+
+  private isValid(): boolean {
+    return this.amount !== null &&
+           this.amount > 0 &&
+           this.totalPeriod !== null &&
+           this.totalPeriod > 0 &&
+           this.fixedMonths !== null &&
+           this.fixedMonths > 0 &&
+           this.fixedMonths <= this.totalPeriod &&
+           this.fixedRate !== null &&
+           this.fixedRate >= 0 &&
+           this.variableRate !== null &&
+           this.variableRate >= 0;
+  }
+
+  private resetResults(): void {
+    this.annuityPayment = null;
+    this.linearPayment = null;
+    this.annuityTotal = null;
+    this.linearTotal = null;
+    this.annuitySchedule = [];
+    this.linearSchedule = [];
+  }
+
+  private recalculateSchedules(): void {
+    if (!this.isValid()) {
+      this.resetResults();
+      return;
+    }
+
+    try {
+      if (this.scheduleMode === 'annuity' || this.scheduleMode === 'both') {
+        const annuitySchedule = this.loanCalculator.generateVariableAnnuitySchedule(
+          this.amount!,
+          this.totalPeriod!,
+          this.fixedRate!,
+          this.fixedMonths!,
+          this.variableRate!,
+          this.insuranceRate
+        );
+
+        this.annuitySchedule = annuitySchedule;
+        this.annuityPayment = annuitySchedule[0]?.payment ?? null;
+        this.annuityTotal = annuitySchedule.reduce((sum, row) => sum + row.payment, 0);
+      } else {
+        this.annuitySchedule = [];
+        this.annuityPayment = null;
+        this.annuityTotal = null;
+      }
+
+      if (this.scheduleMode === 'linear' || this.scheduleMode === 'both') {
+        const linearSchedule = this.loanCalculator.generateVariableLinearSchedule(
+          this.amount!,
+          this.totalPeriod!,
+          this.fixedRate!,
+          this.fixedMonths!,
+          this.variableRate!,
+          this.insuranceRate
+        );
+
+        this.linearSchedule = linearSchedule;
+        this.linearPayment = linearSchedule[0]?.payment ?? null;
+        this.linearTotal = linearSchedule.reduce((sum, row) => sum + row.payment, 0);
+      } else {
+        this.linearSchedule = [];
+        this.linearPayment = null;
+        this.linearTotal = null;
+      }
+
+    } catch (error) {
+      console.error('Calculation error:', error);
+      this.resetResults();
+    }
   }
 
   downloadPdf(schedule: PaymentScheduleRow[], type: string) {

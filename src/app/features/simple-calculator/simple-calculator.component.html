@@ -4,16 +4,16 @@
 
   <!-- Loan Input Form -->
   <app-loan-input 
-    (schedulesGenerated)="onSchedulesGenerated($event)"
     (inputChanged)="onInputChanged($event)"
     (scheduleSelectionChange)="onVisibilityChanged($event)"
+    (scheduleModeChange)="onScheduleModeChanged($event)"
     [(amount)]="amount"
     [(period)]="period"
     [(rate)]="rate"
     [(insuranceRate)]="insuranceRate"
   ></app-loan-input>
 
-  <div class="row mt-4" *ngIf="annuitySchedule.length > 0">
+  <div class="row mt-4">
     <div class="col-md-6 mb-3" *ngIf="showAnnuity">
       <app-payment-summary-cards
         [firstPayment]="annuityPayment"

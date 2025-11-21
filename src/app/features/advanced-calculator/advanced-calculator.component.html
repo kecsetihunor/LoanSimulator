@@ -3,19 +3,19 @@
   <p class="text-white-50 mb-4" i18n>Calculează plățile cu rate ale dobânzii fixe și variabile.</p>
 
   <!-- Advanced Loan Input Form -->
-  <app-advanced-loan-input 
-    [(amount)]="amount"
-    [(totalPeriod)]="totalPeriod"
-    [(fixedRate)]="fixedRate"
-    [(variableRate)]="variableRate"
-    [(fixedMonths)]="fixedMonths"
-    [(insuranceRate)]="insuranceRate"
-    (schedulesGenerated)="onSchedulesGenerated($event)"
-    (inputChanged)="onInputChanged($event)"
-    (scheduleSelectionChange)="onVisibilityChanged($event)"
-  ></app-advanced-loan-input>
+<app-advanced-loan-input 
+  [(amount)]="amount"
+  [(totalPeriod)]="totalPeriod"
+  [(fixedRate)]="fixedRate"
+  [(variableRate)]="variableRate"
+  [(fixedMonths)]="fixedMonths"
+  [(insuranceRate)]="insuranceRate"
+  (inputChanged)="onInputChanged($event)"
+  (scheduleSelectionChange)="onVisibilityChanged($event)"
+  (scheduleModeChange)="onScheduleModeChanged($event)"
+></app-advanced-loan-input>
 
-  <div class="row mt-4" *ngIf="annuitySchedule.length > 0">
+  <div class="row mt-4">
     <div class="col-md-6 mb-3" *ngIf="showAnnuity">
       <app-payment-summary-cards
         [firstPayment]="annuityPayment"
