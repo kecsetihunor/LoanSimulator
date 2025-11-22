@@ -72,13 +72,14 @@ export class LoanCalculatorService {
   ): PaymentScheduleRow[] {
     const monthlyPayment = this.calculateMonthlyPayment(amount, period, annualRate, insuranceRate);
     const monthlyRate = annualRate / 100 / 12;
-
+   
+    let balance = amount;
     let insuranceCost = 0;
+ 
     if (insuranceRate !== null) {
-      insuranceCost = amount * (insuranceRate / 100);
+      insuranceCost = balance * (insuranceRate / 100);
     }
 
-    let balance = amount;
     const schedule: PaymentScheduleRow[] = [];
 
     for (let month = 1; month <= period; month++) {
@@ -113,12 +114,14 @@ export class LoanCalculatorService {
   ): PaymentScheduleRow[] {
     const principalPayment = amount / period;
     const monthlyRate = annualRate / 100 / 12;
-    let insuranceCost = 0;
-    if (insuranceRate !== null) {
-      insuranceCost = amount * (insuranceRate / 100);
-    }
 
     let balance = amount;
+    let insuranceCost = 0;
+
+    if (insuranceRate !== null) {
+      insuranceCost = balance * (insuranceRate / 100);
+    }
+    
     const schedule: PaymentScheduleRow[] = [];
 
     for (let month = 1; month <= period; month++) {
