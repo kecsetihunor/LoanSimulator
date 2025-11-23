@@ -14,8 +14,11 @@ export class PaymentSummaryCardsComponent {
   @Input() firstPayment: number | null = null;
   @Input() total: number | null = null;
   @Input() amount: number | null = null;
+  @Input() interestTotal: number | null = null;
+  @Input() insuranceTotal: number | null = null;
   @Input() savingAmount: number | null = null;
   @Input() isSavingBadgeVisible: boolean = true;
   @Input() isAnnuityPayment: boolean = true;
+  @Input() IsInsuranceRateEnabled: boolean = true;
   @Input() alertClass: string = 'alert-green';
 }

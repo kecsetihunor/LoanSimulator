@@ -101,7 +101,7 @@
   </div>
 
   <!-- Summaries: original vs after repayment -->
-  <div class="row mt-4">
+  <div class="row mt-5">
     <div class="col-md-6 mb-3" *ngIf="originalSchedule.length">
       <h5 class="text-white mb-2" i18n>Înainte de rambursare</h5>
       <app-payment-summary-cards
@@ -109,6 +109,9 @@
         [isAnnuityPayment]="loanType === 'annuity' ? true : false"
         [total]="originalTotal"
         [amount]="amount"
+        [interestTotal]="originalInterestTotal"
+        [insuranceTotal]="originalInsuranceTotal"
+        [IsInsuranceRateEnabled]="insuranceRate !== null"
         [isSavingBadgeVisible]="false"
         [alertClass]="'alert-green'"
       ></app-payment-summary-cards>
@@ -121,6 +124,9 @@
         [isAnnuityPayment]="loanType === 'annuity' ? true : false"
         [total]="afterRepaymentTotal"
         [amount]="amount"
+        [interestTotal]="afterRepaymentInterestTotal"
+        [insuranceTotal]="afterRepaymentInsuranceTotal"
+        [IsInsuranceRateEnabled]="insuranceRate !== null"
         [isSavingBadgeVisible]="true"
         [savingAmount]="totalSaved"
         [alertClass]="'alert-purple'"
@@ -129,11 +135,11 @@
   </div>
 
   <!-- Amortization schedules: original vs after repayment -->
-  <div class="row mt-4">
-    <div class="col-lg-6 mb-4" *ngIf="originalSchedule.length">
+  <div class="row mt-5">
+    <div class="col-lg-6 mb-4 mt-3" *ngIf="originalSchedule.length">
       <div class="d-flex justify-content-between align-items-center mb-3">
         <h4 class="mb-0 text-white" i18n>Scadențar înainte de rambursare</h4>
-        <button type="button" class="btn btn-outline-primary btn-sm" (click)="downloadScenarioPdf()">
+        <button type="button" class="btn btn-outline-primary btn-sm" (click)="downloadOriginalSchedulePdf()">
           <span class="me-2">PDF</span>
           <i class="bi bi-download"></i>
         </button>
@@ -144,10 +150,10 @@
       ></app-amortization-schedule>
     </div>
 
-    <div class="col-lg-6 mb-4" *ngIf="afterRepaymentSchedule.length">
+    <div class="col-lg-6 mb-4 mt-3" *ngIf="afterRepaymentSchedule.length">
       <div class="d-flex justify-content-between align-items-center mb-3">
         <h4 class="mb-0 text-white" i18n>Scadențar după rambursare</h4>
-        <button type="button" class="btn btn-outline-primary btn-sm" (click)="downloadScenarioPdf()">
+        <button type="button" class="btn btn-outline-primary btn-sm" (click)="downloadAfterRepaymentSchedulePdf()">
           <span class="me-2">PDF</span>
           <i class="bi bi-download"></i>
         </button>

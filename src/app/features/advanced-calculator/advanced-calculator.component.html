@@ -3,17 +3,17 @@
   <p class="text-white-50 mb-4" i18n>Calculează plățile cu rate ale dobânzii fixe și variabile.</p>
 
   <!-- Advanced Loan Input Form -->
-<app-advanced-loan-input 
-  [(amount)]="amount"
-  [(totalPeriod)]="totalPeriod"
-  [(fixedRate)]="fixedRate"
-  [(variableRate)]="variableRate"
-  [(fixedMonths)]="fixedMonths"
-  [(insuranceRate)]="insuranceRate"
-  (inputChanged)="onInputChanged($event)"
-  (scheduleSelectionChange)="onVisibilityChanged($event)"
-  (scheduleModeChange)="onScheduleModeChanged($event)"
-></app-advanced-loan-input>
+  <app-advanced-loan-input 
+    [(amount)]="amount"
+    [(totalPeriod)]="totalPeriod"
+    [(fixedRate)]="fixedRate"
+    [(variableRate)]="variableRate"
+    [(fixedMonths)]="fixedMonths"
+    [(insuranceRate)]="insuranceRate"
+    (inputChanged)="onInputChanged($event)"
+    (scheduleSelectionChange)="onVisibilityChanged($event)"
+    (scheduleModeChange)="onScheduleModeChanged($event)"
+  ></app-advanced-loan-input>
 
   <div class="row mt-4">
     <div class="col-md-6 mb-3" *ngIf="showAnnuity">
@@ -22,6 +22,9 @@
         [isAnnuityPayment] = "true"
         [total]="annuityTotal"
         [amount]="amount"
+        [interestTotal]="annuityInterestTotal"
+        [insuranceTotal]="annuityInsuranceTotal"
+        [IsInsuranceRateEnabled]="insuranceRate !== null"
         [isSavingBadgeVisible]="false"
         [alertClass]="'alert-green'"
       ></app-payment-summary-cards>
@@ -32,6 +35,9 @@
         [isAnnuityPayment] = "false"
         [total]="linearTotal"
         [amount]="amount"
+        [interestTotal]="linearInterestTotal"
+        [insuranceTotal]="linearInsuranceTotal"
+        [IsInsuranceRateEnabled]="insuranceRate !== null"
         [isSavingBadgeVisible]="showAnnuity && true"
         [savingAmount]="annuityTotal! - linearTotal!"
         [alertClass]="'alert-purple'"

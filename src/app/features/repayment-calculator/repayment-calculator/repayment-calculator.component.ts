@@ -12,6 +12,7 @@ import { LoanDataService } from '@core/services/loan-data.service';
 import { take } from 'rxjs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FormatCurrencyPipe } from '@app/pipes/format-currency.pipe';
+import { DownloadPdfService } from '@app/core/services/download-pdf.service';
 
 type ScenarioMode = 'simple' | 'advanced';
 type RepaymentEffect = 'amount' | 'period';
@@ -35,6 +36,8 @@ type LoanType = 'annuity' | 'linear';
   styleUrl: './repayment-calculator.component.css'
 })
 export class RepaymentCalculatorComponent implements OnInit {
+  downloadPdfService = inject(DownloadPdfService);
+
   // UI state
   mode: ScenarioMode = 'simple';
   loanType: LoanType = 'annuity';
@@ -48,11 +51,18 @@ export class RepaymentCalculatorComponent implements OnInit {
   // Original vs simulated schedules / totals
   originalSchedule: PaymentScheduleRow[] = [];
   originalTotal = 0;
-  originalFirstPayment = 0;
+  originalFirstPayment = 0;          // prima plată TOTALĂ (credit + asigurare)
+  originalCreditInstallment = 0;    // prima rată de CREDIT (fără asigurare) – folosită la Reduce perioada
 
   afterRepaymentSchedule: PaymentScheduleRow[] = [];
   afterRepaymentTotal = 0;
   afterRepaymentFirstPayment = 0;
+
+  originalInterestTotal = 0;
+  afterRepaymentInterestTotal = 0;
+
+  originalInsuranceTotal = 0;
+  afterRepaymentInsuranceTotal = 0;
 
   private loanDataService = inject(LoanDataService);
 
@@ -62,16 +72,16 @@ export class RepaymentCalculatorComponent implements OnInit {
   @Input() totalPeriod: number | null = null;
   @Output() totalPeriodChange = new EventEmitter<number | null>();
 
-  @Input() fixedMonths: number | null = null; // First 3 years
+  @Input() fixedMonths: number | null = null; // first period with fixed rate
   @Output() fixedMonthsChange = new EventEmitter<number | null>();
 
-  @Input() fixedRate: number | null = null; // Fixed rate for first period
+  @Input() fixedRate: number | null = null; // fixed rate
   @Output() fixedRateChange = new EventEmitter<number | null>();
 
-  @Input() insuranceRate: number | null = null; // Insurance rate
+  @Input() insuranceRate: number | null = null; // insurance
   @Output() insuranceRateChange = new EventEmitter<number | null>();
 
-  @Input() variableRate: number | null = null; // Variable rate after fixed period
+  @Input() variableRate: number | null = null; // variable rate
   @Output() variableRateChange = new EventEmitter<number | null>();
 
   @Output() inputChanged = new EventEmitter<{
@@ -83,7 +93,7 @@ export class RepaymentCalculatorComponent implements OnInit {
     insuranceRate: number | null;
   }>();
 
-  // Scenario output (kept as "after repayment" for compatibility)
+  // Scenario output
   scenarioSchedule: PaymentScheduleRow[] = [];
   scenarioTotal = 0;
   scenarioFirstPayment = 0;
@@ -255,11 +265,28 @@ export class RepaymentCalculatorComponent implements OnInit {
     if (!schedule.length) {
       this.originalTotal = 0;
       this.originalFirstPayment = 0;
+      this.originalInterestTotal = 0;
+      this.originalInsuranceTotal = 0;
+      this.originalCreditInstallment = 0;
       return;
     }
 
     this.originalFirstPayment = schedule[0].payment;
     this.originalTotal = schedule.reduce((sum, row) => sum + row.payment, 0);
+    this.originalInterestTotal = schedule.reduce((sum, row) => sum + row.interest, 0);
+
+    if (this.insuranceRate !== null) {
+      this.originalInsuranceTotal = schedule.reduce(
+        (sum, row) => sum + (row.insurance ?? 0),
+        0
+      );
+      const firstInsurance = schedule[0].insurance ?? 0;
+      // rata de CREDIT = plată totală - asigurarea din prima lună
+      this.originalCreditInstallment = this.originalFirstPayment - firstInsurance;
+    } else {
+      this.originalInsuranceTotal = 0;
+      this.originalCreditInstallment = this.originalFirstPayment;
+    }
   }
 
   private setAfterRepaymentFromSchedule(schedule: PaymentScheduleRow[]): void {
@@ -268,14 +295,27 @@ export class RepaymentCalculatorComponent implements OnInit {
     if (!schedule.length) {
       this.afterRepaymentTotal = 0;
       this.afterRepaymentFirstPayment = 0;
+      this.afterRepaymentInterestTotal = 0;
+      this.afterRepaymentInsuranceTotal = 0;
       return;
     }
 
     this.afterRepaymentFirstPayment = schedule[0].payment;
     this.afterRepaymentTotal = schedule.reduce((sum, row) => sum + row.payment, 0);
+    this.afterRepaymentInterestTotal = schedule.reduce((sum, row) => sum + row.interest, 0);
+
+    if (this.insuranceRate !== null) {
+      this.afterRepaymentInsuranceTotal = schedule.reduce(
+        (sum, row) => sum + (row.insurance ?? 0),
+        0
+      );
+    } else {
+      this.afterRepaymentInsuranceTotal = 0;
+    }
   }
 
   // === Early repayment logic ===
+
   private buildEarlyRepaymentSchedule(baseSchedule: PaymentScheduleRow[]): PaymentScheduleRow[] {
     if (!baseSchedule.length || !this.earlyRepaymentAmount || this.earlyRepaymentAmount <= 0) {
       return baseSchedule;
@@ -284,7 +324,6 @@ export class RepaymentCalculatorComponent implements OnInit {
     const originalAmount = this.amount || 0;
     const originalPeriod = this.totalPeriod || baseSchedule.length;
     const extra = this.earlyRepaymentAmount || 0;
-    const newPrincipal = Math.max(originalAmount - extra, 0);
 
     // Reduce monthly payment (same period)
     if (this.repaymentEffect === 'amount') {
@@ -292,6 +331,8 @@ export class RepaymentCalculatorComponent implements OnInit {
 
       if (this.mode === 'simple') {
         const type: RepaymentType = this.loanType === 'annuity' ? 'annuity' : 'linear';
+        const newPrincipal = Math.max(originalAmount - extra, 0);
+
         return this.loanService.generateAmortizationSchedule(
           newPrincipal,
           remainingMonths,
@@ -301,91 +342,306 @@ export class RepaymentCalculatorComponent implements OnInit {
         );
       }
 
-      return this.buildAdvancedScheduleWithNewAmount(newPrincipal);
+      const newAmount = Math.max(originalAmount - extra, 0);
+      return this.buildAdvancedScheduleWithNewAmount(newAmount);
     }
 
     // Reduce period (shorter term)
-    if (this.loanType === 'linear') {
-      // --- LINEAR reduce period, BCR-style logic ---
-      // Principal standard pe lună din creditul inițial:
-      const principalPerMonth = originalAmount / originalPeriod;
-      if (principalPerMonth <= 0 || originalPeriod <= 0) {
-        return baseSchedule;
-      }
-
-      // Sold după rambursare anticipată:
-      const remainingPrincipal = Math.max(originalAmount - extra, 0);
-      if (remainingPrincipal <= 0) {
-        return [];
-      }
-
-      // Câte luni întregi cu principal standard pot fi plătite din soldul rămas:
-      const fullMonths = Math.floor(remainingPrincipal / principalPerMonth);
-      const lastPrincipal = remainingPrincipal - fullMonths * principalPerMonth;
-
-      // Număr total de luni în noul grafic:
-      const totalMonths = fullMonths + (lastPrincipal > 0 ? 1 : 0);
-
-      const monthlyRate = (this.fixedRate || 0) / 100 / 12;
-      let balance = remainingPrincipal;
-      const schedule: PaymentScheduleRow[] = [];
-      let insuranceCost = 0;
-
-      for (let i = 1; i <= totalMonths; i++) {
-        const isLast = i === totalMonths && lastPrincipal > 0;
-        const principal = isLast ? lastPrincipal : principalPerMonth;
-
-        const interest = balance * monthlyRate;
-
-        if (this.insuranceRate != null) {
-          insuranceCost = balance * (this.insuranceRate / 100);
-        } else {
-          insuranceCost = 0;
-        }
-
-        const payment = principal + interest + insuranceCost;
-        balance = Math.max(0, balance - principal);
-
-        schedule.push({
-          month: i,
-          payment,
-          principal,
-          interest,
-          insurance: this.insuranceRate != null ? insuranceCost : null,
-          remainingBalance: balance
-        });
-      }
-
-      return schedule;
+    if (this.mode === 'simple') {
+      return this.buildReducedPeriodSimple(baseSchedule, originalAmount, originalPeriod, extra);
     } else {
-      // ANNUITY: keep monthly payment approx. the same, solve for new n analytically.
-      const r = (this.fixedRate || 0) / 100 / 12;
-      const M = this.originalFirstPayment;
-
-      if (r <= 0 || M <= 0) {
-        return this.loanService.generateAmortizationSchedule(
-          newPrincipal,
-          originalPeriod,
-          this.fixedRate || 0,
-          this.insuranceRate,
-          'annuity'
-        );
-      }
-
-      const numerator = Math.log(M / (M - newPrincipal * r));
-      const denominator = Math.log(1 + r);
-      const nReal = numerator / denominator;
-      const n = Math.max(1, Math.ceil(nReal));
-
-      return this.loanService.generateAmortizationSchedule(
-        newPrincipal,
-        n,
-        this.fixedRate || 0,
-        this.insuranceRate,
-        'annuity'
-      );
+      return this.buildReducedPeriodAdvanced(baseSchedule, originalAmount, originalPeriod, extra);
     }
   }
+
+  // === Reduce period – SIMPLE mode ===
+private buildReducedPeriodSimple(
+  baseSchedule: PaymentScheduleRow[],
+  originalAmount: number,
+  originalPeriod: number,
+  extra: number
+): PaymentScheduleRow[] {
+  const newPrincipal = Math.max(originalAmount - extra, 0);
+
+  if (newPrincipal <= 0) {
+    return [];
+  }
+
+  const r = (this.fixedRate || 0) / 100 / 12;
+
+  // === LINEAR ===
+  if (this.loanType === 'linear') {
+    const principalPerMonth = originalAmount / originalPeriod;
+    if (principalPerMonth <= 0) {
+      return baseSchedule;
+    }
+
+    const fullMonths = Math.floor(newPrincipal / principalPerMonth);
+    const lastPrincipal = newPrincipal - fullMonths * principalPerMonth;
+    const totalMonths = fullMonths + (lastPrincipal > 0 ? 1 : 0);
+
+    const newSchedule: PaymentScheduleRow[] = [];
+    let balance = newPrincipal;
+
+    for (let i = 1; i <= totalMonths; i++) {
+      const isLast = i === totalMonths && lastPrincipal > 0;
+      const principal = isLast ? lastPrincipal : principalPerMonth;
+      const interest = balance * r;
+
+      const insuranceCost = this.insuranceRate != null
+        ? balance * (this.insuranceRate / 100)
+        : 0;
+
+      const payment = principal + interest + insuranceCost;
+      balance = Math.max(0, balance - principal);
+
+      newSchedule.push({
+        month: i,
+        payment,
+        principal,
+        interest,
+        insurance: this.insuranceRate != null ? insuranceCost : null,
+        remainingBalance: balance
+      });
+    }
+
+    return newSchedule;
+  }
+
+  // === ANNUITY ===
+  const M = this.originalCreditInstallment;
+
+  if (r <= 0 || M <= 0) {
+    return baseSchedule;
+  }
+
+  if (M <= newPrincipal * r) {
+    return baseSchedule;
+  }
+
+  const nReal = Math.log(M / (M - newPrincipal * r)) / Math.log(1 + r);
+  let n = Math.max(1, Math.ceil(nReal));
+
+  n = Math.min(n, originalPeriod);
+
+  const newSchedule: PaymentScheduleRow[] = [];
+  let balance = newPrincipal;
+
+  for (let i = 1; i <= n; i++) {
+    const interest = balance * r;
+
+    let principal: number;
+    let payment: number;
+
+    if (i === n) {
+      // ULTIMA LUNĂ: ajustez ca să stingem exact
+      principal = balance;
+      payment = principal + interest;
+    } else {
+      // LUNI NORMALE: rată regulară
+      principal = Math.max(M - interest, 0);
+      payment = M;
+    }
+
+    const insuranceCost = this.insuranceRate != null
+      ? balance * (this.insuranceRate / 100)
+      : 0;
+
+    const totalPayment = payment + insuranceCost;
+    balance = Math.max(0, balance - principal);
+
+    newSchedule.push({
+      month: i,
+      payment: totalPayment,
+      principal,
+      interest,
+      insurance: this.insuranceRate != null ? insuranceCost : null,
+      remainingBalance: balance
+    });
+  }
+
+  return newSchedule;
+}
+
+
+
+private buildReducedPeriodAdvanced(
+  baseSchedule: PaymentScheduleRow[],
+  originalAmount: number,
+  originalPeriod: number,
+  extra: number
+): PaymentScheduleRow[] {
+  if (!baseSchedule.length || extra <= 0) {
+    return baseSchedule;
+  }
+
+  const fixedMonths = this.fixedMonths || 0;
+  const totalMonthsOriginal = baseSchedule.length;
+
+  // === LINEAR: păstrăm principalul lunar inițial, scurtăm perioada ===
+if (this.loanType === 'linear') {
+  const principalPerMonth = originalAmount / originalPeriod;
+  if (principalPerMonth <= 0 || originalPeriod <= 0) {
+    return baseSchedule;
+  }
+
+  // MODIFICARE: Aplică rambursarea de la bun început
+  const newPrincipal = Math.max(originalAmount - extra, 0);
+
+  if (newPrincipal <= 0) {
+    return [];
+  }
+
+  const fullMonths = Math.floor(newPrincipal / principalPerMonth);
+  const lastPrincipal = newPrincipal - fullMonths * principalPerMonth;
+  const totalMonthsNew = fullMonths + (lastPrincipal > 0 ? 1 : 0);
+
+  const monthlyFixedRate = (this.fixedRate || 0) / 100 / 12;
+  const monthlyVariableRate =
+    (this.variableRate ?? this.fixedRate ?? 0) / 100 / 12;
+
+  const schedule: PaymentScheduleRow[] = [];
+  let balance = newPrincipal;
+
+  for (let i = 1; i <= totalMonthsNew; i++) {
+    const isLast = i === totalMonthsNew && lastPrincipal > 0;
+    const principal = isLast ? lastPrincipal : principalPerMonth;
+
+    const monthlyRate = i <= fixedMonths ? monthlyFixedRate : monthlyVariableRate;
+
+    const interest = balance * monthlyRate;
+
+    const insuranceCost = this.insuranceRate != null
+      ? balance * (this.insuranceRate / 100)
+      : 0;
+
+    const payment = principal + interest + insuranceCost;
+    balance = Math.max(0, balance - principal);
+
+    schedule.push({
+      month: i,
+      payment,
+      principal,
+      interest,
+      insurance: this.insuranceRate != null ? insuranceCost : null,
+      remainingBalance: balance
+    });
+  }
+
+  return schedule;
+  }
+
+  // === ANNUITY
+  const newPrincipal = Math.max(originalAmount - extra, 0);
+
+  if (newPrincipal <= 0) {
+    return [];
+  }
+
+  const firstInsurance = baseSchedule[0].insurance ?? 0;
+  const M_fixed = baseSchedule[0].payment - firstInsurance;
+
+  const firstVarRow = baseSchedule.find(row => row.month > fixedMonths);
+  if (!firstVarRow) {
+    return baseSchedule;
+  }
+
+  const firstVarInsurance = firstVarRow.insurance ?? 0;
+  const M_variable = firstVarRow.payment - firstVarInsurance;
+
+  const rFixed = (this.fixedRate || 0) / 100 / 12;
+  const rVar = (this.variableRate ?? this.fixedRate ?? 0) / 100 / 12;
+
+  const newSchedule: PaymentScheduleRow[] = [];
+  let balance = newPrincipal;
+
+  // === PERIOADA FIXĂ (lunile 1 la fixedMonths) ===
+  for (let month = 1; month <= fixedMonths && balance > 0.01; month++) {
+    const interest = balance * rFixed;
+    
+    let principal: number;
+    let payment: number;
+
+    if (month === fixedMonths && balance <= M_fixed - interest) {
+      // ULTIMA LUNĂ A PERIOADEI FIXE: ajustez
+      principal = balance;
+      payment = principal + interest;
+    } else {
+      // LUNI NORMALE
+      principal = Math.max(M_fixed - interest, 0);
+      payment = M_fixed;
+    }
+
+    const insuranceCost = this.insuranceRate != null
+      ? balance * (this.insuranceRate / 100)
+      : 0;
+
+    const totalPayment = payment + insuranceCost;
+    balance = Math.max(0, balance - principal);
+
+    newSchedule.push({
+      month,
+      payment: totalPayment,
+      principal,
+      interest,
+      insurance: this.insuranceRate != null ? insuranceCost : null,
+      remainingBalance: balance
+    });
+  }
+
+  // === PERIOADA VARIABILĂ (lunile fixedMonths+1 la final) ===
+  if (balance > 0.01 && rVar > 0) {
+    const r = rVar;
+    const Pnew = balance;
+
+    if (M_variable <= Pnew * r) {
+      return newSchedule;
+    }
+
+    const nReal = Math.log(M_variable / (M_variable - Pnew * r)) / Math.log(1 + r);
+    let n = Math.max(1, Math.ceil(nReal));
+
+    const originalVarMonths = totalMonthsOriginal - fixedMonths;
+    n = Math.min(n, originalVarMonths);
+
+    for (let i = 1; i <= n && balance > 0.01; i++) {
+      const month = fixedMonths + i;
+      const interest = balance * r;
+
+      let principal: number;
+      let payment: number;
+
+      if (i === n) {
+        // ULTIMA LUNĂ: ajustez ca să stingem exact
+        principal = balance;
+        payment = principal + interest;
+      } else {
+        // LUNI NORMALE
+        principal = Math.max(M_variable - interest, 0);
+        payment = M_variable;
+      }
+
+      const insuranceCost = this.insuranceRate != null
+        ? balance * (this.insuranceRate / 100)
+        : 0;
+
+      const totalPayment = payment + insuranceCost;
+      balance = Math.max(0, balance - principal);
+
+      newSchedule.push({
+        month,
+        payment: totalPayment,
+        principal,
+        interest,
+        insurance: this.insuranceRate != null ? insuranceCost : null,
+        remainingBalance: balance
+      });
+    }
+  }
+
+  return newSchedule;
+}
+
 
   private buildAdvancedScheduleWithNewAmount(newAmount: number): PaymentScheduleRow[] {
     if (this.loanType === 'annuity') {
@@ -461,6 +717,7 @@ export class RepaymentCalculatorComponent implements OnInit {
     this.originalSchedule = [];
     this.originalTotal = 0;
     this.originalFirstPayment = 0;
+    this.originalCreditInstallment = 0;
 
     this.afterRepaymentSchedule = [];
     this.afterRepaymentTotal = 0;
@@ -469,8 +726,36 @@ export class RepaymentCalculatorComponent implements OnInit {
     this.repaymentResultText = '';
   }
 
-  downloadScenarioPdf(): void {
-    // this.pdfService.download(this.scenarioSchedule, this.loanType, this.mode);
+  downloadOriginalSchedulePdf(): void {
+    this.downloadPdfService.schedule = this.originalSchedule;
+    this.downloadPdfService.amount = this.amount;
+    this.downloadPdfService.totalPeriod = this.totalPeriod;
+    this.downloadPdfService.fixedMonths = this.fixedMonths;
+    this.downloadPdfService.scheduleType = this.loanType;
+    this.downloadPdfService.insuranceRate = this.insuranceRate;
+
+    if (this.mode === 'advanced') {
+      this.downloadPdfService.fixedRate = this.fixedRate;
+      this.downloadPdfService.variableRate = this.variableRate;
+    }
+
+    this.downloadPdfService.downloadPdf();
+  }
+
+  downloadAfterRepaymentSchedulePdf(): void {
+    this.downloadPdfService.schedule = this.afterRepaymentSchedule;
+    this.downloadPdfService.amount = this.amount;
+    this.downloadPdfService.totalPeriod = this.totalPeriod;
+    this.downloadPdfService.fixedMonths = this.fixedMonths;
+    this.downloadPdfService.scheduleType = this.loanType;
+    this.downloadPdfService.insuranceRate = this.insuranceRate;
+
+    if (this.mode === 'advanced') {
+      this.downloadPdfService.fixedRate = this.fixedRate;
+      this.downloadPdfService.variableRate = this.variableRate;
+    }
+
+    this.downloadPdfService.downloadPdf();
   }
 
   isValid(): boolean {

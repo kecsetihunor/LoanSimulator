@@ -40,6 +40,11 @@ export class SimpleCalculatorComponent implements OnInit {
 
   showAnnuity: boolean = true;
   showLinear: boolean = true;
+  
+  annuityInsuranceTotal = 0;
+  annuityInterestTotal = 0;
+  linearInsuranceTotal = 0;
+  linearInterestTotal = 0;
 
   scheduleMode: 'annuity' | 'linear' | 'both' = 'both';
 
@@ -103,6 +108,10 @@ export class SimpleCalculatorComponent implements OnInit {
       this.linearPayment = null;
       this.annuityTotal = null;
       this.linearTotal = null;
+      this.annuityInsuranceTotal = 0;
+      this.annuityInterestTotal = 0;
+      this.linearInsuranceTotal = 0;
+      this.linearInterestTotal = 0;
       return;
     }
 
@@ -120,6 +129,11 @@ export class SimpleCalculatorComponent implements OnInit {
         this.annuitySchedule = annuitySchedule;
         this.annuityPayment = annuitySchedule.length > 0 ? annuitySchedule[0].payment : null;
         this.annuityTotal = annuitySchedule.reduce((sum, row) => sum + row.payment, 0);
+        this.annuityInterestTotal = annuitySchedule.reduce((sum, row) => sum + row.interest, 0);
+
+        if (this.insuranceRate !== null) {
+          this.annuityInsuranceTotal = annuitySchedule.reduce((sum, row) => sum + row.insurance!, 0);
+        }
       } else {
         this.annuitySchedule = [];
         this.annuityPayment = null;
@@ -138,6 +152,11 @@ export class SimpleCalculatorComponent implements OnInit {
         this.linearSchedule = linearSchedule;
         this.linearPayment = linearSchedule.length > 0 ? linearSchedule[0].payment : null;
         this.linearTotal = linearSchedule.reduce((sum, row) => sum + row.payment, 0);
+        this.linearInterestTotal = linearSchedule.reduce((sum, row) => sum + row.interest, 0);
+
+        if (this.insuranceRate !== null) {
+          this.linearInsuranceTotal = linearSchedule.reduce((sum, row) => sum + row.insurance!, 0);
+        } 
       } else {
         this.linearSchedule = [];
         this.linearPayment = null;

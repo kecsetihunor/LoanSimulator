@@ -1,4 +1,4 @@
-<div class="container my-4 ">
+<div class="container my-4">
   <h2 class="mb-3 text-white" i18n>Calculator de credite</h2>
   <p class="text-white-50 mb-4" i18n>Calculează plățile lunare cu o singură rată fixă a dobânzii.</p>
 
@@ -20,6 +20,9 @@
         [isAnnuityPayment] = "true"
         [total]="annuityTotal"
         [amount]="amount"
+        [interestTotal]="annuityInterestTotal"
+        [insuranceTotal]="annuityInsuranceTotal"
+        [IsInsuranceRateEnabled]="insuranceRate !== null"
         [isSavingBadgeVisible]="false"
         [alertClass]="'alert-green'"
       ></app-payment-summary-cards>
@@ -30,6 +33,9 @@
         [isAnnuityPayment] = "false"
         [total]="linearTotal"
         [amount]="amount"
+        [interestTotal]="linearInterestTotal"
+        [insuranceTotal]="linearInsuranceTotal"
+        [IsInsuranceRateEnabled]="insuranceRate !== null"
         [isSavingBadgeVisible]="showAnnuity && true"
         [savingAmount]="annuityTotal! - linearTotal!"
         [alertClass]="'alert-purple'"
