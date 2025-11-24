@@ -1,6 +1,12 @@
 
 <div [ngClass]="[alertClass, 'h-100', 'mb-0', 'alert']" role="alert">
-  <h5 class="alert-heading text-white mb-3" i18n>Prima plată  - {{isAnnuityPayment ? 'Rate egale' : 'Rate descrescătoare' }}</h5>
+  <h5 class="alert-heading text-white mb-3">
+  <span i18n>Prima plată - </span>
+  <span [ngSwitch]="isAnnuityPayment">
+    <span *ngSwitchCase="true" i18n>Rate egale</span>
+    <span *ngSwitchCase="false" i18n>Rate descrescătoare</span>
+  </span>
+</h5>
   <p class="mb-2 fs-4 text-white fw-bold">{{ firstPayment | formatCurrency }}</p>
   <hr class="border-light opacity-25">
   

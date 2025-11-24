@@ -33,13 +33,6 @@ export class SidebarComponent {
   selectedCurrency: Currency | null = null;
   private currencyService = inject(CurrencyService);
 
-  menuItems: MenuItem[] = [
-    { label: 'Simple Calculator', route: '/simple' },
-    { label: 'Advanced Calculator', route: '/advanced' }
-    // { label: 'Compare Loans', route: '/compare' },
-    // { label: 'Settings', route: '/settings' }
-  ];
-
   locales = [
     { code: 'ro', label: 'Română', flag: '🇷🇴' },
     { code: 'en', label: 'English', flag: '🇺🇸' }

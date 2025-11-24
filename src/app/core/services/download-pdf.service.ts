@@ -76,14 +76,14 @@ export class DownloadPdfService {
         detailsContent.push({
           columns: [
             { text: $localize`Dobândă fixă:`, width: '30%', bold: true },
-            { text: `${this.fixedRate}% (primele ${this.fixedMonths} luni)`, width: '70%' }
+            { text: $localize`${this.fixedRate}% (primele ${this.fixedMonths} luni)`, width: '70%' }
           ],
           margin: [0, 5]
         });
         detailsContent.push({
           columns: [
             { text: $localize`Dobândă variabilă:`, width: '30%', bold: true },
-            { text: `${this.variableRate}% (restul de ${this.totalPeriod! - this.fixedMonths!} luni)`, width: '70%' }
+            { text: $localize`${this.variableRate}% (restul de ${this.totalPeriod! - this.fixedMonths!} luni)`, width: '70%' }
           ],
           margin: [0, 5]
         });

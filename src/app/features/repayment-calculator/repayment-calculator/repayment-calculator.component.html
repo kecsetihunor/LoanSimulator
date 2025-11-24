@@ -7,15 +7,15 @@
     <div class="col-md-4">
       <label class="form-label" i18n>Mod:</label>
       <mat-button-toggle-group [(ngModel)]="mode" (ngModelChange)="onModeChanged($event)" class="schedule-toggle-group ms-3">
-        <mat-button-toggle value="simple">Simplu</mat-button-toggle>
-        <mat-button-toggle value="advanced">Avansat</mat-button-toggle>
+        <mat-button-toggle value="simple" i18n>Simplu</mat-button-toggle>
+        <mat-button-toggle value="advanced" i18n>Avansat</mat-button-toggle>
       </mat-button-toggle-group>  
     </div>
     <div class="col-md-6">
       <label class="form-label" i18n>Tip credit:</label> 
       <mat-button-toggle-group [(ngModel)]="loanType" (ngModelChange)="onLoanTypeChanged($event)" class="schedule-toggle-group ms-3">
-        <mat-button-toggle value="annuity">Rate egale</mat-button-toggle>
-        <mat-button-toggle value="linear">Rate descrescătoare</mat-button-toggle>
+        <mat-button-toggle value="annuity" i18n>Rate egale</mat-button-toggle>
+        <mat-button-toggle value="linear" i18n>Rate descrescătoare</mat-button-toggle>
       </mat-button-toggle-group>
     </div>
   </div>

@@ -4,7 +4,7 @@
     <div class="brand" *ngIf="!collapsed">
       <h3 class="mb-0">
         <span class="menu-icon me-3"><i class="bi bi-bank"></i></span>
-  <span class="menu-label" *ngIf="!collapsed" i18n>Rambursare</span>
+  <span class="menu-label" *ngIf="!collapsed" i18n>Simulator credite</span>
       </h3>
     </div>
     <div class="brand-collapsed" *ngIf="collapsed">
@@ -67,6 +67,12 @@
       <a routerLink="/repayment" routerLinkActive="active" class="menu-item">
         <span class="menu-icon"><i class="bi bi-cash-coin"></i></span>
         <span class="menu-label" *ngIf="!collapsed" i18n>Rambursare anticipată</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/about" routerLinkActive="active" class="menu-item">
+        <span class="menu-icon"><i class="bi bi-file-earmark-person"></i></span>
+        <span class="menu-label" *ngIf="!collapsed" i18n>Despre aplicație</span>
       </a>
     </li>
   </ul>
