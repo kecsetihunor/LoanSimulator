@@ -8,6 +8,9 @@
       <trans-unit id="4490098994378329052" datatype="html">
         <source>Arată-mi mai târziu</source>
       </trans-unit>
+      <trans-unit id="8895823665164266337" datatype="html">
+        <source>Vezi pe GitHub</source>
+      </trans-unit>
       <trans-unit id="8905995985388209337" datatype="html">
         <source>Accept</source>
       </trans-unit>
@@ -19,6 +22,9 @@
       </trans-unit>
       <trans-unit id="8154323512925004769" datatype="html">
         <source>Dobândă fixă:</source>
+      </trans-unit>
+      <trans-unit id="8171390049406786569" datatype="html">
+        <source>Rezultate de învățare</source>
       </trans-unit>
       <trans-unit id="5729964298292097259" datatype="html">
         <source>Dobândă variabilă:</source>
@@ -41,8 +47,14 @@
       <trans-unit id="4010148248073809313" datatype="html">
         <source>Lună</source>
       </trans-unit>
+      <trans-unit id="4845793289318766506" datatype="html">
+        <source>TypeScript</source>
+      </trans-unit>
       <trans-unit id="4849742699094965730" datatype="html">
         <source>Plată</source>
+      </trans-unit>
+      <trans-unit id="6327478626882902144" datatype="html">
+        <source>Design responsive</source>
       </trans-unit>
       <trans-unit id="6333053818705726495" datatype="html">
         <source>Principal</source>
@@ -65,11 +77,17 @@
       <trans-unit id="2691648197539180620" datatype="html">
         <source>Calculator avansat de credite</source>
       </trans-unit>
+      <trans-unit id="2699237394997039329" datatype="html">
+        <source> Simulează credite cu perioadă fixă și variabilă, reflectând piața românească. Rate egale sau descrescătoare cu detalii avansate. </source>
+      </trans-unit>
       <trans-unit id="1418333298894131402" datatype="html">
         <source>Calculează plățile cu rate ale dobânzii fixe și variabile.</source>
       </trans-unit>
       <trans-unit id="1432139783670819497" datatype="html">
         <source><x id="PH" equiv-text="this.variableRate"/>% (restul de <x id="PH_1" equiv-text="this.totalPeriod! - this.fixedMonths!"/> luni)</source>
+      </trans-unit>
+      <trans-unit id="5083278475412401034" datatype="html">
+        <source>Simulator credite</source>
       </trans-unit>
       <trans-unit id="5235787411505207903" datatype="html">
         <source>Scadențar cu rate egale</source>
@@ -89,6 +107,9 @@
       <trans-unit id="4711706981465215953" datatype="html">
         <source> Introduceți suma totală a creditului </source>
       </trans-unit>
+      <trans-unit id="3856057429607546822" datatype="html">
+        <source>Standalone components</source>
+      </trans-unit>
       <trans-unit id="3906633764491110801" datatype="html">
         <source> Perioadă totală: <x id="INTERPOLATION" equiv-text="{{ totalPeriod || 0 }}"/> luni </source>
       </trans-unit>
@@ -107,8 +128,14 @@
       <trans-unit id="5924760316364248659" datatype="html">
         <source> Luni cu dobândă fixă </source>
       </trans-unit>
+      <trans-unit id="2158669004903261612" datatype="html">
+        <source>Angular 17+</source>
+      </trans-unit>
       <trans-unit id="2316106675552838913" datatype="html">
         <source>de ex. 0.03</source>
+      </trans-unit>
+      <trans-unit id="2360325467305302863" datatype="html">
+        <source>Functionalități majore</source>
       </trans-unit>
       <trans-unit id="3974519110861976041" datatype="html">
         <source> Dobândă asigurare de viață (de ex. 0.03). </source>
@@ -125,8 +152,14 @@
       <trans-unit id="5911181620501298469" datatype="html">
         <source> Dobândă pentru restul de <x id="INTERPOLATION" equiv-text="{{ totalPeriod! - fixedMonths! }}"/> luni </source>
       </trans-unit>
+      <trans-unit id="771095539920646964" datatype="html">
+        <source> Vezi economiile atunci când rambursezi anticipat. Poți reduce perioada creditului sau valoarea ratei lunare, cu simulare transparentă. </source>
+      </trans-unit>
       <trans-unit id="7799137937585197779" datatype="html">
         <source>Scadențar:</source>
+      </trans-unit>
+      <trans-unit id="7935002856367671455" datatype="html">
+        <source>© 2025. Toate drepturile rezervate.</source>
       </trans-unit>
       <trans-unit id="4510505606313214357" datatype="html">
         <source>Ambele</source>
@@ -137,11 +170,20 @@
       <trans-unit id="4869532470356053178" datatype="html">
         <source>Calculează cât economisești la dobândă atunci când rambursezi creditul mai devreme.</source>
       </trans-unit>
+      <trans-unit id="1632353900444915355" datatype="html">
+        <source>Tehnologii folosite</source>
+      </trans-unit>
       <trans-unit id="1651694815350369857" datatype="html">
         <source>Mod:</source>
       </trans-unit>
+      <trans-unit id="1825639258384053380" datatype="html">
+        <source>Bootstrap 5</source>
+      </trans-unit>
       <trans-unit id="4500373767059779213" datatype="html">
         <source>Tip credit:</source>
+      </trans-unit>
+      <trans-unit id="2474780051231627363" datatype="html">
+        <source>Hunor Kecseti</source>
       </trans-unit>
       <trans-unit id="2499851113669369405" datatype="html">
         <source> Sumă rambursată: <x id="INTERPOLATION" equiv-text="{{ earlyRepaymentAmount ? (earlyRepaymentAmount | formatCurrency) : &apos;–&apos; }}"/> </source>
@@ -155,6 +197,9 @@
       <trans-unit id="6099461935690898856" datatype="html">
         <source> Cum aplicați rambursarea: </source>
       </trans-unit>
+      <trans-unit id="6111432939167467265" datatype="html">
+        <source> Simulator credite este o aplicație Angular modernă creată pentru simularea, compararea și gestionarea tuturor tipurilor de credite întâlnite pe piața românească.   Aplicația oferă utilizatorilor posibilitatea de a estima plăți lunare, costuri totale și economii posibile, atât pentru credite standard cât și pentru scenarii avansate, cu dobânzi variabile. <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/><x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/> Proiectul evidențiază practici moderne de dezvoltare frontend și un design intuitiv, cu interfață dark, personalizează calculele astfel încât fiecare utilizator să poată lua decizii mai inteligente privind rambursarea anticipată sau alegerea tipului de credit potrivit.   Include vizualizări detaliate ale scadențarelor, export PDF, suport multilingv (română/engleză) și management complet al datelor de simulare. </source>
+      </trans-unit>
       <trans-unit id="1594977695564223983" datatype="html">
         <source> Reduce perioada </source>
       </trans-unit>
@@ -163,6 +208,9 @@
       </trans-unit>
       <trans-unit id="7095739901371495054" datatype="html">
         <source>Înainte de rambursare</source>
+      </trans-unit>
+      <trans-unit id="8282621978178136042" datatype="html">
+        <source>Despre aplicație</source>
       </trans-unit>
       <trans-unit id="8337970274041702544" datatype="html">
         <source>După rambursare</source>
@@ -182,6 +230,12 @@
       <trans-unit id="5290155479122604051" datatype="html">
         <source>de ex. 5.5</source>
       </trans-unit>
+      <trans-unit id="5320851384222421326" datatype="html">
+        <source>Arhitectură modernă</source>
+      </trans-unit>
+      <trans-unit id="5441869475371993295" datatype="html">
+        <source>Calculator credit simplu</source>
+      </trans-unit>
       <trans-unit id="2997037799995387599" datatype="html">
         <source> Dobândă anuală ca procent (de ex., 5.5). </source>
       </trans-unit>
@@ -191,14 +245,17 @@
       <trans-unit id="4166704451582304647" datatype="html">
         <source><x id="PH" equiv-text="this.fixedRate"/>% (primele <x id="PH_1" equiv-text="this.fixedMonths"/> luni)</source>
       </trans-unit>
+      <trans-unit id="4199924659010123392" datatype="html">
+        <source>Calcul live &amp; servicii custom</source>
+      </trans-unit>
       <trans-unit id="857165553728306828" datatype="html">
         <source>Calculează plățile lunare cu o singură rată fixă a dobânzii.</source>
       </trans-unit>
-      <trans-unit id="5118226439141926128" datatype="html">
-        <source>Rambursare</source>
-      </trans-unit>
       <trans-unit id="3399025409308126752" datatype="html">
         <source>Calculator simplu</source>
+      </trans-unit>
+      <trans-unit id="3436254816661573840" datatype="html">
+        <source>SCSS/CSS</source>
       </trans-unit>
       <trans-unit id="4705514502893907635" datatype="html">
         <source>Calculator avansat</source>
@@ -209,14 +266,26 @@
       <trans-unit id="4338022632676445411" datatype="html">
         <source>Sold</source>
       </trans-unit>
+      <trans-unit id="930592059351212024" datatype="html">
+        <source> Calculează rapid credite cu dobândă fixă. Permite alegerea între rate egale sau descrescătoare, cu tabel și simulare completă. </source>
+      </trans-unit>
       <trans-unit id="944069891241198023" datatype="html">
         <source>Arată mai puțin</source>
+      </trans-unit>
+      <trans-unit id="990341683702498937" datatype="html">
+        <source>Icons</source>
       </trans-unit>
       <trans-unit id="8580942993536224477" datatype="html">
         <source>Arată tot</source>
       </trans-unit>
+      <trans-unit id="6572622110339427917" datatype="html">
+        <source>Internaționalizare completă (i18n)</source>
+      </trans-unit>
       <trans-unit id="6577139673648346288" datatype="html">
         <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Valoarea totală de rambursat:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+      </trans-unit>
+      <trans-unit id="681808795101979909" datatype="html">
+        <source>UI/UX profesional</source>
       </trans-unit>
       <trans-unit id="6833909010562837731" datatype="html">
         <source>Simplu</source>
