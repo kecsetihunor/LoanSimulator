@@ -698,12 +698,12 @@ if (this.loanType === 'linear') {
 
     if (this.repaymentEffect === 'period') {
       this.repaymentResultText =
-        `Veți reduce perioada creditului cu ${reducedMonths} luni. ` +
-        `Veți economisi aproximativ ${totalSavedText} RON (dobândă + asigurare).`;
+        $localize`Vei reduce perioada creditului cu ${reducedMonths} luni. ` +
+        $localize`Vei economisi aproximativ ${totalSavedText} RON (dobândă + asigurare).`;
     } else {
       this.repaymentResultText =
-        `Rata lunară va fi cu aproximativ ${diffInstallmentText} RON mai mică. ` +
-        `Veți economisi aproximativ ${totalSavedText} RON (dobândă + asigurare).`;
+        $localize`Rata lunară va fi cu aproximativ ${diffInstallmentText} RON mai mică. ` +
+        $localize`Vei economisi aproximativ ${totalSavedText} RON (dobândă + asigurare).`;
     }
   }
 
