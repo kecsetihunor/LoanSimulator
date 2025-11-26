@@ -149,8 +149,8 @@
       <trans-unit id="2728815649002931408" datatype="html">
         <source>Dobândă variabilă</source>
       </trans-unit>
-      <trans-unit id="2843121357138620203" datatype="html">
-        <source>Rata lunară va fi cu aproximativ <x id="PH" equiv-text="diffInstallmentText"/> RON mai mică. </source>
+      <trans-unit id="2271039546610177386" datatype="html">
+        <source>Rata lunară va fi cu aproximativ <x id="PH" equiv-text="diffInstallmentText"/> mai mică. </source>
       </trans-unit>
       <trans-unit id="5911181620501298469" datatype="html">
         <source> Dobândă pentru restul de <x id="INTERPOLATION" equiv-text="{{ totalPeriod! - fixedMonths! }}"/> luni </source>
@@ -194,6 +194,9 @@
       <trans-unit id="25133285737591443" datatype="html">
         <source>Prima plată - </source>
       </trans-unit>
+      <trans-unit id="7519294067337753817" datatype="html">
+        <source>Felicitări!</source>
+      </trans-unit>
       <trans-unit id="7558223298896961030" datatype="html">
         <source> Cum aplici rambursarea: </source>
       </trans-unit>
@@ -221,8 +224,11 @@
       <trans-unit id="6273627451917977693" datatype="html">
         <source>Scadențar înainte de rambursare</source>
       </trans-unit>
-      <trans-unit id="8019952528980652764" datatype="html">
-        <source>Vei economisi aproximativ <x id="PH" equiv-text="totalSavedText"/> RON (dobândă + asigurare).</source>
+      <trans-unit id="6284236085715501753" datatype="html">
+        <source> Ai rambursat creditul tău! </source>
+      </trans-unit>
+      <trans-unit id="4356285830241749279" datatype="html">
+        <source>Vei economisi aproximativ <x id="PH" equiv-text="totalSavedText"/> (dobândă + asigurare).</source>
       </trans-unit>
       <trans-unit id="8149160725215344999" datatype="html">
         <source>Scadențar după rambursare</source>

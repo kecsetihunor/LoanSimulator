@@ -128,7 +128,7 @@
       </trans-unit>
       <trans-unit id="5511162125810800198" datatype="html">
         <source>Vei reduce perioada creditului cu <x id="PH" equiv-text="reducedMonths"/> luni. </source>
-        <target state="new">You will shorten the loan period by <x id="PH" equiv-text="reducedMonths"/> months </target>
+        <target state="new">You will shorten the loan period by <x id="PH" equiv-text="reducedMonths"/> months.</target>
       </trans-unit>
       <trans-unit id="2997037799995387599" datatype="html">
         <source> Dobândă anuală ca procent (de ex., 5.5). </source>
@@ -266,9 +266,9 @@
         <source>Perioada totală:</source>
         <target>Total Period:</target>
       </trans-unit>
-      <trans-unit id="8019952528980652764" datatype="html">
-        <source>Vei economisi aproximativ <x id="PH" equiv-text="totalSavedText"/> RON (dobândă + asigurare).</source>
-        <target state="new">You will save approximately <x id="PH" equiv-text="totalSavedText"/> RON (interest + insurance).</target>
+      <trans-unit id="4356285830241749279" datatype="html">
+        <source>Vei economisi aproximativ <x id="PH" equiv-text="totalSavedText"/> (dobândă + asigurare).</source>
+        <target state="new">You will save approximately <x id="PH" equiv-text="totalSavedText"/> (interest + insurance).</target>
       </trans-unit>
       <trans-unit id="8149160725215344999" datatype="html">
         <source>Scadențar după rambursare</source>
@@ -290,12 +290,16 @@
         <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Asigurare totală:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
         <target><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Total Insurance:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
       </trans-unit>
+      <trans-unit id="7519294067337753817" datatype="html">
+        <source>Felicitări!</source>
+        <target state="new">Congratulations!</target>
+      </trans-unit>
       <trans-unit id="7558223298896961030" datatype="html">
         <source> Cum aplici rambursarea: </source>
-        <target state="new"> How do you apply the repayment: </target>
+        <target state="new"> How do you apply the early repayment: </target>
       </trans-unit>
       <trans-unit id="6111432939167467265" datatype="html">
-        <source> Simulator credite este o aplicație Angular modernă creată pentru simularea, compararea și gestionarea tuturor tipurilor de credite întâlnite pe piața românească.   Aplicația oferă utilizatorilor posibilitatea de a estima plăți lunare, costuri totale și economii posibile, atât pentru credite standard cât și pentru scenarii avansate, cu dobânzi variabile. <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/><x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/> Proiectul evidențiază practici moderne de dezvoltare frontend și un design intuitiv, cu interfață dark, personalizează calculele astfel încât fiecare utilizator să poată lua decizii mai inteligente privind rambursarea anticipată sau alegerea tipului de credit potrivit.   Include vizualizări detaliate ale scadențarelor, export PDF, suport multilingv (română/engleză) și management complet al datelor de simulare. </source>
+        <source> Simulator credite este o aplicație Angular modernă creată pentru simularea, compararea și gestionarea tuturor tipurilor de credite întâlnite pe piața românească.   Aplicația oferă utilizatorilor posibilitatea de a estima plăți lunare, costuri totale și economii posibile, atât pentru credite standard cât și pentru scenarii avansate, cu dobânzi variabile. <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/><x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/> Proiectul evidențiază practici moderne de dezvoltare frontend și un design intuitiv, cu interfață dark, personalizează calculele astfel încât fiecare utilizator să poată lua decizii mai inteligente privind rambursarea anticipată sau alegerea tipului de credit potrivit.   Include vizualizări detaliate ale scadențarelor, export PDF, suport multilingv (română/engleză) și management complet al datelor de simulare. </source>
         <target>Loan Simulator is a modern Angular application designed for simulation, comparison, and management of all types of loans common in the Romanian market. Users can estimate monthly payments, total costs, and possible savings for standard loans or advanced scenarios with variable interest. <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/><x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/>The project highlights modern frontend development practices and an intuitive dark interface, helping every user make smarter choices about early repayment or selecting the right loan type. Includes detailed amortization schedules, PDF export, multilingual support (Romanian/English), and complete management of all simulation data.</target>
       </trans-unit>
       <trans-unit id="6235043665910191464" datatype="html">
@@ -305,6 +309,10 @@
       <trans-unit id="6273627451917977693" datatype="html">
         <source>Scadențar înainte de rambursare</source>
         <target>Schedule Before Early Repayment</target>
+      </trans-unit>
+      <trans-unit id="6284236085715501753" datatype="html">
+        <source> Ai rambursat creditul tău! </source>
+        <target state="new"> You have repaid your loan! </target>
       </trans-unit>
       <trans-unit id="8656886950022127012" datatype="html">
         <source>Tip rată:</source>
@@ -402,9 +410,9 @@
         <source>Dobândă variabilă</source>
         <target>Variable Interest Rate</target>
       </trans-unit>
-      <trans-unit id="2843121357138620203" datatype="html">
-        <source>Rata lunară va fi cu aproximativ <x id="PH" equiv-text="diffInstallmentText"/> RON mai mică. </source>
-        <target state="new">The monthly installment will be approximately <x id="PH" equiv-text="diffInstallmentText"/> RON mai mică. </target>
+      <trans-unit id="2271039546610177386" datatype="html">
+        <source>Rata lunară va fi cu aproximativ <x id="PH" equiv-text="diffInstallmentText"/> mai mică. </source>
+        <target state="new">The monthly installment will be approximately <x id="PH" equiv-text="diffInstallmentText"/> lower. </target>
       </trans-unit>
       <trans-unit id="5911181620501298469" datatype="html">
         <source> Dobândă pentru restul de <x id="INTERPOLATION" equiv-text="{{ totalPeriod! - fixedMonths! }}"/> luni </source>
