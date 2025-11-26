@@ -58,6 +58,11 @@ export class AdvancedCalculatorComponent implements OnInit {
         this.fixedRate = data.rate;
         this.variableRate = data.variableRate;
         this.fixedMonths = data.fixedPeriod;
+
+        if (this.fixedMonths !== null && this.totalPeriod !== null && this.fixedMonths > this.totalPeriod) {
+          this.fixedMonths = this.totalPeriod;
+        }
+
         if (data.insuranceRate !== null) {
           this.insuranceRate = data.insuranceRate;
         }

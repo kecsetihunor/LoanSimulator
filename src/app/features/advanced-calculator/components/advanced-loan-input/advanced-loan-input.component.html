@@ -34,17 +34,17 @@
           Perioadă totală: {{ totalPeriod || 0 }} luni
         </label>
         <input
-          type="number"
+          type="text"
           class="form-control mb-1"
           id="totalPeriod"
           [(ngModel)]="totalPeriod"
-          (input)="onTotalPeriodChange($any($event.target)?.value)"
+          (ngModelChange)="onTotalPeriodChange($event)"
+          (keydown)="onlyNumbers($event)"
           inputmode="numeric"
-          step="1"
           min="1"
           max="480"
           placeholder="de ex. 12"
-          pattern="\d*"
+          pattern="[0-9]*"
           i18n-placeholder
         />
         <input
@@ -66,15 +66,16 @@
           Perioadă cu dobândă fixă: {{ fixedMonths || 0 }} luni
         </label>
         <input
-          type="number"
+          type="text"
           class="form-control mb-1"
           id="fixedMonths"
           [(ngModel)]="fixedMonths"
-          (input)="onFixedMonthsChange($any($event.target)?.value)"
+          (ngModelChange)="onFixedMonthsChange($event)"
+          (keydown)="onlyNumbers($event)"
           placeholder="de ex. 36"
           step="1"
           min="1"
-          pattern="\d*"
+          pattern="[0-9]*"
           [max]="totalPeriod"
         />
         <input

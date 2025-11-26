@@ -19,7 +19,7 @@ export interface LoanResult {
   totalInterest: number;
 }
 
-export type RepaymentType = 'annuity' | 'linear';
+export type PaymentType = 'annuity' | 'linear';
 
 export interface LoanParameters {
   amount: number;

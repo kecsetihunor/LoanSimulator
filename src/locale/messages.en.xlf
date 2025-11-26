@@ -404,7 +404,7 @@
       </trans-unit>
       <trans-unit id="2843121357138620203" datatype="html">
         <source>Rata lunară va fi cu aproximativ <x id="PH" equiv-text="diffInstallmentText"/> RON mai mică. </source>
-        <target state="new">Rata lunară va fi cu aproximativ <x id="PH" equiv-text="diffInstallmentText"/> RON mai mică. </target>
+        <target state="new">The monthly installment will be approximately <x id="PH" equiv-text="diffInstallmentText"/> RON mai mică. </target>
       </trans-unit>
       <trans-unit id="5911181620501298469" datatype="html">
         <source> Dobândă pentru restul de <x id="INTERPOLATION" equiv-text="{{ totalPeriod! - fixedMonths! }}"/> luni </source>

@@ -101,6 +101,16 @@ export class AdvancedLoanInputComponent implements OnChanges {
     } else {
       const n = Number(val);
       this.totalPeriod = isNaN(n) ? null : n;
+      if (this.totalPeriod !== null) {
+        if (this.totalPeriod > 480) {
+          this.totalPeriod = 480;
+        }
+
+        if (this.fixedMonths !== null && this.fixedMonths > this.totalPeriod) {
+          this.fixedMonths = this.totalPeriod;
+          this.fixedMonthsChange.emit(this.fixedMonths);
+        }
+      }
     }
 
     this.totalPeriodChange.emit(this.totalPeriod);
@@ -113,6 +123,10 @@ export class AdvancedLoanInputComponent implements OnChanges {
     } else {
       const n = Number(val);
       this.fixedMonths = isNaN(n) ? null : n;
+
+      if (this.fixedMonths !== null && this.totalPeriod !== null && this.fixedMonths > this.totalPeriod) {
+        this.fixedMonths = this.totalPeriod;
+      }
     }
 
     this.fixedMonthsChange.emit(this.fixedMonths);
@@ -182,5 +196,14 @@ export class AdvancedLoanInputComponent implements OnChanges {
 
     this.onScheduleSelectionChange();
     this.scheduleModeChange.emit(this.scheduleMode);
+  }
+
+  onlyNumbers(event: KeyboardEvent) {
+    const allowedKeys = ['Backspace', 'Tab', 'ArrowLeft', 'ArrowRight', 'Delete'];
+    if (allowedKeys.includes(event.key) || /^\d$/.test(event.key)) {
+      return true;
+    }
+    event.preventDefault();
+    return false;
   }
 }

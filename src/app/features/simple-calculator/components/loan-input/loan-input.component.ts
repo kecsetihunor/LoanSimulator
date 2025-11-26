@@ -87,6 +87,9 @@ export class LoanInputComponent implements OnChanges {
     } else {
       const n = Number(val);
       this.period = isNaN(n) ? null : n;
+      if (this.period !== null && this.period > 480) {
+        this.period = 480;
+      }
     }
     this.periodChange.emit(this.period);
     this.emitInputChanged();
@@ -139,5 +142,14 @@ export class LoanInputComponent implements OnChanges {
     });
 
     this.scheduleModeChange.emit(this.scheduleMode);
+  }
+
+  onlyNumbers(event: KeyboardEvent) {
+    const allowedKeys = ['Backspace', 'Tab', 'ArrowLeft', 'ArrowRight', 'Delete'];
+    if (allowedKeys.includes(event.key) || /^\d$/.test(event.key)) {
+      return true;
+    }
+    event.preventDefault();
+    return false;
   }
 }

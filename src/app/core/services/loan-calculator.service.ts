@@ -1,19 +1,16 @@
 import { Injectable } from '@angular/core';
 import { PaymentScheduleRow } from '@app/shared/models/loan.models';
-
-export type RepaymentType = 'annuity' | 'linear';
+import { PaymentType } from '@app/shared/models/loan.models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoanCalculatorService {
-
+  
   constructor() {}
 
-  /**
-   * Rată lunară anuitară (NUMAI credit: principal + dobândă, FĂRĂ asigurare)
-   */
-  calculateMonthlyPayment(
+
+  calculateMonthlyPaymentAnnuity(
     amount: number,
     period: number,
     annualRate: number
@@ -33,38 +30,37 @@ export class LoanCalculatorService {
   }
 
   /**
-   * Prima rată pentru credit linear (principal egal) – include și asigurarea.
-   */
-  calculateFirstLinearPayment(
-    amount: number,
-    period: number,
-    annualRate: number,
-    insuranceRate: number | null
-  ): number {
-    const principalPayment = amount / period;
-    const monthlyRate = annualRate / 100 / 12;
-    const firstInterest = amount * monthlyRate;
-    const insuranceCost = insuranceRate !== null ? amount * (insuranceRate / 100) : 0;
-    return principalPayment + firstInterest + insuranceCost;
-  }
-
-  /**
    * Wrapper: generează scadențar anuitate / linear.
    */
   generateAmortizationSchedule(
     amount: number,
     period: number,
-    annualRate: number,
+    interestRate: number,
     insuranceRate: number | null,
-    type: RepaymentType = 'annuity'
+    type: PaymentType = 'annuity'
   ): PaymentScheduleRow[] {
     if (type === 'annuity') {
-      return this.generateAnnuitySchedule(amount, period, annualRate, insuranceRate);
+      return this.generateAnnuitySchedule(amount, period, interestRate, insuranceRate);
     } else {
-      return this.generateLinearSchedule(amount, period, annualRate, insuranceRate);
+      return this.generateLinearSchedule(amount, period, interestRate, insuranceRate);
     }
   }
 
+  generateVariableAmortizationSchedule(
+    amount: number,
+    totalPeriod: number,
+    fixedInterestRate: number,
+    fixedMonths: number,
+    variableInterestRate: number,
+    insuranceRate: number | null,
+    type: PaymentType = 'annuity'
+  ): PaymentScheduleRow[] {
+    if (type === 'annuity') {
+      return this.generateVariableAnnuitySchedule(amount, totalPeriod, fixedInterestRate, fixedMonths, variableInterestRate, insuranceRate);
+    } else {
+      return this.generateVariableLinearSchedule(amount, totalPeriod, fixedInterestRate, fixedMonths, variableInterestRate, insuranceRate);
+    }
+  }
   /**
    * Anuitate: rate egale.
    * Asigurarea este calculată separat și adăugată la plată,
@@ -73,25 +69,25 @@ export class LoanCalculatorService {
   private generateAnnuitySchedule(
     amount: number,
     period: number,
-    annualRate: number,
+    interestRate: number,
     insuranceRate: number | null
   ): PaymentScheduleRow[] {
-    const monthlyPaymentWithoutInsurance =
-      this.calculateMonthlyPayment(amount, period, annualRate);
-    const monthlyRate = annualRate / 100 / 12;
+    
+    const monthlyPayment = this.calculateMonthlyPaymentAnnuity(amount, period, interestRate);
+    const monthlyInterestRate = interestRate / 100 / 12;
 
     let balance = amount;
     const schedule: PaymentScheduleRow[] = [];
 
     for (let month = 1; month <= period; month++) {
-      const interestPayment = balance * monthlyRate;
-      const principalPayment = monthlyPaymentWithoutInsurance - interestPayment;
+      const interestPayment = balance * monthlyInterestRate;
+      const principalPayment = monthlyPayment - interestPayment;
 
       const insuranceCost = insuranceRate !== null
         ? balance * (insuranceRate / 100)
         : 0;
 
-      const totalPayment = monthlyPaymentWithoutInsurance + insuranceCost;
+      const totalPayment = monthlyPayment + insuranceCost;
 
       balance = Math.max(0, balance - principalPayment);
 
@@ -115,17 +111,18 @@ export class LoanCalculatorService {
   private generateLinearSchedule(
     amount: number,
     period: number,
-    annualRate: number,
+    interestRate: number,
     insuranceRate: number | null
   ): PaymentScheduleRow[] {
+
     const principalPayment = amount / period;
-    const monthlyRate = annualRate / 100 / 12;
+    const monthlyInterestRate = interestRate / 100 / 12;
 
     let balance = amount;
     const schedule: PaymentScheduleRow[] = [];
 
     for (let month = 1; month <= period; month++) {
-      const interestPayment = balance * monthlyRate;
+      const interestPayment = balance * monthlyInterestRate;
 
       const insuranceCost = insuranceRate !== null
         ? balance * (insuranceRate / 100)
@@ -156,67 +153,64 @@ export class LoanCalculatorService {
   generateVariableAnnuitySchedule(
     amount: number,
     totalPeriod: number,
-    fixedRate: number,
+    fixedInterestRate: number,
     fixedMonths: number,
-    variableRate: number,
+    variableInterestRate: number,
     insuranceRate: number | null
   ): PaymentScheduleRow[] {
     const schedule: PaymentScheduleRow[] = [];
     let balance = amount;
 
-    const monthlyFixedRate = fixedRate / 100 / 12;
-    const monthlyVariableRate = variableRate / 100 / 12;
+    const monthlyFixedRate = fixedInterestRate / 100 / 12;
+    const monthlyVariableRate = variableInterestRate / 100 / 12;
 
-    const paymentFixedCredit =
-      this.calculateMonthlyPayment(amount, totalPeriod, fixedRate);
+    const fixedPrincipalPayment = this.calculateMonthlyPaymentAnnuity(amount, totalPeriod, fixedInterestRate);
 
-    // Perioada cu dobândă fixă
+    // Fixed period
     for (let month = 1; month <= fixedMonths; month++) {
-      const interest = balance * monthlyFixedRate;
-      const principal = paymentFixedCredit - interest;
+      const monthlyInterest = balance * monthlyFixedRate;
+      const monthlyPrincipal = fixedPrincipalPayment - monthlyInterest;
 
       const insuranceCost = insuranceRate !== null
         ? balance * (insuranceRate / 100)
         : 0;
 
-      const totalPayment = paymentFixedCredit + insuranceCost;
+      const monthlyPayment = fixedPrincipalPayment + insuranceCost;
 
-      balance = Math.max(0, balance - principal);
+      balance = Math.max(0, balance - monthlyPrincipal);
 
       schedule.push({
         month,
-        payment: totalPayment,
-        principal,
-        interest,
+        payment: monthlyPayment,
+        principal: monthlyPrincipal,
+        interest: monthlyInterest,
         insurance: insuranceRate !== null ? insuranceCost : null,
         remainingBalance: balance
       });
     }
 
-    // Perioada variabilă
+    // Variable period
     const remainingMonths = totalPeriod - fixedMonths;
-    if (remainingMonths > 0 && balance > 0.01) {
-      const paymentVarCredit =
-        this.calculateMonthlyPayment(balance, remainingMonths, variableRate);
+    if (remainingMonths > 0 && balance > 0) {
+      const variablePrincipalPayment = this.calculateMonthlyPaymentAnnuity(balance, remainingMonths, variableInterestRate);
 
-      for (let i = 1; i <= remainingMonths; i++) {
-        const month = fixedMonths + i;
-        const interest = balance * monthlyVariableRate;
-        const principal = paymentVarCredit - interest;
+      for (let month = fixedMonths + 1; month <= totalPeriod; month++) {
+        const monthlyInterest = balance * monthlyVariableRate;
+        const monthlyPrincipal = variablePrincipalPayment - monthlyInterest;
 
         const insuranceCost = insuranceRate !== null
           ? balance * (insuranceRate / 100)
           : 0;
 
-        const totalPayment = paymentVarCredit + insuranceCost;
+        const totalPayment = variablePrincipalPayment + insuranceCost;
 
-        balance = Math.max(0, balance - principal);
+        balance = Math.max(0, balance - monthlyPrincipal);
 
         schedule.push({
           month,
           payment: totalPayment,
-          principal,
-          interest,
+          principal: monthlyPrincipal,
+          interest: monthlyInterest,
           insurance: insuranceRate !== null ? insuranceCost : null,
           remainingBalance: balance
         });
@@ -232,48 +226,13 @@ export class LoanCalculatorService {
   generateVariableLinearSchedule(
     amount: number,
     totalPeriod: number,
-    fixedRate: number,
+    fixedInterestRate: number,
     fixedMonths: number,
-    variableRate: number,
+    variableInterestRate: number,
     insuranceRate: number | null
   ): PaymentScheduleRow[] {
-    const firstPeriod = this
-      .generateLinearSchedule(amount, totalPeriod, fixedRate, insuranceRate)
-      .slice(0, fixedMonths);
-
-    const remainingBalance = firstPeriod.length > 0
-      ? firstPeriod[firstPeriod.length - 1].remainingBalance
-      : amount;
-
-    const secondPeriodMonths = totalPeriod - fixedMonths;
-
-    let secondPeriod: PaymentScheduleRow[] = [];
-    if (secondPeriodMonths > 0 && remainingBalance > 0) {
-      const principalPayment = amount / totalPeriod;
-      let balance = remainingBalance;
-
-      for (let i = 1; i <= secondPeriodMonths; i++) {
-        const interest = balance * (variableRate / 100 / 12);
-
-        const insuranceCost = insuranceRate !== null
-          ? balance * (insuranceRate / 100)
-          : 0;
-
-        const totalPayment = principalPayment + interest + insuranceCost;
-
-        balance = Math.max(0, balance - principalPayment);
-
-        secondPeriod.push({
-          month: fixedMonths + i,
-          payment: totalPayment,
-          principal: principalPayment,
-          interest,
-          insurance: insuranceRate !== null ? insuranceCost : null,
-          remainingBalance: balance
-        });
-      }
-    }
-
-    return [...firstPeriod, ...secondPeriod];
+      const firstPeriod = this.generateLinearSchedule(amount, totalPeriod, fixedInterestRate, insuranceRate).slice(0, fixedMonths);
+      const secondPeriod = this.generateLinearSchedule(amount, totalPeriod, variableInterestRate, insuranceRate).slice(fixedMonths);
+     return [...firstPeriod, ...secondPeriod];
   }
 }

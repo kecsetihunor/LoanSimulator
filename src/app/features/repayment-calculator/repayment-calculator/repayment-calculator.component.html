@@ -102,41 +102,53 @@
 
   <!-- Summaries: original vs after repayment -->
   <div class="row mt-5">
-    <div class="col-md-6 mb-3" *ngIf="originalSchedule.length">
+    <div class="col-md-6 mb-3" *ngIf="baseSchedule.length">
       <h5 class="text-white mb-2" i18n>Înainte de rambursare</h5>
       <app-payment-summary-cards
-        [firstPayment]="originalFirstPayment"
+        [firstPayment]="baseFirstPayment"
         [isAnnuityPayment]="loanType === 'annuity' ? true : false"
-        [total]="originalTotal"
+        [total]="baseTotal"
         [amount]="amount"
-        [interestTotal]="originalInterestTotal"
-        [insuranceTotal]="originalInsuranceTotal"
+        [interestTotal]="baseInterestTotal"
+        [insuranceTotal]="baseInsuranceTotal"
         [IsInsuranceRateEnabled]="insuranceRate !== null"
         [isSavingBadgeVisible]="false"
         [alertClass]="'alert-green'"
       ></app-payment-summary-cards>
     </div>
 
-    <div class="col-md-6 mb-3" *ngIf="afterRepaymentSchedule.length">
+    <div class="col-md-6 mb-3" *ngIf="isValid()">
       <h5 class="text-white mb-2" i18n>După rambursare</h5>
-      <app-payment-summary-cards
-        [firstPayment]="afterRepaymentFirstPayment"
+      <app-payment-summary-cards *ngIf="newSchedule.length"
+        [firstPayment]="newFirstPayment"
         [isAnnuityPayment]="loanType === 'annuity' ? true : false"
-        [total]="afterRepaymentTotal"
+        [total]="newTotal"
         [amount]="amount"
-        [interestTotal]="afterRepaymentInterestTotal"
-        [insuranceTotal]="afterRepaymentInsuranceTotal"
+        [interestTotal]="newInterestTotal"
+        [insuranceTotal]="newInsuranceTotal"
         [IsInsuranceRateEnabled]="insuranceRate !== null"
         [isSavingBadgeVisible]="true"
         [savingAmount]="totalSaved"
         [alertClass]="'alert-purple'"
       ></app-payment-summary-cards>
+      <div class="d-flex justify-content-center align-items-center" style="min-height: 200px;" *ngIf="isValid() &&  earlyRepaymentAmount !== null && earlyRepaymentAmount >= amount!">
+        <div class="feature-card">
+          <div class="feature-header mx-auto">
+            <span class="feature-card-icon"><i class="bi bi-house-heart"></i></span>
+            <span class="feature-title" i18n>Felicitări!</span>
+          </div>
+          <div class="feature-description mx-auto" i18n>
+            Ai rambursat creditul tău!
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
   <!-- Amortization schedules: original vs after repayment -->
   <div class="row mt-5">
-    <div class="col-lg-6 mb-4 mt-3" *ngIf="originalSchedule.length">
+    <div class="col-lg-6 mb-4 mt-3" *ngIf="baseSchedule.length">
       <div class="d-flex justify-content-between align-items-center mb-3">
         <h4 class="mb-0 text-white" i18n>Scadențar înainte de rambursare</h4>
         <button type="button" class="btn btn-outline-primary btn-sm" (click)="downloadOriginalSchedulePdf()">
@@ -145,12 +157,12 @@
         </button>
       </div>
       <app-amortization-schedule
-        [schedule]="originalSchedule"
+        [schedule]="baseSchedule"
         [insuranceRate]="insuranceRate"
       ></app-amortization-schedule>
     </div>
 
-    <div class="col-lg-6 mb-4 mt-3" *ngIf="afterRepaymentSchedule.length">
+    <div class="col-lg-6 mb-4 mt-3" *ngIf="newSchedule.length">
       <div class="d-flex justify-content-between align-items-center mb-3">
         <h4 class="mb-0 text-white" i18n>Scadențar după rambursare</h4>
         <button type="button" class="btn btn-outline-primary btn-sm" (click)="downloadAfterRepaymentSchedulePdf()">
@@ -159,10 +171,8 @@
         </button>
       </div>
       <app-amortization-schedule
-        [schedule]="afterRepaymentSchedule"
+        [schedule]="newSchedule"
         [insuranceRate]="insuranceRate"
       ></app-amortization-schedule>
     </div>
-  </div>
-
 </div>

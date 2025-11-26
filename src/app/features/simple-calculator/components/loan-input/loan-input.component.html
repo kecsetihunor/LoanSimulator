@@ -35,16 +35,17 @@
           Perioada totală: {{ period || 0 }} luni
         </label>
         <input
-          id="period"
-          type="number"
+          type="text"
           class="form-control mb-1"
-          [value]="period"
-          (input)="onPeriodChange($any($event.target)?.value)"
+          id="period"
+          [(ngModel)]="period"
+          (ngModelChange)="onPeriodChange($event)"
+          (keydown)="onlyNumbers($event)"
           inputmode="numeric"
-          step="1"
           min="1"
           max="480"
           placeholder="de ex. 12"
+          pattern="[0-9]*"
           i18n-placeholder
         />
         <input
