@@ -2,205 +2,61 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="ro" target-language="en" datatype="plaintext" original="ng2.template">
     <body>
-      <trans-unit id="2691648197539180620" datatype="html">
-        <source>Calculator avansat de credite</source>
-        <target>Advanced Loan Calculator</target>
-      </trans-unit>
-      <trans-unit id="2699237394997039329" datatype="html">
-        <source> Simulează credite cu perioadă fixă și variabilă, reflectând piața românească. Rate egale sau descrescătoare cu detalii avansate. </source>
-        <target>Simulates loans with both fixed and variable periods, matching the Romanian market. Choose annuity or declining payments with advanced details.</target>
-      </trans-unit>
-      <trans-unit id="1418333298894131402" datatype="html">
-        <source>Calculează plățile cu rate ale dobânzii fixe și variabile.</source>
-        <target>Calculate payments with fixed and variable interest rates.</target>
-      </trans-unit>
-      <trans-unit id="1432139783670819497" datatype="html">
-        <source><x id="PH" equiv-text="this.variableRate"/>% (restul de <x id="PH_1" equiv-text="this.totalPeriod! - this.fixedMonths!"/> luni)</source>
-        <target><x id="PH" equiv-text="this.variableRate"/>% (remaining <x id="PH_1" equiv-text="this.totalPeriod! - this.fixedMonths!"/> months)</target>
-      </trans-unit>
-      <trans-unit id="1523613183788837651" datatype="html">
-        <source> Suma rambursată anticipat: </source>
-        <target state="new"> Early Repaid Amount: </target>
-      </trans-unit>
-      <trans-unit id="1531245330698799839" datatype="html">
-        <source> Reduce rata lunară </source>
-        <target> Reduce monthly payment </target>
-      </trans-unit>
-      <trans-unit id="1594977695564223983" datatype="html">
-        <source> Reduce perioada </source>
-        <target> Reduce period </target>
-      </trans-unit>
-      <trans-unit id="1632353900444915355" datatype="html">
-        <source>Tehnologii folosite</source>
-        <target>Technologies used</target>
-      </trans-unit>
-      <trans-unit id="1651694815350369857" datatype="html">
-        <source>Mod:</source>
-        <target>Mode:</target>
-      </trans-unit>
-      <trans-unit id="1825639258384053380" datatype="html">
-        <source>Bootstrap 5</source>
-        <target>Bootstrap 5</target>
-      </trans-unit>
-      <trans-unit id="7452862223408201252" datatype="html">
-        <source>Sumă</source>
-        <target>Loan Amount</target>
-      </trans-unit>
-      <trans-unit id="2962252082838092969" datatype="html">
-        <source>de ex. 10000.00</source>
-        <target>e.g. 10000.00</target>
-      </trans-unit>
-      <trans-unit id="4711706981465215953" datatype="html">
-        <source> Introduceți suma totală a creditului </source>
-        <target> Enter the total loan amount </target>
-      </trans-unit>
-      <trans-unit id="3856057429607546822" datatype="html">
-        <source>Standalone components</source>
-        <target>Standalone components</target>
-      </trans-unit>
-      <trans-unit id="3906633764491110801" datatype="html">
-        <source> Perioadă totală: <x id="INTERPOLATION" equiv-text="{{ totalPeriod || 0 }}"/> luni </source>
-        <target> Total Period: <x id="INTERPOLATION" equiv-text="{{ totalPeriod || 0 }}"/> months </target>
-      </trans-unit>
-      <trans-unit id="703344878798737022" datatype="html">
-        <source>de ex. 12</source>
-        <target>e.g. 12</target>
-      </trans-unit>
-      <trans-unit id="7095739901371495054" datatype="html">
-        <source>Înainte de rambursare</source>
-        <target>Before Early Repayment</target>
-      </trans-unit>
-      <trans-unit id="7195347096495457712" datatype="html">
-        <source>Avansat</source>
-        <target>Advanced</target>
-      </trans-unit>
-      <trans-unit id="7230816500639337784" datatype="html">
-        <source> Durata totală a creditului (1-480 luni) </source>
-        <target> Total loan duration (1-480 months) </target>
+      <trans-unit id="5838349189743847595" datatype="html">
+        <source> Folosim cookie-uri pentru a vă îmbunătăți experiența. Prin continuarea navigării, sunteți de acord cu utilizarea acestora. </source>
+        <target> We use cookies to improve your experience. By continuing to browse, you agree to their use. </target>
       </trans-unit>
       <trans-unit id="4490098994378329052" datatype="html">
         <source>Arată-mi mai târziu</source>
         <target>Show me later</target>
       </trans-unit>
-      <trans-unit id="4497678300734170634" datatype="html">
-        <source> Perioadă cu dobândă fixă: <x id="INTERPOLATION" equiv-text="{{ fixedMonths || 0 }}"/> luni </source>
-        <target> Fixed Rate Period: <x id="INTERPOLATION" equiv-text="{{ fixedMonths || 0 }}"/> months </target>
+      <trans-unit id="8895823665164266337" datatype="html">
+        <source>Vezi pe GitHub</source>
+        <target>See on GitHub</target>
       </trans-unit>
-      <trans-unit id="4500373767059779213" datatype="html">
-        <source>Tip credit:</source>
-        <target>Loan Type:</target>
+      <trans-unit id="8905995985388209337" datatype="html">
+        <source>Accept</source>
+        <target>Accept</target>
       </trans-unit>
-      <trans-unit id="4510505606313214357" datatype="html">
-        <source>Ambele</source>
-        <target>Both</target>
+      <trans-unit id="5875214134927582853" datatype="html">
+        <source>Suma creditului:</source>
+        <target>Loan amount:</target>
       </trans-unit>
-      <trans-unit id="4588260408795145490" datatype="html">
-        <source> Sumă totală: <x id="INTERPOLATION" equiv-text="{{ amount ? (amount | formatCurrency) : &apos;–&apos; }}"/> </source>
-        <target> Total Amount: <x id="INTERPOLATION" equiv-text="{{ amount ? (amount | formatCurrency) : &apos;–&apos; }}"/> </target>
+      <trans-unit id="5809459747683992538" datatype="html">
+        <source>Perioada totală:</source>
+        <target>Total period:</target>
       </trans-unit>
-      <trans-unit id="5924760316364248659" datatype="html">
-        <source> Luni cu dobândă fixă </source>
-        <target> Months with fixed interest rate </target>
+      <trans-unit id="8154323512925004769" datatype="html">
+        <source>Dobândă fixă:</source>
+        <target>Fixed rate:</target>
       </trans-unit>
-      <trans-unit id="2991902376333845341" datatype="html">
-        <source>Dobândă creditului</source>
-        <target>Interest rate</target>
+      <trans-unit id="8171390049406786569" datatype="html">
+        <source>Rezultate de învățare</source>
+        <target>Learning outcomes</target>
       </trans-unit>
-      <trans-unit id="5083278475412401034" datatype="html">
-        <source>Simulator credite</source>
-        <target>Loan Simulator</target>
+      <trans-unit id="5729964298292097259" datatype="html">
+        <source>Dobândă variabilă:</source>
+        <target>Variable rate:</target>
       </trans-unit>
-      <trans-unit id="5235787411505207903" datatype="html">
-        <source>Scadențar cu rate egale</source>
-        <target>Schedule with Equal Payments</target>
-      </trans-unit>
-      <trans-unit id="5290155479122604051" datatype="html">
-        <source>de ex. 5.5</source>
-        <target>e.g. 5.5</target>
-      </trans-unit>
-      <trans-unit id="5320851384222421326" datatype="html">
-        <source>Arhitectură modernă</source>
-        <target>Modern architecture</target>
-      </trans-unit>
-      <trans-unit id="5441869475371993295" datatype="html">
-        <source>Calculator credit simplu</source>
-        <target>Simple Loan Calculator</target>
-      </trans-unit>
-      <trans-unit id="5511162125810800198" datatype="html">
-        <source>Vei reduce perioada creditului cu <x id="PH" equiv-text="reducedMonths"/> luni. </source>
-        <target state="new">You will shorten the loan period by <x id="PH" equiv-text="reducedMonths"/> months.</target>
-      </trans-unit>
-      <trans-unit id="2997037799995387599" datatype="html">
-        <source> Dobândă anuală ca procent (de ex., 5.5). </source>
-        <target> Annual rate as a percentage (e.g., 5.5). </target>
-      </trans-unit>
-      <trans-unit id="5838349189743847595" datatype="html">
-        <source> Folosim cookie-uri pentru a vă îmbunătăți experiența. Prin continuarea navigării, sunteți de acord cu utilizarea acestora. </source>
-        <target> We use cookies to improve your experience. By continuing to browse, you agree to their use. </target>
+      <trans-unit id="6235043665910191464" datatype="html">
+        <source>Dobândă:</source>
+        <target>Interest rate:</target>
       </trans-unit>
       <trans-unit id="5844091863866022626" datatype="html">
         <source>Asigurare de viață:</source>
-        <target>Life Insurance:</target>
+        <target>Life insurance:</target>
       </trans-unit>
-      <trans-unit id="2158669004903261612" datatype="html">
-        <source>Angular 17+</source>
-        <target>Angular 17+</target>
+      <trans-unit id="8656886950022127012" datatype="html">
+        <source>Tip rată:</source>
+        <target>Payment type:</target>
       </trans-unit>
-      <trans-unit id="2316106675552838913" datatype="html">
-        <source>de ex. 0.03</source>
-        <target>e.g. 0.03</target>
+      <trans-unit id="8473878230390743315" datatype="html">
+        <source>Rate egale</source>
+        <target>Annuity</target>
       </trans-unit>
-      <trans-unit id="2360325467305302863" datatype="html">
-        <source>Functionalități majore</source>
-        <target>Major functionalities</target>
-      </trans-unit>
-      <trans-unit id="2474780051231627363" datatype="html">
-        <source>Hunor Kecseti</source>
-        <target>Hunor Kecseti</target>
-      </trans-unit>
-      <trans-unit id="2499851113669369405" datatype="html">
-        <source> Sumă rambursată: <x id="INTERPOLATION" equiv-text="{{ earlyRepaymentAmount ? (earlyRepaymentAmount | formatCurrency) : &apos;–&apos; }}"/> </source>
-        <target> Early Repayment Amount: <x id="INTERPOLATION" equiv-text="{{ earlyRepaymentAmount ? (earlyRepaymentAmount | formatCurrency) : &apos;–&apos; }}"/> </target>
-      </trans-unit>
-      <trans-unit id="25133285737591443" datatype="html">
-        <source>Prima plată - </source>
-        <target>First Payment - </target>
-      </trans-unit>
-      <trans-unit id="3974519110861976041" datatype="html">
-        <source> Dobândă asigurare de viață (de ex. 0.03). </source>
-        <target> Life insurance rate as a percentage (e.g., 0.03). </target>
-      </trans-unit>
-      <trans-unit id="4097221005549041331" datatype="html">
-        <source>Calculator de credite</source>
-        <target>Simple Loan Calculator</target>
-      </trans-unit>
-      <trans-unit id="4166704451582304647" datatype="html">
-        <source><x id="PH" equiv-text="this.fixedRate"/>% (primele <x id="PH_1" equiv-text="this.fixedMonths"/> luni)</source>
-        <target><x id="PH" equiv-text="this.fixedRate"/>% (first <x id="PH_1" equiv-text="this.fixedMonths"/> months)</target>
-      </trans-unit>
-      <trans-unit id="4199924659010123392" datatype="html">
-        <source>Calcul live &amp; servicii custom</source>
-        <target>Live calculations &amp; custom services</target>
-      </trans-unit>
-      <trans-unit id="857165553728306828" datatype="html">
-        <source>Calculează plățile lunare cu o singură rată fixă a dobânzii.</source>
-        <target>Calculate your monthly payments with a single fixed interest rate.</target>
-      </trans-unit>
-      <trans-unit id="3399025409308126752" datatype="html">
-        <source>Calculator simplu</source>
-        <target>Simple Calculator</target>
-      </trans-unit>
-      <trans-unit id="3436254816661573840" datatype="html">
-        <source>SCSS/CSS</source>
-        <target>SCSS/CSS</target>
-      </trans-unit>
-      <trans-unit id="4705514502893907635" datatype="html">
-        <source>Calculator avansat</source>
-        <target>Advanced Calculator</target>
-      </trans-unit>
-      <trans-unit id="7678484546707541678" datatype="html">
-        <source>Scadențar credit</source>
-        <target>Amortization Schedule</target>
+      <trans-unit id="4465466786619650592" datatype="html">
+        <source>Rate descrescătoare</source>
+        <target>Declining</target>
       </trans-unit>
       <trans-unit id="4010148248073809313" datatype="html">
         <source>Lună</source>
@@ -213,10 +69,6 @@
       <trans-unit id="4849742699094965730" datatype="html">
         <source>Plată</source>
         <target>Payment</target>
-      </trans-unit>
-      <trans-unit id="4869532470356053178" datatype="html">
-        <source>Calculează cât economisești la dobândă atunci când rambursezi creditul mai devreme.</source>
-        <target>Calculate how much you save on interest when you repay the loan early.</target>
       </trans-unit>
       <trans-unit id="6327478626882902144" datatype="html">
         <source>Design responsive</source>
@@ -234,105 +86,305 @@
         <source>Asigurare</source>
         <target>Insurance</target>
       </trans-unit>
+      <trans-unit id="1343161183908985904" datatype="html">
+        <source>Sold rămas</source>
+        <target>Remaining balance</target>
+      </trans-unit>
+      <trans-unit id="1179063985669151659" datatype="html">
+        <source>Detalii credit</source>
+        <target>Loan details</target>
+      </trans-unit>
+      <trans-unit id="7678484546707541678" datatype="html">
+        <source>Scadențar credit</source>
+        <target>Amortization schedule</target>
+      </trans-unit>
+      <trans-unit id="2691648197539180620" datatype="html">
+        <source>Calculator avansat de credite</source>
+        <target>Advanced loan calculator</target>
+      </trans-unit>
+      <trans-unit id="2699237394997039329" datatype="html">
+        <source> Simulează credite cu perioadă fixă și variabilă, reflectând piața românească. Rate egale sau descrescătoare cu detalii avansate. </source>
+        <target>Simulate loans with fixed and variable periods, reflecting the Romanian market. Choose annuity or declining payments with advanced details.</target>
+      </trans-unit>
+      <trans-unit id="1418333298894131402" datatype="html">
+        <source>Calculează plățile cu rate ale dobânzii fixe și variabile.</source>
+        <target>Calculate payments with fixed and variable interest rates.</target>
+      </trans-unit>
+      <trans-unit id="1432139783670819497" datatype="html">
+        <source><x id="PH" equiv-text="this.variableRate"/>% (restul de <x id="PH_1" equiv-text="this.totalPeriod! - this.fixedMonths!"/> luni)</source>
+        <target><x id="PH" equiv-text="this.variableRate"/>% (remaining <x id="PH_1" equiv-text="this.totalPeriod! - this.fixedMonths!"/> months)</target>
+      </trans-unit>
+      <trans-unit id="5083278475412401034" datatype="html">
+        <source>Simulator credite</source>
+        <target>Loan simulator</target>
+      </trans-unit>
+      <trans-unit id="5235787411505207903" datatype="html">
+        <source>Scadențar cu rate egale</source>
+        <target>Schedule with equal payments</target>
+      </trans-unit>
+      <trans-unit id="8753172155662195671" datatype="html">
+        <source>Scadențar cu rate descrescătoare</source>
+        <target>Schedule with decreasing payments</target>
+      </trans-unit>
+      <trans-unit id="4588260408795145490" datatype="html">
+        <source> Sumă totală: <x id="INTERPOLATION" equiv-text="{{ amount ? (amount | formatCurrency) : &apos;–&apos; }}"/> </source>
+        <target> Total amount: <x id="INTERPOLATION" equiv-text="{{ amount ? (amount | formatCurrency) : &apos;–&apos; }}"/> </target>
+      </trans-unit>
+      <trans-unit id="7452862223408201252" datatype="html">
+        <source>Sumă</source>
+        <target>Loan amount</target>
+      </trans-unit>
+      <trans-unit id="2962252082838092969" datatype="html">
+        <source>de ex. 10000.00</source>
+        <target>e.g. 10000.00</target>
+      </trans-unit>
+      <trans-unit id="4711706981465215953" datatype="html">
+        <source> Introduceți suma totală a creditului </source>
+        <target> Enter the total loan amount </target>
+      </trans-unit>
+      <trans-unit id="3776991586360757926" datatype="html">
+        <source> Vei reduce perioada creditului cu <x id="INTERPOLATION" equiv-text="{{ reducedMonths }}"/> luni. Vei economisi aproximativ <x id="INTERPOLATION_1" equiv-text="{{ totalSaved | formatCurrency}}"/> (dobândă + asigurare). </source>
+        <target>You will shorten the loan term by <x id="INTERPOLATION" equiv-text="{{ reducedMonths }}"/> months. You will save approximately <x id="INTERPOLATION_1" equiv-text="{{ totalSaved | formatCurrency}}"/> (interest + insurance).</target>
+      </trans-unit>
+      <trans-unit id="3856057429607546822" datatype="html">
+        <source>Standalone components</source>
+        <target>Standalone components</target>
+      </trans-unit>
+      <trans-unit id="3906633764491110801" datatype="html">
+        <source> Perioadă totală: <x id="INTERPOLATION" equiv-text="{{ totalPeriod || 0 }}"/> luni </source>
+        <target> Total period: <x id="INTERPOLATION" equiv-text="{{ totalPeriod || 0 }}"/> months </target>
+      </trans-unit>
+      <trans-unit id="703344878798737022" datatype="html">
+        <source>de ex. 12</source>
+        <target>e.g. 12</target>
+      </trans-unit>
+      <trans-unit id="7195347096495457712" datatype="html">
+        <source>Avansat</source>
+        <target>Advanced</target>
+      </trans-unit>
+      <trans-unit id="7230816500639337784" datatype="html">
+        <source> Durata totală a creditului (1-480 luni) </source>
+        <target> Total loan duration (1-480 months) </target>
+      </trans-unit>
+      <trans-unit id="4497678300734170634" datatype="html">
+        <source> Perioadă cu dobândă fixă: <x id="INTERPOLATION" equiv-text="{{ fixedMonths || 0 }}"/> luni </source>
+        <target> Fixed rate period: <x id="INTERPOLATION" equiv-text="{{ fixedMonths || 0 }}"/> months </target>
+      </trans-unit>
+      <trans-unit id="5924760316364248659" datatype="html">
+        <source> Luni cu dobândă fixă </source>
+        <target> Months with fixed interest rate </target>
+      </trans-unit>
+      <trans-unit id="2158669004903261612" datatype="html">
+        <source>Angular 17+</source>
+        <target>Angular 17+</target>
+      </trans-unit>
+      <trans-unit id="2316106675552838913" datatype="html">
+        <source>de ex. 0.03</source>
+        <target>e.g. 0.03</target>
+      </trans-unit>
+      <trans-unit id="2360325467305302863" datatype="html">
+        <source>Functionalități majore</source>
+        <target>Key features</target>
+      </trans-unit>
+      <trans-unit id="3974519110861976041" datatype="html">
+        <source> Dobândă asigurare de viață (de ex. 0.03). </source>
+        <target> Life insurance rate (e.g., 0.03). </target>
+      </trans-unit>
+      <trans-unit id="3359479033708132151" datatype="html">
+        <source>Dobândă fixă</source>
+        <target>Fixed interest rate</target>
+      </trans-unit>
+      <trans-unit id="7579550189315904105" datatype="html">
+        <source> Dobândă pentru primele <x id="INTERPOLATION" equiv-text="{{ fixedMonths }}"/> luni </source>
+        <target> Interest rate for the first <x id="INTERPOLATION" equiv-text="{{ fixedMonths }}"/> months </target>
+      </trans-unit>
+      <trans-unit id="2728815649002931408" datatype="html">
+        <source>Dobândă variabilă</source>
+        <target>Variable interest rate</target>
+      </trans-unit>
+      <trans-unit id="5911181620501298469" datatype="html">
+        <source> Dobândă pentru restul de <x id="INTERPOLATION" equiv-text="{{ totalPeriod! - fixedMonths! }}"/> luni </source>
+        <target> Interest rate for the remaining <x id="INTERPOLATION" equiv-text="{{ totalPeriod! - fixedMonths! }}"/> months </target>
+      </trans-unit>
+      <trans-unit id="771095539920646964" datatype="html">
+        <source> Vezi economiile atunci când rambursezi anticipat. Poți reduce perioada creditului sau valoarea ratei lunare, cu simulare transparentă. </source>
+        <target>See how much you save when you repay early. You can shorten the loan term or lower the monthly payment, with a clear simulation.</target>
+      </trans-unit>
+      <trans-unit id="7799137937585197779" datatype="html">
+        <source>Scadențar:</source>
+        <target>Schedules:</target>
+      </trans-unit>
+      <trans-unit id="7935002856367671455" datatype="html">
+        <source>© 2025. Toate drepturile rezervate.</source>
+        <target>© 2025. All rights reserved.</target>
+      </trans-unit>
+      <trans-unit id="4510505606313214357" datatype="html">
+        <source>Ambele</source>
+        <target>Both</target>
+      </trans-unit>
+      <trans-unit id="1217982158425591250" datatype="html">
+        <source>Calculator de rambursare anticipată</source>
+        <target>Early repayment calculator</target>
+      </trans-unit>
+      <trans-unit id="4869532470356053178" datatype="html">
+        <source>Calculează cât economisești la dobândă atunci când rambursezi creditul mai devreme.</source>
+        <target>Calculate how much you save on interest when you repay the loan early.</target>
+      </trans-unit>
+      <trans-unit id="1632353900444915355" datatype="html">
+        <source>Tehnologii folosite</source>
+        <target>Technologies used</target>
+      </trans-unit>
+      <trans-unit id="1651694815350369857" datatype="html">
+        <source>Mod:</source>
+        <target>Mode:</target>
+      </trans-unit>
+      <trans-unit id="1825639258384053380" datatype="html">
+        <source>Bootstrap 5</source>
+        <target>Bootstrap 5</target>
+      </trans-unit>
+      <trans-unit id="4500373767059779213" datatype="html">
+        <source>Tip credit:</source>
+        <target>Loan type:</target>
+      </trans-unit>
+      <trans-unit id="2474780051231627363" datatype="html">
+        <source>Hunor Kecseti</source>
+        <target>Hunor Kecseti</target>
+      </trans-unit>
+      <trans-unit id="2499851113669369405" datatype="html">
+        <source> Sumă rambursată: <x id="INTERPOLATION" equiv-text="{{ earlyRepaymentAmount ? (earlyRepaymentAmount | formatCurrency) : &apos;–&apos; }}"/> </source>
+        <target> Amount repaid: <x id="INTERPOLATION" equiv-text="{{ earlyRepaymentAmount ? (earlyRepaymentAmount | formatCurrency) : &apos;–&apos; }}"/> </target>
+      </trans-unit>
+      <trans-unit id="25133285737591443" datatype="html">
+        <source>Prima plată - </source>
+        <target>First payment - </target>
+      </trans-unit>
+      <trans-unit id="7519294067337753817" datatype="html">
+        <source>Felicitări!</source>
+        <target>Congratulations!</target>
+      </trans-unit>
+      <trans-unit id="7558223298896961030" datatype="html">
+        <source> Cum aplici rambursarea: </source>
+        <target> How do you apply the early repayment: </target>
+      </trans-unit>
+      <trans-unit id="6111432939167467265" datatype="html">
+        <source> Simulator credite este o aplicație Angular modernă creată pentru simularea, compararea și gestionarea tuturor tipurilor de credite întâlnite pe piața românească.   Aplicația oferă utilizatorilor posibilitatea de a estima plăți lunare, costuri totale și economii posibile, atât pentru credite standard cât și pentru scenarii avansate, cu dobânzi variabile. <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/><x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/> Proiectul evidențiază practici moderne de dezvoltare frontend și un design intuitiv, cu interfață dark, personalizează calculele astfel încât fiecare utilizator să poată lua decizii mai inteligente privind rambursarea anticipată sau alegerea tipului de credit potrivit.   Include vizualizări detaliate ale scadențarelor, export PDF, suport multilingv (română/engleză) și management complet al datelor de simulare. </source>
+        <target>Loan Simulator is a modern Angular application designed for simulation, comparison, and management of all types of loans common in the Romanian market. Users can estimate monthly payments, total costs, and potential savings for both standard loans and advanced scenarios with variable interest. <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/><x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/>The project highlights modern frontend development practices and an intuitive dark interface, tailoring the calculations so each user can make smarter decisions about early repayment or choosing the right type of loan. It includes detailed amortization schedules, PDF export, multilingual support (Romanian/English), and complete management of all simulation data.</target>
+      </trans-unit>
+      <trans-unit id="1594977695564223983" datatype="html">
+        <source> Reduce perioada </source>
+        <target> Shorten the period </target>
+      </trans-unit>
+      <trans-unit id="1523613183788837651" datatype="html">
+        <source> Suma rambursată anticipat: </source>
+        <target> Amount repaid early: </target>
+      </trans-unit>
+      <trans-unit id="1531245330698799839" datatype="html">
+        <source> Reduce rata lunară </source>
+        <target> Reduce monthly payment </target>
+      </trans-unit>
+      <trans-unit id="7095739901371495054" datatype="html">
+        <source>Înainte de rambursare</source>
+        <target>Before early repayment</target>
+      </trans-unit>
+      <trans-unit id="8282621978178136042" datatype="html">
+        <source>Despre aplicație</source>
+        <target>About the application</target>
+      </trans-unit>
+      <trans-unit id="8337970274041702544" datatype="html">
+        <source>După rambursare</source>
+        <target>After early repayment</target>
+      </trans-unit>
+      <trans-unit id="6273627451917977693" datatype="html">
+        <source>Scadențar înainte de rambursare</source>
+        <target>Schedule before early repayment</target>
+      </trans-unit>
+      <trans-unit id="6284236085715501753" datatype="html">
+        <source> Ai rambursat creditul tău! </source>
+        <target> You have repaid your loan! </target>
+      </trans-unit>
+      <trans-unit id="8149160725215344999" datatype="html">
+        <source>Scadențar după rambursare</source>
+        <target>Schedule after early repayment</target>
+      </trans-unit>
+      <trans-unit id="2703105530390011109" datatype="html">
+        <source> Perioada totală: <x id="INTERPOLATION" equiv-text="{{ period || 0 }}"/> luni </source>
+        <target> Total period: <x id="INTERPOLATION" equiv-text="{{ period || 0 }}"/> months </target>
+      </trans-unit>
+      <trans-unit id="2991902376333845341" datatype="html">
+        <source>Dobândă creditului</source>
+        <target>Interest rate</target>
+      </trans-unit>
+      <trans-unit id="5290155479122604051" datatype="html">
+        <source>de ex. 5.5</source>
+        <target>e.g. 5.5</target>
+      </trans-unit>
+      <trans-unit id="5320851384222421326" datatype="html">
+        <source>Arhitectură modernă</source>
+        <target>Modern architecture</target>
+      </trans-unit>
+      <trans-unit id="5441869475371993295" datatype="html">
+        <source>Calculator credit simplu</source>
+        <target>Simple loan calculator</target>
+      </trans-unit>
+      <trans-unit id="2997037799995387599" datatype="html">
+        <source> Dobândă anuală ca procent (de ex., 5.5). </source>
+        <target> Annual interest rate as a percentage (e.g., 5.5). </target>
+      </trans-unit>
+      <trans-unit id="4097221005549041331" datatype="html">
+        <source>Calculator de credite</source>
+        <target>Loan calculator</target>
+      </trans-unit>
+      <trans-unit id="4166704451582304647" datatype="html">
+        <source><x id="PH" equiv-text="this.fixedRate"/>% (primele <x id="PH_1" equiv-text="this.fixedMonths"/> luni)</source>
+        <target><x id="PH" equiv-text="this.fixedRate"/>% (first <x id="PH_1" equiv-text="this.fixedMonths"/> months)</target>
+      </trans-unit>
+      <trans-unit id="4199924659010123392" datatype="html">
+        <source>Calcul live &amp; servicii custom</source>
+        <target>Live calculations &amp; custom services</target>
+      </trans-unit>
+      <trans-unit id="857165553728306828" datatype="html">
+        <source>Calculează plățile lunare cu o singură rată fixă a dobânzii.</source>
+        <target>Calculate your monthly payments with a single fixed interest rate.</target>
+      </trans-unit>
+      <trans-unit id="3399025409308126752" datatype="html">
+        <source>Calculator simplu</source>
+        <target>Simple calculator</target>
+      </trans-unit>
+      <trans-unit id="3436254816661573840" datatype="html">
+        <source>SCSS/CSS</source>
+        <target>SCSS/CSS</target>
+      </trans-unit>
+      <trans-unit id="4705514502893907635" datatype="html">
+        <source>Calculator avansat</source>
+        <target>Advanced calculator</target>
+      </trans-unit>
+      <trans-unit id="3282145801099580571" datatype="html">
+        <source>Rambursare anticipată</source>
+        <target>Early repayment</target>
+      </trans-unit>
+      <trans-unit id="4315211620301629613" datatype="html">
+        <source> Rata lunară va fi cu aproximativ <x id="INTERPOLATION" equiv-text="{{diffInstallment | formatCurrency}}"/> mai mică. Vei economisi aproximativ <x id="INTERPOLATION_1" equiv-text="{{ totalSaved | formatCurrency}}"/> (dobândă + asigurare). </source>
+        <target>Your monthly installment will be about <x id="INTERPOLATION" equiv-text="{{diffInstallment | formatCurrency}}"/> lower. You will save approximately <x id="INTERPOLATION_1" equiv-text="{{ totalSaved | formatCurrency}}"/> (interest + insurance).</target>
+      </trans-unit>
       <trans-unit id="4338022632676445411" datatype="html">
         <source>Sold</source>
         <target>Balance</target>
       </trans-unit>
       <trans-unit id="930592059351212024" datatype="html">
         <source> Calculează rapid credite cu dobândă fixă. Permite alegerea între rate egale sau descrescătoare, cu tabel și simulare completă. </source>
-        <target>Quickly calculates loans with fixed interest. Choose annuity or declining rates, with detailed table and complete simulation.</target>
+        <target>Quickly calculate loans with fixed interest. Choose annuity or declining payments, with a detailed table and full simulation.</target>
       </trans-unit>
       <trans-unit id="944069891241198023" datatype="html">
         <source>Arată mai puțin</source>
-        <target>Show Less</target>
+        <target>Show less</target>
       </trans-unit>
       <trans-unit id="990341683702498937" datatype="html">
         <source>Icons</source>
         <target>Icons</target>
       </trans-unit>
-      <trans-unit id="1179063985669151659" datatype="html">
-        <source>Detalii credit</source>
-        <target>Loan Details</target>
-      </trans-unit>
-      <trans-unit id="1217982158425591250" datatype="html">
-        <source>Calculator de rambursare anticipată</source>
-        <target>Early Repayment Calculator</target>
-      </trans-unit>
-      <trans-unit id="5875214134927582853" datatype="html">
-        <source>Suma creditului:</source>
-        <target>Loan Amount:</target>
-      </trans-unit>
-      <trans-unit id="5809459747683992538" datatype="html">
-        <source>Perioada totală:</source>
-        <target>Total Period:</target>
-      </trans-unit>
-      <trans-unit id="4356285830241749279" datatype="html">
-        <source>Vei economisi aproximativ <x id="PH" equiv-text="totalSavedText"/> (dobândă + asigurare).</source>
-        <target state="new">You will save approximately <x id="PH" equiv-text="totalSavedText"/> (interest + insurance).</target>
-      </trans-unit>
-      <trans-unit id="8149160725215344999" datatype="html">
-        <source>Scadențar după rambursare</source>
-        <target>Schedule After Early Repayment</target>
-      </trans-unit>
-      <trans-unit id="8154323512925004769" datatype="html">
-        <source>Dobândă fixă:</source>
-        <target>Fixed Rate:</target>
-      </trans-unit>
-      <trans-unit id="8171390049406786569" datatype="html">
-        <source>Rezultate de învățare</source>
-        <target>Learning outcomes</target>
-      </trans-unit>
-      <trans-unit id="5729964298292097259" datatype="html">
-        <source>Dobândă variabilă:</source>
-        <target>Variable Rate:</target>
-      </trans-unit>
-      <trans-unit id="6097058403193629342" datatype="html">
-        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Asigurare totală:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
-        <target><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Total Insurance:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
-      </trans-unit>
-      <trans-unit id="7519294067337753817" datatype="html">
-        <source>Felicitări!</source>
-        <target state="new">Congratulations!</target>
-      </trans-unit>
-      <trans-unit id="7558223298896961030" datatype="html">
-        <source> Cum aplici rambursarea: </source>
-        <target state="new"> How do you apply the early repayment: </target>
-      </trans-unit>
-      <trans-unit id="6111432939167467265" datatype="html">
-        <source> Simulator credite este o aplicație Angular modernă creată pentru simularea, compararea și gestionarea tuturor tipurilor de credite întâlnite pe piața românească.   Aplicația oferă utilizatorilor posibilitatea de a estima plăți lunare, costuri totale și economii posibile, atât pentru credite standard cât și pentru scenarii avansate, cu dobânzi variabile. <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/><x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/> Proiectul evidențiază practici moderne de dezvoltare frontend și un design intuitiv, cu interfață dark, personalizează calculele astfel încât fiecare utilizator să poată lua decizii mai inteligente privind rambursarea anticipată sau alegerea tipului de credit potrivit.   Include vizualizări detaliate ale scadențarelor, export PDF, suport multilingv (română/engleză) și management complet al datelor de simulare. </source>
-        <target>Loan Simulator is a modern Angular application designed for simulation, comparison, and management of all types of loans common in the Romanian market. Users can estimate monthly payments, total costs, and possible savings for standard loans or advanced scenarios with variable interest. <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/><x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/>The project highlights modern frontend development practices and an intuitive dark interface, helping every user make smarter choices about early repayment or selecting the right loan type. Includes detailed amortization schedules, PDF export, multilingual support (Romanian/English), and complete management of all simulation data.</target>
-      </trans-unit>
-      <trans-unit id="6235043665910191464" datatype="html">
-        <source>Dobândă:</source>
-        <target>Interest Rate:</target>
-      </trans-unit>
-      <trans-unit id="6273627451917977693" datatype="html">
-        <source>Scadențar înainte de rambursare</source>
-        <target>Schedule Before Early Repayment</target>
-      </trans-unit>
-      <trans-unit id="6284236085715501753" datatype="html">
-        <source> Ai rambursat creditul tău! </source>
-        <target state="new"> You have repaid your loan! </target>
-      </trans-unit>
-      <trans-unit id="8656886950022127012" datatype="html">
-        <source>Tip rată:</source>
-        <target>Payment Type:</target>
-      </trans-unit>
-      <trans-unit id="8753172155662195671" datatype="html">
-        <source>Scadențar cu rate descrescătoare</source>
-        <target>Schedule with Decreasing Payments</target>
-      </trans-unit>
-      <trans-unit id="8895823665164266337" datatype="html">
-        <source>Vezi pe GitHub</source>
-        <target>See on GitHub</target>
-      </trans-unit>
-      <trans-unit id="8905995985388209337" datatype="html">
-        <source>Accept</source>
-        <target>Accept</target>
-      </trans-unit>
-      <trans-unit id="1343161183908985904" datatype="html">
-        <source>Sold rămas</source>
-        <target>Remaining Balance</target>
+      <trans-unit id="8580942993536224477" datatype="html">
+        <source>Arată tot</source>
+        <target>Show all</target>
       </trans-unit>
       <trans-unit id="6572622110339427917" datatype="html">
         <source>Internaționalizare completă (i18n)</source>
@@ -340,7 +392,7 @@
       </trans-unit>
       <trans-unit id="6577139673648346288" datatype="html">
         <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Valoarea totală de rambursat:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
-        <target><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Total payback:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
+        <target><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Total amount to be repaid:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
       </trans-unit>
       <trans-unit id="681808795101979909" datatype="html">
         <source>UI/UX profesional</source>
@@ -354,69 +406,13 @@
         <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Dobândă totală:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
         <target><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Total interest:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
       </trans-unit>
+      <trans-unit id="6097058403193629342" datatype="html">
+        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Asigurare totală:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+        <target><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Total insurance:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
+      </trans-unit>
       <trans-unit id="914040915553963977" datatype="html">
         <source>Economisești: </source>
         <target>You save: </target>
-      </trans-unit>
-      <trans-unit id="771095539920646964" datatype="html">
-        <source> Vezi economiile atunci când rambursezi anticipat. Poți reduce perioada creditului sau valoarea ratei lunare, cu simulare transparentă. </source>
-        <target>See your savings when you repay early. You can shorten the loan period or lower the monthly payment, with clear simulation.</target>
-      </trans-unit>
-      <trans-unit id="7799137937585197779" datatype="html">
-        <source>Scadențar:</source>
-        <target>Schedules:</target>
-      </trans-unit>
-      <trans-unit id="7935002856367671455" datatype="html">
-        <source>© 2025. Toate drepturile rezervate.</source>
-        <target>© 2025. All rights reserved.</target>
-      </trans-unit>
-      <trans-unit id="8282621978178136042" datatype="html">
-        <source>Despre aplicație</source>
-        <target>About the application</target>
-      </trans-unit>
-      <trans-unit id="8337970274041702544" datatype="html">
-        <source>După rambursare</source>
-        <target>After Early Repayment</target>
-      </trans-unit>
-      <trans-unit id="8473878230390743315" datatype="html">
-        <source>Rate egale</source>
-        <target>Annuity</target>
-      </trans-unit>
-      <trans-unit id="4465466786619650592" datatype="html">
-        <source>Rate descrescătoare</source>
-        <target>Declining</target>
-      </trans-unit>
-      <trans-unit id="8580942993536224477" datatype="html">
-        <source>Arată tot</source>
-        <target>Show All</target>
-      </trans-unit>
-      <trans-unit id="3282145801099580571" datatype="html">
-        <source>Rambursare anticipată</source>
-        <target>Early Repayment</target>
-      </trans-unit>
-      <trans-unit id="3359479033708132151" datatype="html">
-        <source>Dobândă fixă</source>
-        <target>Fixed Interest Rate</target>
-      </trans-unit>
-      <trans-unit id="7579550189315904105" datatype="html">
-        <source> Dobândă pentru primele <x id="INTERPOLATION" equiv-text="{{ fixedMonths }}"/> luni </source>
-        <target> Interest rate for the first <x id="INTERPOLATION" equiv-text="{{ fixedMonths }}"/> months </target>
-      </trans-unit>
-      <trans-unit id="2703105530390011109" datatype="html">
-        <source> Perioada totală: <x id="INTERPOLATION" equiv-text="{{ period || 0 }}"/> luni </source>
-        <target> Total Period: <x id="INTERPOLATION" equiv-text="{{ period || 0 }}"/> months </target>
-      </trans-unit>
-      <trans-unit id="2728815649002931408" datatype="html">
-        <source>Dobândă variabilă</source>
-        <target>Variable Interest Rate</target>
-      </trans-unit>
-      <trans-unit id="2271039546610177386" datatype="html">
-        <source>Rata lunară va fi cu aproximativ <x id="PH" equiv-text="diffInstallmentText"/> mai mică. </source>
-        <target state="new">The monthly installment will be approximately <x id="PH" equiv-text="diffInstallmentText"/> lower. </target>
-      </trans-unit>
-      <trans-unit id="5911181620501298469" datatype="html">
-        <source> Dobândă pentru restul de <x id="INTERPOLATION" equiv-text="{{ totalPeriod! - fixedMonths! }}"/> luni </source>
-        <target> Interest for the remaining <x id="INTERPOLATION" equiv-text="{{ totalPeriod! - fixedMonths! }}"/> months </target>
       </trans-unit>
     </body>
   </file>

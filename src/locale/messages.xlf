@@ -107,6 +107,9 @@
       <trans-unit id="4711706981465215953" datatype="html">
         <source> Introduceți suma totală a creditului </source>
       </trans-unit>
+      <trans-unit id="3776991586360757926" datatype="html">
+        <source> Vei reduce perioada creditului cu <x id="INTERPOLATION" equiv-text="{{ reducedMonths }}"/> luni. Vei economisi aproximativ <x id="INTERPOLATION_1" equiv-text="{{ totalSaved | formatCurrency}}"/> (dobândă + asigurare). </source>
+      </trans-unit>
       <trans-unit id="3856057429607546822" datatype="html">
         <source>Standalone components</source>
       </trans-unit>
@@ -148,9 +151,6 @@
       </trans-unit>
       <trans-unit id="2728815649002931408" datatype="html">
         <source>Dobândă variabilă</source>
-      </trans-unit>
-      <trans-unit id="2271039546610177386" datatype="html">
-        <source>Rata lunară va fi cu aproximativ <x id="PH" equiv-text="diffInstallmentText"/> mai mică. </source>
       </trans-unit>
       <trans-unit id="5911181620501298469" datatype="html">
         <source> Dobândă pentru restul de <x id="INTERPOLATION" equiv-text="{{ totalPeriod! - fixedMonths! }}"/> luni </source>
@@ -227,9 +227,6 @@
       <trans-unit id="6284236085715501753" datatype="html">
         <source> Ai rambursat creditul tău! </source>
       </trans-unit>
-      <trans-unit id="4356285830241749279" datatype="html">
-        <source>Vei economisi aproximativ <x id="PH" equiv-text="totalSavedText"/> (dobândă + asigurare).</source>
-      </trans-unit>
       <trans-unit id="8149160725215344999" datatype="html">
         <source>Scadențar după rambursare</source>
       </trans-unit>
@@ -247,9 +244,6 @@
       </trans-unit>
       <trans-unit id="5441869475371993295" datatype="html">
         <source>Calculator credit simplu</source>
-      </trans-unit>
-      <trans-unit id="5511162125810800198" datatype="html">
-        <source>Vei reduce perioada creditului cu <x id="PH" equiv-text="reducedMonths"/> luni. </source>
       </trans-unit>
       <trans-unit id="2997037799995387599" datatype="html">
         <source> Dobândă anuală ca procent (de ex., 5.5). </source>
@@ -277,6 +271,9 @@
       </trans-unit>
       <trans-unit id="3282145801099580571" datatype="html">
         <source>Rambursare anticipată</source>
+      </trans-unit>
+      <trans-unit id="4315211620301629613" datatype="html">
+        <source> Rata lunară va fi cu aproximativ <x id="INTERPOLATION" equiv-text="{{diffInstallment | formatCurrency}}"/> mai mică. Vei economisi aproximativ <x id="INTERPOLATION_1" equiv-text="{{ totalSaved | formatCurrency}}"/> (dobândă + asigurare). </source>
       </trans-unit>
       <trans-unit id="4338022632676445411" datatype="html">
         <source>Sold</source>
