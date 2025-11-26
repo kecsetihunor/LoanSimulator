@@ -38,3 +38,37 @@
 .border-light {
   border-color: rgba(255, 255, 255, 0.25) !important;
 }
+
+@media (max-width: 576px) {
+  .payment-summary-card .d-flex {
+    flex-wrap: wrap;
+  }
+
+  /* label text inside rows */
+  .payment-summary-card .d-flex span {
+    font-size: 0.9rem;
+  }
+
+  .payment-summary-card .d-flex span:last-child {
+    margin-left: auto;
+  }
+
+  .payment-summary-card .alert-heading {
+    font-size: 1rem;      /* smaller title on phones */
+  }
+
+  .payment-summary-card .fs-4 {
+    font-size: 1.1rem;    /* smaller main number on phones */
+  }
+
+  .payment-summary-card p.fs-4 {
+    font-size: 1.1rem;
+  }
+
+
+}
+
+.payment-summary-card {
+  max-width: 100%;
+  box-sizing: border-box;
+}

@@ -14,7 +14,7 @@
   ></app-loan-input>
 
   <div class="row mt-4">
-    <div class="col-md-6 mb-3" *ngIf="isValid() && showAnnuity">
+    <div class="col-12 col-md-6 mb-3" *ngIf="isValid() && showAnnuity">
       <app-payment-summary-cards
         [firstPayment]="annuityPayment"
         [isAnnuityPayment] = "true"
@@ -27,7 +27,7 @@
         [alertClass]="'alert-green'"
       ></app-payment-summary-cards>
     </div>
-    <div class="col-md-6 mb-3" *ngIf="isValid() && showLinear">
+    <div class="col-12 col-md-6 mb-3" *ngIf="isValid() && showLinear">
       <app-payment-summary-cards
         [firstPayment]="linearPayment"
         [isAnnuityPayment] = "false"

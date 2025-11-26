@@ -104,8 +104,8 @@
   </div>
 
   <!-- Summaries: original vs after repayment -->
-  <div class="row mt-5">
-    <div class="col-md-6 mb-3" *ngIf="baseSchedule.length">
+  <div class="row">
+    <div class="col-12 col-md-6 mb-3 mt-5" *ngIf="baseSchedule.length">
       <h5 class="text-white mb-2" i18n>Înainte de rambursare</h5>
       <app-payment-summary-cards
         [firstPayment]="baseFirstPayment"
@@ -120,7 +120,7 @@
       ></app-payment-summary-cards>
     </div>
 
-    <div class="col-md-6 mb-3" *ngIf="isValid()">
+    <div class="col-md-6 mb-3 mt-5" *ngIf="isValid() && earlyRepaymentAmount !== null">
       <h5 class="text-white mb-2" i18n>După rambursare</h5>
       <app-payment-summary-cards *ngIf="newSchedule.length"
         [firstPayment]="newFirstPayment"
