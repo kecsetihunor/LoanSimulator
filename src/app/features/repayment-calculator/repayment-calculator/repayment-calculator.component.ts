@@ -34,11 +34,9 @@ type RepaymentEffect = 'amount' | 'period';
   ],
   templateUrl: './repayment-calculator.component.html',
   styleUrl: './repayment-calculator.component.css',
-  providers: [FormatCurrencyPipe]
 })
 export class RepaymentCalculatorComponent implements OnInit {
   downloadPdfService = inject(DownloadPdfService);
-  formatCurrencyPipe = inject(FormatCurrencyPipe);
   // UI state
   mode: ScenarioMode = 'simple';
   loanType: PaymentType = 'annuity';
@@ -46,8 +44,9 @@ export class RepaymentCalculatorComponent implements OnInit {
   // Early repayment UI state
   earlyRepaymentAmount: number | null = null;
   totalSaved: number = 0;
+  reducedMonths: number = 0;
+  diffInstallment: number = 0;
   repaymentEffect: RepaymentEffect = 'period'; 
-  repaymentResultText = '';
 
   // Original vs simulated schedules / totals
   baseSchedule: PaymentScheduleRow[] = [];
@@ -212,7 +211,9 @@ export class RepaymentCalculatorComponent implements OnInit {
       this.newSchedule = [];
       this.newFirstPayment = 0;
       this.newTotal = 0;
-      this.repaymentResultText = '';
+      this.totalSaved = 0;
+      this.reducedMonths = 0;
+      this.diffInstallment= 0;
 
       return;
     }
@@ -492,17 +493,19 @@ export class RepaymentCalculatorComponent implements OnInit {
 
   private updateRepaymentResultText(): void {
     if (!this.baseSchedule.length || !this.newSchedule.length) {
-      this.repaymentResultText = '';
+      this.totalSaved = 0;
+      this.reducedMonths = 0;
+      this.diffInstallment= 0;
       return;
     }
 
     const originalMonths = this.baseSchedule.length;
     const newMonths = this.newSchedule.length;
-    const reducedMonths = Math.max(originalMonths - newMonths, 0);
+    this.reducedMonths = Math.max(originalMonths - newMonths, 0);
 
     const originalInstallment = this.baseFirstPayment;
     const newInstallment = this.newFirstPayment;
-    const diffInstallment = Math.max(originalInstallment - newInstallment, 0);
+    this.diffInstallment = Math.max(originalInstallment - newInstallment, 0);
 
     const originalInterest = this.baseSchedule
       .reduce((sum, row) => sum + (row.interest || 0), 0);
@@ -517,19 +520,6 @@ export class RepaymentCalculatorComponent implements OnInit {
     const savedInterest = Math.max(originalInterest - newInterest, 0);
     const savedInsurance = Math.max(originalInsurance - newInsurance, 0);
     this.totalSaved = Math.max(savedInterest + savedInsurance, 0);
-
-    const totalSavedText = this.formatCurrencyPipe.transform(this.totalSaved);
-    const diffInstallmentText = this.formatCurrencyPipe.transform(diffInstallment);
-
-    if (this.repaymentEffect === 'period') {
-      this.repaymentResultText =
-        $localize`Vei reduce perioada creditului cu ${reducedMonths} luni. ` +
-        $localize`Vei economisi aproximativ ${totalSavedText} (dobândă + asigurare).`;
-    } else {
-      this.repaymentResultText =
-        $localize`Rata lunară va fi cu aproximativ ${diffInstallmentText} mai mică. ` +
-        $localize`Vei economisi aproximativ ${totalSavedText} (dobândă + asigurare).`;
-    }
   }
 
   // === Helpers ===
@@ -543,7 +533,9 @@ export class RepaymentCalculatorComponent implements OnInit {
     this.newTotal = 0;
     this.newFirstPayment = 0;
 
-    this.repaymentResultText = '';
+    this.totalSaved = 0;
+    this.reducedMonths = 0;
+    this.diffInstallment= 0;
   }
 
   downloadOriginalSchedulePdf(): void {

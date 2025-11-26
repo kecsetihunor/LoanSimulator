@@ -90,9 +90,12 @@
             </mat-button-toggle-group>
           </div>
 
-          <div class="col-md-12 mt-2">
-            <p class="text-white-50 mb-0" *ngIf="repaymentResultText">
-              {{ repaymentResultText }}
+          <div class="col-md-12 mt-2" *ngIf="earlyRepaymentAmount !== null && earlyRepaymentAmount > 0">
+            <p class="text-white-50 mb-0" *ngIf="repaymentEffect === 'period'">
+              Vei reduce perioada creditului cu {{ reducedMonths }} luni. Vei economisi aproximativ {{ totalSaved | formatCurrency}} (dobândă + asigurare).
+            </p>
+            <p class="text-white-50 mb-0" *ngIf="repaymentEffect === 'amount'">
+              Rata lunară va fi cu aproximativ {{diffInstallment | formatCurrency}} mai mică. Vei economisi aproximativ {{ totalSaved | formatCurrency}} (dobândă + asigurare).
             </p>
           </div>
         </div>
