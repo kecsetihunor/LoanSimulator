@@ -268,19 +268,18 @@ export class RepaymentCalculatorComponent implements OnInit {
           }
         } else { 
           //ANNUITY 
-            const baseMonthlyPayment = baseSchedule[0].payment;
+            const baseMonthlyPayment = baseSchedule[0].principal + baseSchedule[0].interest;
 
             for (let month = 1; Math.round(balance * 100) / 100 > 0; month++) { 
               const interestPayment = balance * monthlyInterestRate;
-              
-              if (balance + interestPayment >=  baseMonthlyPayment)
-              {
-                const monthlyPayment = baseMonthlyPayment;
-                const principalPayment = monthlyPayment - interestPayment;
-              
-                const insuranceCost = this.insuranceRate !== null
+              const insuranceCost = this.insuranceRate !== null
                   ? balance * (this.insuranceRate / 100)
                   : 0;
+
+              if (balance + interestPayment >=  baseMonthlyPayment)
+              {
+                const principalPayment = baseMonthlyPayment - interestPayment;
+                const monthlyPayment = principalPayment + interestPayment + insuranceCost;
 
                 balance = Math.max(0, balance - principalPayment);
                 schedule.push({
@@ -292,16 +291,12 @@ export class RepaymentCalculatorComponent implements OnInit {
                   remainingBalance: balance
                 });
               } else {
-
                 const principalPayment = originalBalance - schedule.reduce((sum, row) => sum + Math.round(row.principal * 100)/100, 0);
                 const interestPayment = balance * monthlyInterestRate;
-                const monthlyPayment = principalPayment + interestPayment
-              
-                const insuranceCost = this.insuranceRate !== null
-                  ? balance * (this.insuranceRate / 100)
-                  : 0;
+                const monthlyPayment = principalPayment + interestPayment + insuranceCost
 
                 balance = 0;
+
                 schedule.push({
                   month,
                   payment: monthlyPayment,
@@ -346,19 +341,19 @@ export class RepaymentCalculatorComponent implements OnInit {
             }
           } else { 
             //ANNUITY
-            let baseMonthlyPayment = baseSchedule[0].payment;
+            let baseMonthlyPayment = baseSchedule[0].principal + baseSchedule[0].interest;
             let monthlyInterestRate = this.fixedRate! / 100 / 12;
             
             //FIXED PERIOD
             for (let month = 1; Math.round(balance * 100) / 100 > 0 && month <= this.fixedMonths!; month++) {   
               const interestPayment = balance * monthlyInterestRate;
-             
-              if (balance + interestPayment >=  baseMonthlyPayment) {
-                const monthlyPayment = baseMonthlyPayment;
-                const principalPayment = monthlyPayment - interestPayment;
-                const insuranceCost = this.insuranceRate !== null
+              const insuranceCost = this.insuranceRate !== null
                   ? balance * (this.insuranceRate / 100)
                   : 0;
+
+              if (balance + interestPayment >=  baseMonthlyPayment) {
+                const principalPayment = baseMonthlyPayment - interestPayment;
+                const monthlyPayment = principalPayment + interestPayment + insuranceCost;
 
                 balance = Math.max(0, balance - principalPayment);
                 schedule.push({
@@ -372,10 +367,7 @@ export class RepaymentCalculatorComponent implements OnInit {
               } else {
                 const principalPayment = originalBalance - schedule.reduce((sum, row) => sum + Math.round(row.principal * 100)/100, 0);
                 const interestPayment = balance * monthlyInterestRate;
-                const monthlyPayment = principalPayment + interestPayment
-                const insuranceCost = this.insuranceRate !== null
-                  ? balance * (this.insuranceRate / 100)
-                  : 0;
+                const monthlyPayment = principalPayment + interestPayment + insuranceCost
 
                 balance = 0;
 
@@ -392,18 +384,18 @@ export class RepaymentCalculatorComponent implements OnInit {
 
             //VARIABLE PERIOD
             if (balance !== 0) {
-              baseMonthlyPayment = baseSchedule[this.fixedMonths!].payment;
+              baseMonthlyPayment = baseSchedule[this.fixedMonths!].principal + baseSchedule[this.fixedMonths!].interest;
               monthlyInterestRate = this.variableRate! / 100 / 12;
 
               for (let month = this.fixedMonths! + 1; Math.round(balance * 100) / 100 > 0; month++) {
                 const interestPayment = balance * monthlyInterestRate;
+                const insuranceCost = this.insuranceRate !== null
+                  ? balance * (this.insuranceRate / 100)
+                  : 0;
 
                 if (balance + interestPayment >=  baseMonthlyPayment) {
-                  const monthlyPayment = baseMonthlyPayment;
-                  const principalPayment = monthlyPayment - interestPayment;
-                  const insuranceCost = this.insuranceRate !== null
-                    ? balance * (this.insuranceRate / 100)
-                    : 0;
+                  const principalPayment = baseMonthlyPayment - interestPayment;
+                  const monthlyPayment = principalPayment + interestPayment + insuranceCost;
 
                   balance = Math.max(0, balance - principalPayment);
                   schedule.push({
@@ -418,11 +410,8 @@ export class RepaymentCalculatorComponent implements OnInit {
                 } else {
                   const principalPayment = originalBalance - schedule.reduce((sum, row) => sum + Math.round(row.principal * 100)/100, 0);
                   const interestPayment = balance * monthlyInterestRate;
-                  const monthlyPayment = principalPayment + interestPayment
-                  const insuranceCost = this.insuranceRate !== null
-                    ? balance * (this.insuranceRate / 100)
-                    : 0;
-
+                  const monthlyPayment = principalPayment + interestPayment + insuranceCost
+                  
                   balance = 0;
 
                   schedule.push({
