@@ -16,7 +16,7 @@
   ></app-advanced-loan-input>
 
   <div class="row mt-4">
-    <div class="col-md-6 mb-3" *ngIf="showAnnuity">
+    <div class="col-md-6 mb-3" *ngIf="isValid() && showAnnuity">
       <app-payment-summary-cards
         [firstPayment]="annuityPayment"
         [isAnnuityPayment] = "true"
@@ -29,7 +29,7 @@
         [alertClass]="'alert-green'"
       ></app-payment-summary-cards>
     </div>
-    <div class="col-md-6 mb-3" *ngIf="showLinear">
+    <div class="col-md-6 mb-3" *ngIf="isValid() && showLinear">
       <app-payment-summary-cards
         [firstPayment]="linearPayment"
         [isAnnuityPayment] = "false"
@@ -46,7 +46,7 @@
   </div>
 
    <!-- Amortization Tables Side by Side (or full width) -->
-  <div class="row mt-4" *ngIf="annuitySchedule.length > 0">
+  <div class="row mt-4" *ngIf="annuitySchedule.length || linearSchedule.length">
     <div 
       [ngClass]="showAnnuity && showLinear ? 'col-lg-6 mb-4' : 'col-8 mb-4'" 
       *ngIf="showAnnuity">

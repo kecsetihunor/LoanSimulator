@@ -267,8 +267,8 @@
         <target> How do you apply the early repayment: </target>
       </trans-unit>
       <trans-unit id="6111432939167467265" datatype="html">
-        <source> Simulator credite este o aplicație Angular modernă creată pentru simularea, compararea și gestionarea tuturor tipurilor de credite întâlnite pe piața românească.   Aplicația oferă utilizatorilor posibilitatea de a estima plăți lunare, costuri totale și economii posibile, atât pentru credite standard cât și pentru scenarii avansate, cu dobânzi variabile. <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/><x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/> Proiectul evidențiază practici moderne de dezvoltare frontend și un design intuitiv, cu interfață dark, personalizează calculele astfel încât fiecare utilizator să poată lua decizii mai inteligente privind rambursarea anticipată sau alegerea tipului de credit potrivit.   Include vizualizări detaliate ale scadențarelor, export PDF, suport multilingv (română/engleză) și management complet al datelor de simulare. </source>
-        <target>Loan Simulator is a modern Angular application designed for simulation, comparison, and management of all types of loans common in the Romanian market. Users can estimate monthly payments, total costs, and potential savings for both standard loans and advanced scenarios with variable interest. <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/><x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/>The project highlights modern frontend development practices and an intuitive dark interface, tailoring the calculations so each user can make smarter decisions about early repayment or choosing the right type of loan. It includes detailed amortization schedules, PDF export, multilingual support (Romanian/English), and complete management of all simulation data.</target>
+        <source> Simulator credite este o aplicație Angular modernă creată pentru simularea, compararea și gestionarea tuturor tipurilor de credite întâlnite pe piața românească.   Aplicația oferă utilizatorilor posibilitatea de a estima plăți lunare, costuri totale și economii posibile, atât pentru credite standard cât și pentru scenarii avansate, cu dobânzi variabile. <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/><x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/> Proiectul evidențiază practici moderne de dezvoltare frontend și un design intuitiv, cu interfață dark, personalizează calculele astfel încât fiecare utilizator să poată lua decizii mai inteligente privind rambursarea anticipată sau alegerea tipului de credit potrivit.   Include vizualizări detaliate ale scadențarelor, export PDF, suport multilingv (română/engleză) și management complet al datelor de simulare. </source>
+        <target state="new">Loan Simulator is a modern Angular application designed for simulation, comparison, and management of all types of loans common in the Romanian market. Users can estimate monthly payments, total costs, and potential savings for both standard loans and advanced scenarios with variable interest. <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/><x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/>The project highlights modern frontend development practices and an intuitive dark interface, tailoring the calculations so each user can make smarter decisions about early repayment or choosing the right type of loan. It includes detailed amortization schedules, PDF export, multilingual support (Romanian/English), and complete management of all simulation data.</target>
       </trans-unit>
       <trans-unit id="1594977695564223983" datatype="html">
         <source> Reduce perioada </source>
@@ -381,6 +381,11 @@
       <trans-unit id="990341683702498937" datatype="html">
         <source>Icons</source>
         <target>Icons</target>
+      </trans-unit>
+      <trans-unit id="pageTitle" datatype="html">
+        <source> Rambursare anticipată </source>
+        <target state="new"> Loan calculator </target>
+        <note priority="1" from="description">Page title</note>
       </trans-unit>
       <trans-unit id="8580942993536224477" datatype="html">
         <source>Arată tot</source>

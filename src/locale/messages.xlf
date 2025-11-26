@@ -287,6 +287,10 @@
       <trans-unit id="990341683702498937" datatype="html">
         <source>Icons</source>
       </trans-unit>
+      <trans-unit id="pageTitle" datatype="html">
+        <source> Rambursare anticipată </source>
+        <note priority="1" from="description">Page title</note>
+      </trans-unit>
       <trans-unit id="8580942993536224477" datatype="html">
         <source>Arată tot</source>
       </trans-unit>

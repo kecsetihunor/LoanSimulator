@@ -94,7 +94,7 @@ export class SimpleCalculatorComponent implements OnInit {
     this.recalculateSchedules();
   }
 
-  private isValid(): boolean {
+  isValid(): boolean {
     return this.amount !== null && this.amount > 0 &&
            this.period !== null && this.period > 0 &&
            this.rate !== null && this.rate >= 0;

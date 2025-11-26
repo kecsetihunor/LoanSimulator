@@ -113,7 +113,7 @@ export class AdvancedCalculatorComponent implements OnInit {
     this.recalculateSchedules();
   }
 
-  private isValid(): boolean {
+  isValid(): boolean {
     return this.amount !== null &&
            this.amount > 0 &&
            this.totalPeriod !== null &&

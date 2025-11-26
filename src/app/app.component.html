@@ -16,6 +16,9 @@
     [ngClass]="{ 'sidebar-collapsed': sidebarCollapsed, 'overlay-open': sidebarOpen }"
   >
     <div class="content-wrapper">
+      <span i18n="Page title@@pageTitle" #pageTitleRef style="display:none">
+        Rambursare anticipată
+      </span>
       <router-outlet></router-outlet>
       <app-cookie-consent></app-cookie-consent>
     </div>

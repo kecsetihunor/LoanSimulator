@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SidebarComponent } from '@layout/sidebar/sidebar.component';
 import { CookieConsentComponent } from '@core/components/cookie-consent.component'
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -11,11 +12,20 @@ import { CookieConsentComponent } from '@core/components/cookie-consent.componen
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'Loan Simulator';
+export class AppComponent implements AfterViewInit {
+  @ViewChild('pageTitleRef', { static: true }) pageTitleRef!: ElementRef<HTMLElement>;
 
   sidebarCollapsed = false;
   sidebarOpen = false; // mobile overlay state
+
+  constructor(private title: Title) {}
+
+  ngAfterViewInit(): void {
+    const translatedTitle = this.pageTitleRef.nativeElement.textContent?.trim() || '';
+    if (translatedTitle) {
+      this.title.setTitle(translatedTitle);
+    }
+  }
 
   onClick() {
     this.sidebarOpen = !this.sidebarOpen;
